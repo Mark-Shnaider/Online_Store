@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.Contracts.Services
 {
-    interface IAmountService
+    public interface IAmountService
     {
     }
 }

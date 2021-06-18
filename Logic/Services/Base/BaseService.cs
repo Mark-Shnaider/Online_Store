@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Contracts.Services
+namespace Logic.Services.Base
 {
-    public interface ICustomerService
+    class BaseService
     {
     }
 }

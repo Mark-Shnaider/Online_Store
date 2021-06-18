@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Models.DTO.Base;
-using Common.Models.DTO.Base;
 
 namespace Common.Models.DTO
 {

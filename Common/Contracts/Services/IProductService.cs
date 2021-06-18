@@ -7,7 +7,7 @@ using Common.Contracts.Services.Base;
 
 namespace Common.Contracts.Services
 {
-    interface IProductService:IService
+    public interface IProductService :IService
     {
     }
 }

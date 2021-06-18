@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.Contracts.Services.Base
 {
-    interface IService
+    public interface IService
     {
     }
 }
