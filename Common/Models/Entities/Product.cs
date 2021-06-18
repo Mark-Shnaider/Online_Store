@@ -15,7 +15,7 @@ namespace Common.Models.Entities
         public int Quantity { get; set; }
 
         //Navigation properties
-        public Category Category { get; set; }
-        public ICollection<Amount> Amounts { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual ICollection<Amount> Amounts { get; set; }
     }
 }

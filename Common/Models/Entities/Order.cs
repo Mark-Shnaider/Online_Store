@@ -15,7 +15,7 @@ namespace Common.Models.Entities
         public Status Status { get; set; }
         public Guid CustomerId { get; set; }
         //Navigation properties
-        public Customer Customer { get; set; }
-        public ICollection<Amount> Amounts { get; set; }
+        public virtual Customer Customer { get; set; }
+        public virtual ICollection<Amount> Amounts { get; set; }
     }
 }
