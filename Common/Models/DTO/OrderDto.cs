@@ -8,7 +8,7 @@ using Common.Models.DTO.Base;
 
 namespace Common.Models.DTO
 {
-    class OrderDto:BaseDto<Guid>
+    public class OrderDto :BaseDto<Guid>
     {
         public decimal Price { get; set; }
         public string Commentary { get; set; }

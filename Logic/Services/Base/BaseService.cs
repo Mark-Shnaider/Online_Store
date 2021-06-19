@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using Common.Contracts;
+using Common.Contracts.Services;
+using System;
 
 namespace Logic.Services.Base
 {
-    class BaseService
+    public class BaseService
     {
+        protected readonly IUnitOfWork _unitOfWork;
+        protected readonly IServiceProvider _serviceProvider;
+        protected readonly IMapper _mapper;
+
+        public BaseService(IMapper mapper, IServiceProvider serviceProvider, IUnitOfWork unitOfWork)
+        {
+            _serviceProvider = serviceProvider ?? throw new ArgumentNullException("serviceHost");
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException("unitOfWork");
+            _mapper = mapper ?? throw new ArgumentNullException("automapper");
+        }
+
     }
 }

@@ -7,7 +7,7 @@ using Common.Models.DTO.Base;
 
 namespace Common.Models.DTO
 {
-    class AmountDto:BaseDto<Guid>
+    public class AmountDto:BaseDto<Guid>
     {
         public int Qunatity { get; set; }
         public Guid OrderId { get; set; }

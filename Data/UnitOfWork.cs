@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly StoreContext storeContext;
 

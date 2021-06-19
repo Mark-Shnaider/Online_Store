@@ -7,7 +7,7 @@ using Common.Contracts.Services.Base;
 
 namespace Common.Contracts.Services
 {
-    public interface IAmountService:IService
+    public interface ICategoryService:IService
     {
     }
 }

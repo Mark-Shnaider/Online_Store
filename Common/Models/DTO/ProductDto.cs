@@ -7,7 +7,7 @@ using Common.Models.DTO.Base;
 
 namespace Common.Models.DTO
 {
-    class ProductDto:BaseDto<Guid>
+    public class ProductDto :BaseDto<Guid>
     {
         public string Name { get; set; }
         public string Description { get; set; }

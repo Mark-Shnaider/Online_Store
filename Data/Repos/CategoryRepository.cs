@@ -1,8 +1,8 @@
-﻿using Common.Contracts.Repos;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Common.Contracts.Repos;
 using Common.Models.Entities;
 using Data.Repos.Base;
-using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace Data.Repos
 {

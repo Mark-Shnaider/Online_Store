@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common.Contracts.Services.Base;
 
-namespace Common.Contracts.Services
+namespace Logic.Services
 {
-    public interface IAmountService:IService
+    public class Product
     {
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Logic
 {
-   public  class ServiceHost:IServiceHost
+    public  class ServiceHost:IServiceHost
     {
         private readonly IServiceProvider _provider;
         private readonly Dictionary<Type, IService> _services;

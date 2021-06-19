@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.Models.DTO.Base
 {
-    class BaseDto<T>
+    public class BaseDto<T>
         where T: IEquatable<T>
     {
         public T Id { get; set; }
