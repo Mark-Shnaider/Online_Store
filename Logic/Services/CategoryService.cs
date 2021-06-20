@@ -20,18 +20,5 @@ namespace Logic.Services
         { 
         
         }
-        public void AddCategories()
-        {
-            foreach (var category in Enum.GetValues(typeof(Categories)))
-            {
-                var temp = new Category
-                {
-                    Id = Guid.NewGuid(),
-                    Name = category.ToString(),
-                    Description = "RandomDescription"
-                };
-            }
-
-        }
     }
 }

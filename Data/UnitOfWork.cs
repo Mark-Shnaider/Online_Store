@@ -17,7 +17,7 @@ namespace Data
         private IProductRepository productRepository;
         private ICategoryRepository categoryRepository;
 
-        public UnitOfWork() => storeContext = new StoreContext();
+        public UnitOfWork(StoreContext _storeContext) => storeContext = _storeContext;
 
         public DbContext DbContext
         {

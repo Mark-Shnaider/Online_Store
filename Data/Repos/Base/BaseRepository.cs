@@ -17,12 +17,18 @@ namespace Data.Repos.Base
         protected DbSet<TEnt> DbSet { get; set; }
         public BaseRepository(DbContext dbContext)
         {
-            DbContext = dbContext ?? throw new ArgumentNullException("dbContext");
+            DbContext = dbContext ?? throw new ArgumentNullException("DContext");
             DbSet = DbContext.Set<TEnt>();
         }
         public void Add(TEnt entity)
         {
             DbSet.Add(entity);
+        }
+
+        public void AddRange(IEnumerable<TEnt> entities)
+        {
+            foreach (var ent in entities)
+                DbSet.Add(ent);
         }
         public TEnt AddOrUpdate(TEnt entity)
         {

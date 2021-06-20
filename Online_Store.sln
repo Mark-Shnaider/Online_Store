@@ -4,12 +4,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Online_Store", "Online_Store\Online_Store.csproj", "{129B5164-DE77-4FC0-983E-7A57385C5B88}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AFA5CB31-6BCC-479E-A68C-852B203AE85B} = {AFA5CB31-6BCC-479E-A68C-852B203AE85B}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{F3BD1E75-4D7A-46E3-853F-C5894475ACAB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{8217855C-FD74-450B-BF82-6BD9A4C8A98A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{AFA5CB31-6BCC-479E-A68C-852B203AE85B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj", "{AFA5CB31-6BCC-479E-A68C-852B203AE85B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

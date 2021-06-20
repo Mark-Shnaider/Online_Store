@@ -12,6 +12,7 @@ namespace Common.Contracts.Repos.Base
         where TKey : IEquatable<TKey>
     {
         void Add(TEntity entity);
+        void AddRange(IEnumerable<TEntity> entities);
         void Update(TEntity entity);
         TEntity AddOrUpdate(TEntity entity);
         void Delete(TEntity entity);
