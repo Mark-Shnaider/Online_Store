@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Data;
 using Common.Contracts;
+using AutoMapper;
 
 namespace Online_Store
 {
@@ -26,9 +27,17 @@ namespace Online_Store
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new AutoMapperProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
             services.AddDbContext<StoreContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
