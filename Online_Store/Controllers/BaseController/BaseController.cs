@@ -6,13 +6,13 @@ namespace Online_Store.Controllers.Base
 {
     public class BaseController : Controller
     {
-        protected readonly IServiceProvider _serviceHost;
+        protected readonly IServiceProvider _serviceProvider;
         protected readonly IMapper _mapper;
 
-        public BaseController(IMapper mapper, IServiceProvider serviceHost)
+        public BaseController(IMapper mapper, IServiceProvider serviceProvider)
         {
-            _serviceHost = serviceHost ?? throw new NullReferenceException("ServiceProvider's exception");
-            _mapper = mapper ?? throw new NullReferenceException("Mapper's exception");
+            _serviceProvider = serviceProvider ?? throw new NullReferenceException("ServiceProvider exception");
+            _mapper = mapper ?? throw new NullReferenceException("Mapper exception");
         }
     }
 }

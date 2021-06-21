@@ -15,10 +15,6 @@ namespace Logic
         public static void Seed(IUnitOfWork unitOfWork, ILoggerFactory loggerFactory)
         {
             IEnumerable<Category> categories;
-            //IEnumerable<Amount> amounts;
-            //IEnumerable<Customer> customers;
-            //IEnumerable<Product> products;
-            //IEnumerable<Order> orders;
 
             if (!unitOfWork.Categories.GetAll().Any() && !unitOfWork.Products.GetAll().Any())
             {
@@ -61,7 +57,6 @@ namespace Logic
                 new Customer{Id = Guid.NewGuid(), Login = "Login5", Password ="12345", Email="5@ya.ru", Address="Something", PhoneNumber="911" },
             };
         }
-
         static IEnumerable<Product> GetPreconfiguredProducts(IEnumerable<Category> categories)
         {
             var _categories = categories.ToList();

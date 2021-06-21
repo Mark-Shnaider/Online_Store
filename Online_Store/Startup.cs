@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Data;
 using Common.Contracts;
 using AutoMapper;
+using Online_Store.App_Start;
 
 namespace Online_Store
 {
@@ -27,6 +28,9 @@ namespace Online_Store
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddControllersWithViews();
+            //
+            services.AddHttpContextAccessor();
 
             var mappingConfig = new MapperConfiguration(mc =>
             {

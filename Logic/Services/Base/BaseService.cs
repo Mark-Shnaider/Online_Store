@@ -13,9 +13,9 @@ namespace Logic.Services.Base
 
         public BaseService(IMapper mapper, IServiceProvider serviceProvider, IUnitOfWork unitOfWork)
         {
-            _serviceProvider = serviceProvider ?? throw new ArgumentNullException("serviceHost");
-            _unitOfWork = unitOfWork ?? throw new ArgumentNullException("unitOfWork");
-            _mapper = mapper ?? throw new ArgumentNullException("automapper");
+            _serviceProvider = serviceProvider ?? throw new ArgumentNullException("ServiceProvider exception");
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException("UnitOfWork exception");
+            _mapper = mapper ?? throw new ArgumentNullException("Automapper exception");
         }
 
     }

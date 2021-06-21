@@ -24,7 +24,6 @@ namespace Data.Repos.Base
         {
             DbSet.Add(entity);
         }
-
         public void AddRange(IEnumerable<TEnt> entities)
         {
             foreach (var ent in entities)
