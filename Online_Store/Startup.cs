@@ -13,6 +13,8 @@ using Data;
 using Common.Contracts;
 using AutoMapper;
 using Online_Store.App_Start;
+using Common.Contracts.Services;
+using Logic.Services;
 
 namespace Online_Store
 {
@@ -27,8 +29,8 @@ namespace Online_Store
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
             services.AddControllersWithViews();
+            services.AddRazorPages();
             //
             services.AddHttpContextAccessor();
 
@@ -42,6 +44,9 @@ namespace Online_Store
 
             services.AddDbContext<StoreContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IProductService, ProductService>();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
@@ -66,7 +71,13 @@ namespace Online_Store
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                    name: "MyArea",
+                    pattern: "{area:exists}/{controller=Product}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Product}/{action=Index}");
             });
         }
     }

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 
-namespace Online_Store.Controllers.Base
+namespace Online_Store.App_Start
 {
     public class BaseController : Controller
     {

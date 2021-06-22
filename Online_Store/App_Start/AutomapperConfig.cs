@@ -2,6 +2,7 @@
 using Common.Models.DTO;
 using Common.Models.Entities;
 using Online_Store.Models;
+//using Online_Store.Areas.Products.Models;
 
 namespace Online_Store.App_Start
 {
@@ -30,7 +31,7 @@ namespace Online_Store.App_Start
             CreateMap<CategoryDto, CategoryViewModel>().ReverseMap();
             CreateMap<CustomerDto, CustomerViewModel>().ReverseMap();
             CreateMap<OrderDto, OrderViewModel>().ReverseMap();
-            CreateMap<ProductDto, ProductViewModel>().ReverseMap();
+            //CreateMap<ProductDto, ProductViewModel>().ReverseMap();
         }
     }
 }

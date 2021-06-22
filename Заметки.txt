@@ -13,3 +13,4 @@ automappe используется в сервисах и контроллера
 
 Спросить про ServiceCollection (конструкторы)
 Спросить про N-tier архитектура и MVC(как построено)
+/Products/Product/Details/e5c93901-fb76-4e21-910c-05bb1ff78670
