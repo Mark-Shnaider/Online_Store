@@ -1,9 +1,9 @@
-﻿using Common.Models.Entities.Base;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Common.Models.Entities.Base;
 
 namespace Common.Contracts.Repos.Base
 {

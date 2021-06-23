@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Logic.Services.Base;
+using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 using Common.Models.DTO;
 using Common.Models.Entities;
-using AutoMapper;
 using Common.Contracts;
 using Common.Contracts.Services;
+using Logic.Services.Base;
 
 namespace Logic.Services
 {
@@ -41,31 +40,40 @@ namespace Logic.Services
 
             Product product = _mapper.Map<Product>(productDTO);
             _unitOfWork.Products.Delete(product);
+            _unitOfWork.Commit();
         }
 
         public List<AmountDto> GetAmounts(Guid Id)
         {
-            throw new NotImplementedException();
+            List<Amount> amounts = _unitOfWork.Products.GetAll()
+                .Include(p => p.Amounts).
+                FirstOrDefault(p => p.Id == Id).
+                Amounts.ToList();
+            if (amounts == null)
+                return null;
+            return _mapper.Map<List<AmountDto>>(amounts);
         }
 
         public ProductDto GetProduct(Guid Id)
         {
-            Product product = _unitOfWork.Products.GetById(Id);
+            Product product = _unitOfWork.Products.GetAll()
+                .Include(p => p.Category)
+                .FirstOrDefault(p => p.Id == Id);
+
             if (product == null) 
                 return null;
-            ProductDto productdto = _mapper.Map<ProductDto>(product);
-            return productdto;
+            
+            return _mapper.Map<ProductDto>(product);
         }
 
         public void UpdateProduct(ProductDto productDTO)
         {
             if (productDTO == null)
-            {
                 return;
-            }
 
             Product product = _mapper.Map<Product>(productDTO);
             _unitOfWork.Products.AddOrUpdate(product);
+            _unitOfWork.Commit();
         }
     }
 }

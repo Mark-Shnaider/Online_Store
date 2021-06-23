@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using AutoMapper;
 using Common.Models.DTO;
+using Common.Contracts.Services;
+using Logic.Services;
 using Online_Store.Areas.Products.Models;
 using Online_Store.Base;
-using AutoMapper;
-using Logic.Services;
-using Common.Contracts.Services;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Online_Store.Areas.Products.Controllers
 {
@@ -20,11 +20,12 @@ namespace Online_Store.Areas.Products.Controllers
             : base(mapper, serviceProvider)
         {
         }
-
         public IActionResult Index()
         {
             return View();
         }
+
+        [HttpGet]
         public IActionResult Details(Guid id)
         {
             ProductDto product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(id);
@@ -32,6 +33,8 @@ namespace Online_Store.Areas.Products.Controllers
 
             return View(invoiceViewModel);
         }
+
+        [HttpGet]
         public IActionResult Create(ProductViewModel product)
         {
             ProductDto productDto = _mapper.Map<ProductDto>(product);
@@ -39,6 +42,7 @@ namespace Online_Store.Areas.Products.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
         public IActionResult Edit(Guid Id)
         {
             ProductDto productDTO = _serviceProvider.GetRequiredService<IProductService>().GetProduct(Id);

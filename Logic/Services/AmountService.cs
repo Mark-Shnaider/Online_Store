@@ -1,8 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using Common.Models.DTO;
+using Common.Models.Entities;
+using Common.Contracts;
+using Common.Contracts.Services;
+using Logic.Services.Base;
+
 
 namespace Logic.Services
 {
