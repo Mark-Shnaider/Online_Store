@@ -1,9 +1,11 @@
-﻿using Common.Models.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Common.Models.Entities;
+using Common.Models.Entities.Identity;
 
 namespace Data
 {
-    public class StoreContext : DbContext
+    public class StoreContext : IdentityDbContext<User>
     {
         public StoreContext()
         { 

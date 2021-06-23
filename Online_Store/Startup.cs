@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ using AutoMapper;
 using Online_Store.App_Start;
 using Common.Contracts.Services;
 using Logic.Services;
+using Common.Models.Entities.Identity;
 
 namespace Online_Store
 {
@@ -29,6 +31,7 @@ namespace Online_Store
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<StoreContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
             //
