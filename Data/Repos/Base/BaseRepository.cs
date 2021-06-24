@@ -12,8 +12,8 @@ using Common.Contracts.Base;
 namespace Data.Repos.Base
 {
     public class BaseRepository<TKey, TEnt> : IBaseRepository<TKey, TEnt>
-        where TEnt :BaseEntity<TKey>
-        where TKey :IEquatable<TKey>
+        where TEnt : class, IBaseEntity<TKey>
+        where TKey : IEquatable<TKey>
     {
         protected DbContext DbContext { get; private set; }
         protected DbSet<TEnt> DbSet { get; set; }

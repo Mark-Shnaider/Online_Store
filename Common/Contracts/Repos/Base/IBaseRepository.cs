@@ -9,7 +9,7 @@ using Common.Contracts.Base;
 namespace Common.Contracts.Repos.Base
 {
     public interface IBaseRepository<TKey, TEntity>
-        where TEntity : IBaseEntity<TKey>
+        where TEntity : class, IBaseEntity<TKey>
         where TKey : IEquatable<TKey>
     {
         void Add(TEntity entity);
