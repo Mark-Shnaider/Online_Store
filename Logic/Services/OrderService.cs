@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using Common.Models.DTO;
@@ -8,6 +9,7 @@ using Common.Models.Entities;
 using Common.Contracts;
 using Common.Contracts.Services;
 using Logic.Services.Base;
+using Common.Contracts.Repos;
 
 namespace Logic.Services
 {

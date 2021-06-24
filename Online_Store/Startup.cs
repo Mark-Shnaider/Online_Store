@@ -75,6 +75,10 @@ namespace Online_Store
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                    name: "MyIdentity",
+                    areaName: "Identities",
+                    pattern: "Identity/Account/Register");
                 endpoints.MapControllerRoute(
                     name: "MyArea",
                     pattern: "{area:exists}/{controller=Product}/{action=Index}/{id?}");

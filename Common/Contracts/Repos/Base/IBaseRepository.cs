@@ -4,11 +4,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Common.Models.Entities.Base;
+using Common.Contracts.Base;
 
 namespace Common.Contracts.Repos.Base
 {
     public interface IBaseRepository<TKey, TEntity>
-        where TEntity : BaseEntity<TKey>
+        where TEntity : IBaseEntity<TKey>
         where TKey : IEquatable<TKey>
     {
         void Add(TEntity entity);

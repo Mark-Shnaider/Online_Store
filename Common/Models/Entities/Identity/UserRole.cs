@@ -9,9 +9,7 @@ using Common.Contracts.Base;
 
 namespace Common.Models.Entities.Identity
 {
-    public class User :IdentityUser<Guid>, IBaseEntity<Guid>
+    public class UserRole:IdentityRole<Guid>
     {
-        public string Login { get; set; }
-        public string Password { get; set; }
     }
 }
