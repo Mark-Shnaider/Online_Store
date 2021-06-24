@@ -1,6 +1,7 @@
-﻿using Common.Contracts.Repos;
+﻿using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
+using Common.Contracts.Repos;
+using Common.Contracts.Repos.Identity;
 
 namespace Common.Contracts
 {
@@ -12,6 +13,7 @@ namespace Common.Contracts
         IOrderRepository Orders{ get; }
         ICategoryRepository Categories { get; }
         IProductRepository Products { get; }
+        IUserRepository Users { get; }
         void Commit();
         Task CommitAsync();
         void Rollback();

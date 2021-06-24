@@ -1,9 +1,11 @@
-﻿using Common.Contracts;
-using Common.Contracts.Repos;
-using Data.Repos;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Contracts;
+using Common.Contracts.Repos;
+using Common.Contracts.Repos.Identity ;
+using Data.Repos;
+using Data.Repos.Identity;
 
 namespace Data
 {
@@ -16,7 +18,7 @@ namespace Data
         private IAmountRepository amountRepository;
         private IProductRepository productRepository;
         private ICategoryRepository categoryRepository;
-
+        private IUserRepository userRepository;
         public UnitOfWork(StoreContext _storeContext) => storeContext = _storeContext;
 
         public DbContext DbContext
@@ -44,7 +46,10 @@ namespace Data
         {
             get { return categoryRepository ??= new CategoryRepository(storeContext); }
         }
-
+        public IUserRepository Users
+        {
+            get { return userRepository ??= new UserRepository(storeContext); }
+        }
         public void Commit()
         {
             storeContext.ChangeTracker.DetectChanges();
