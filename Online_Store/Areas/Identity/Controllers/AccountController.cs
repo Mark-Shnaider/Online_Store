@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
 using Common.Models.DTO;
 using Common.Contracts.Services;
+using Common.Contracts.Services.Identity;
 using Logic.Services;
 using Online_Store.Areas.Products.Models;
 using Online_Store.Base;
@@ -29,6 +30,11 @@ namespace Online_Store.Areas.Identity.Controllers
             _signInManager = signInManager;
         }
 
+        public IActionResult Index()
+        {
+            return View();
+        }
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -41,13 +47,13 @@ namespace Online_Store.Areas.Identity.Controllers
             User user = _mapper.Map<User>(userVM);
             if (user == null)
                 return BadRequest();
+            user.Id = Guid.NewGuid();
 
             var result = await _userManager.CreateAsync(user);
             if (result.Succeeded)
             {
-                // установка куки
                 await _signInManager.SignInAsync(user, false);
-                return RedirectToAction("Index", "Product");
+                return RedirectToAction("Index", "Product", new { area ="Productss"});
             }
             else
             {
@@ -56,6 +62,12 @@ namespace Online_Store.Areas.Identity.Controllers
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Authorize()
+        {
             return View();
         }
 

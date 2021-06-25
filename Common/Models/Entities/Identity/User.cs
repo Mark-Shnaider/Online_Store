@@ -11,7 +11,7 @@ namespace Common.Models.Entities.Identity
 {
     public class User :IdentityUser<Guid>, IBaseEntity<Guid>
     {
-        public string Login { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
     }
 }
