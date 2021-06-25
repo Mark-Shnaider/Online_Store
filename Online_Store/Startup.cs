@@ -31,7 +31,7 @@ namespace Online_Store
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<StoreContext>();
+            services.AddIdentity<User, UserRole>().AddEntityFrameworkStores<StoreContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
             //
@@ -79,6 +79,7 @@ namespace Online_Store
                     name: "MyIdentity",
                     areaName: "Identities",
                     pattern: "Identity/Account/Register");
+
                 endpoints.MapControllerRoute(
                     name: "MyArea",
                     pattern: "{area:exists}/{controller=Product}/{action=Index}/{id?}");
