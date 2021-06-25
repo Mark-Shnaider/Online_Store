@@ -29,9 +29,9 @@ namespace Online_Store.Areas.Products.Controllers
         public IActionResult Details(Guid id)
         {
             ProductDto product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(id);
-            ProductViewModel invoiceViewModel = _mapper.Map<ProductViewModel>(product);
+            ProductViewModel productVM = _mapper.Map<ProductViewModel>(product);
 
-            return View(invoiceViewModel);
+            return View(productVM);
         }
 
         [HttpGet]

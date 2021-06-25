@@ -8,6 +8,7 @@ namespace Online_Store.Models
 {
     public class CategoryViewModel:BaseEntityViewModel<Guid>
     {
-
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

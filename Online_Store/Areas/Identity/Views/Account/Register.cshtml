@@ -1,4 +1,24 @@
-﻿
-@{ 
+﻿@model Online_Store.Areas.Identity.Models.UserViewModel
+@{
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
+
+<form method="post" asp-area="Identity" asp-controller="Account" asp-action="Register">
+    <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+    <div>
+        <label asp-for="Login"> </label><br />
+        <input type="text" asp-for="Login" />
+        <span asp-validation-for="Login" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Password"> </label><br />
+        <input type="text" asp-for="Password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Email"> </label><br />
+        <input type="text" asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <input type="submit" value="Зарегестрировать" />
+</form>

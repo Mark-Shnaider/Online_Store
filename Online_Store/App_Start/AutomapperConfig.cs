@@ -2,7 +2,9 @@
 using Common.Models.DTO;
 using Common.Models.Entities;
 using Online_Store.Models;
-//using Online_Store.Areas.Products.Models;
+using Online_Store.Areas.Products.Models;
+using Common.Models.Entities.Identity;
+using Online_Store.Areas.Identity.Models;
 
 namespace Online_Store.App_Start
 {
@@ -13,6 +15,7 @@ namespace Online_Store.App_Start
     {
         public AutoMapperProfile()
         {
+            CreateDataMappings();
             CreateBllMappings();
             CreateViewMappings();
         }
@@ -28,10 +31,16 @@ namespace Online_Store.App_Start
 
         public void CreateViewMappings()
         {
+            CreateMap<AmountDto, AmountViewModel>().ReverseMap();
             CreateMap<CategoryDto, CategoryViewModel>().ReverseMap();
             CreateMap<CustomerDto, CustomerViewModel>().ReverseMap();
             CreateMap<OrderDto, OrderViewModel>().ReverseMap();
-            //CreateMap<ProductDto, ProductViewModel>().ReverseMap();
+            CreateMap<ProductDto, ProductViewModel>().ReverseMap();
+        }
+
+        public void CreateDataMappings()
+        {
+            CreateMap<UserViewModel, User>().ReverseMap();
         }
     }
 }

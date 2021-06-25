@@ -7,12 +7,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Data
 {
-    public class StoreContext : IdentityDbContext<User, UserRole,Guid>
+    public class StoreContext : IdentityDbContext<User, UserRole, Guid>
     {
-        public StoreContext()
-        { 
-        
-        }
+
         public StoreContext(DbContextOptions<StoreContext> options)
             : base(options)
         {

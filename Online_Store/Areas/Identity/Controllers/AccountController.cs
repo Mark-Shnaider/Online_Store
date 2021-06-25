@@ -36,9 +36,26 @@ namespace Online_Store.Areas.Identity.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(UserViewModel userVM)
+        public async Task<IActionResult> Register(UserViewModel userVM)
         {
+            User user = _mapper.Map<User>(userVM);
+            if (user == null)
+                return BadRequest();
 
+            var result = await _userManager.CreateAsync(user);
+            if (result.Succeeded)
+            {
+                // установка куки
+                await _signInManager.SignInAsync(user, false);
+                return RedirectToAction("Index", "Product");
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+            }
             return View();
         }
 

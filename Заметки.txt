@@ -10,7 +10,8 @@ automappe используется в сервисах и контроллера
 в startup мы не трогаем BaseService. Мы привязываем интерфейсы к их реализации
 все зависимости в конструкторе BaseService в рантайме автоматически резолвятся
 
-
+CreateUserAsync
 Спросить про ServiceCollection (конструкторы)
 Спросить про N-tier архитектура и MVC(как построено)
 /Products/Product/Details/12908a4b-70ae-4846-b738-23c7c395f8bd
+/Identity/Account/Register
