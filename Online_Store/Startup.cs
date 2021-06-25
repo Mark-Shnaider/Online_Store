@@ -33,8 +33,6 @@ namespace Online_Store
         {
             services.AddIdentity<User, UserRole>().AddEntityFrameworkStores<StoreContext>();
             services.AddControllersWithViews();
-            services.AddRazorPages();
-            //
             services.AddHttpContextAccessor();
 
             var mappingConfig = new MapperConfiguration(mc =>
