@@ -34,29 +34,6 @@ namespace Online_Store.Areas.Products.Controllers
             return View(productVM);
         }
 
-        [HttpGet]
-        public IActionResult Create(ProductViewModel product)
-        {
-            ProductDto productDto = _mapper.Map<ProductDto>(product);
-            _serviceProvider.GetRequiredService<IProductService>().CreateProduct(productDto);
-            return RedirectToAction(nameof(Index));
-        }
-
-        [HttpGet]
-        public IActionResult Edit(Guid Id)
-        {
-            ProductDto productDTO = _serviceProvider.GetRequiredService<IProductService>().GetProduct(Id);
-            ProductViewModel productVM= _mapper.Map<ProductViewModel>(productDTO);
-
-            return View(productVM);
-        }
-
-        public IActionResult Delete(Guid Id)
-        {
-            ProductDto productDTO = _serviceProvider.GetRequiredService<IProductService>().GetProduct(Id);
-            ProductViewModel productVM = _mapper.Map<ProductViewModel>(productDTO);
-
-            return View(productVM);
-        }
+        
     }
 }

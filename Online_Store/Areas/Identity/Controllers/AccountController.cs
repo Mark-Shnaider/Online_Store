@@ -44,16 +44,18 @@ namespace Online_Store.Areas.Identity.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UserViewModel userVM)
         {
-            User user = _mapper.Map<User>(userVM);
-            if (user == null)
-                return BadRequest();
-            user.Id = Guid.NewGuid();
+            User user = new User { Id = Guid.NewGuid(), UserName= userVM.UserName, Email = userVM.Email};
+            //User user = _mapper.Map<User>(userVM);
+            //if (user == null)
+            //    return BadRequest();
+            //user.Id = Guid.NewGuid();
 
-            var result = await _userManager.CreateAsync(user);
+            //Добавить modelstateisvalid
+            var result = await _userManager.CreateAsync(user, userVM.Password);
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
-                return RedirectToAction("Index", "Product", new { area ="Productss"});
+                return RedirectToAction("Index", "Product", new { area ="Products"});
             }
             else
             {
@@ -65,10 +67,45 @@ namespace Online_Store.Areas.Identity.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Authorize()
+        [HttpGet]
+        public IActionResult Authorize(string returnUrl = null)
         {
-            return View();
+            return View(new LoginViewModel { ReturnUrl = returnUrl });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Authorize(LoginViewModel loginVM)
+        {
+            User user = await _userManager.FindByNameAsync(loginVM.UserName);
+            //Add ModelState и rememberMe
+            if (user == null)
+                return BadRequest();
+            var result = await _signInManager.PasswordSignInAsync(user.UserName, loginVM.Password, loginVM.RememberMe, false);
+            if (result.Succeeded)
+            {
+                if (!string.IsNullOrEmpty(loginVM.ReturnUrl) && Url.IsLocalUrl(loginVM.ReturnUrl))
+                {
+                    return Redirect(loginVM.ReturnUrl);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Product", new { area="Products"});
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Wrong password or login.");
+            }
+            return View(loginVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Product", new { area = "Products"});
         }
 
     }

@@ -1,4 +1,4 @@
-﻿@model Online_Store.Areas.Identity.Models.UserViewModel;
+﻿@model Online_Store.Areas.Identity.Models.LoginViewModel;
 @{ 
     ViewData["Title"] = "Authorize";
 }
@@ -15,4 +15,9 @@
         <input type="text" asp-for="Password" />
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
+    <div>
+        <label asp-for="RememberMe"></label><br />
+        <input asp-for="RememberMe" />
+    </div>
+    <input type="submit" value="Авторизоваться" />
 </form>

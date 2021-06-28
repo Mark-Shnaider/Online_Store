@@ -41,6 +41,7 @@ namespace Online_Store.App_Start
         public void CreateDataMappings()
         {
             CreateMap<UserViewModel, User>().ReverseMap();
+            CreateMap<LoginViewModel, User>().ReverseMap();
         }
     }
 }

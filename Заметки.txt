@@ -20,3 +20,6 @@ CreateUserAsync
 Менял стартовую страницу в launcgsetting.json добавил  строку  launchurl в profiles/ Мб проблемы будут при деплое
 https://stackoverflow.com/questions/40646815/how-to-set-start-page-in-dotnet-core-web-api
 "launchUrl": "https://localhost:44326/Identity/Account/Index",
+
+Убрал зависимости проекта в ItemGroup у 
+    <ProjectReference Include="..\Data\Data.csproj" />
