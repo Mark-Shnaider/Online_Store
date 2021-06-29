@@ -44,3 +44,8 @@ https://html5book.ru/dizayn-kartochek-tovara/
             <span class="price">₽ 1999</span>
         </div>
     </div>
+
+
+исправить в контроллерах, чтобы сразу было return _mapper.Map...
+
+Пофиксить проблему, если есть категории, у которых есть товары

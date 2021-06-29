@@ -28,6 +28,64 @@ namespace Online_Store.Areas.Admin.Controllers
 
         }
 
+        public IActionResult Index()
+        {
+            var categoriesDTO = _serviceProvider.GetRequiredService<ICategoryService>().GetCategories();
 
+            var categoriesVM = _mapper.Map<List<CategoryViewModel>>(categoriesDTO);
+            return View(categoriesVM);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(CategoryViewModel categoryVM)
+        {
+            CategoryDto categoryDTO = _mapper.Map<CategoryDto>(categoryVM);
+
+            _serviceProvider.GetRequiredService<ICategoryService>().CreateCategory(categoryDTO);
+            return RedirectToAction("Index", "Category", new { area = "Admin" });
+        }
+
+        [HttpGet]
+        public IActionResult Edit(Guid Id)
+        {
+            CategoryDto categoryDTO = _serviceProvider.GetRequiredService<ICategoryService>().GetCategory(Id);
+            CategoryViewModel categoryVM = _mapper.Map<CategoryViewModel>(categoryDTO);
+
+            return View(categoryVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(CategoryViewModel categoryVM)
+        {
+            CategoryDto categoryDTO = _mapper.Map<CategoryDto>(categoryVM);
+
+            _serviceProvider.GetRequiredService<ICategoryService>().UpdateCategory(categoryDTO);
+            return RedirectToAction("Index", "Category", new { area = "Admin" });
+        }
+        [HttpGet]
+        public IActionResult Delete(Guid Id)
+        {
+            CategoryDto categoryDTO = _serviceProvider.GetRequiredService<ICategoryService>().GetCategory(Id);
+            CategoryViewModel categoryVM = _mapper.Map<CategoryViewModel>(categoryDTO);
+
+            return View(categoryVM);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(Guid Id)
+        {
+            CategoryDto category = _serviceProvider.GetRequiredService<ICategoryService>().GetCategory(Id);
+            _serviceProvider.GetRequiredService<ICategoryService>().DeleteCategory(category);
+            return RedirectToAction("Index", "Category", new { area = "Admin" });
+        }
     }
 }

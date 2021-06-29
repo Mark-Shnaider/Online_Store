@@ -19,14 +19,55 @@ namespace Logic.Services
         { 
         
         }
+        public void CreateCategory(CategoryDto categoryDTO)
+        {
+            if (categoryDTO == null)
+            {
+                return;
+            }
 
+            categoryDTO.Id = Guid.NewGuid();
+            Category category = _mapper.Map<Category>(categoryDTO);
+            _unitOfWork.Categories.Add(category);
+            _unitOfWork.Commit();
+        }
         public List<CategoryDto> GetCategories()
         {
             var categories = _unitOfWork.Categories.GetAll()
                 .OrderBy(c => c.Name)
                 .ToList();
-            var result = _mapper.Map <List<CategoryDto>>(categories);
+            var result = _mapper.Map<List<CategoryDto>>(categories);
             return result;
+        }
+        public CategoryDto GetCategory(Guid Id)
+        {
+            Category category = _unitOfWork.Categories.GetAll()
+                .FirstOrDefault(c => c.Id == Id);
+
+            if (category == null)
+                return null;
+
+            return _mapper.Map<CategoryDto>(category);
+        }
+        public void UpdateCategory(CategoryDto categoryDTO)
+        {
+            if (categoryDTO == null)
+                return;
+
+            Category category = _mapper.Map<Category>(categoryDTO);
+            _unitOfWork.Categories.AddOrUpdate(category);
+            _unitOfWork.Commit();
+        }
+        public void DeleteCategory(CategoryDto categoryDTO)
+        {
+            if (categoryDTO == null)
+            {
+                return;
+            }
+
+            Category category = _mapper.Map<Category>(categoryDTO);
+            _unitOfWork.Categories.Delete(category.Id);
+            _unitOfWork.Commit();
         }
     }
 }

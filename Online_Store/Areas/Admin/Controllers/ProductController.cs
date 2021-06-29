@@ -102,6 +102,5 @@ namespace Online_Store.Areas.Admin.Controllers
             _serviceProvider.GetRequiredService<IProductService>().DeleteProduct(product);
             return RedirectToAction("Index", "Product", new { area = "Admin" });
         }
-
     }
 }

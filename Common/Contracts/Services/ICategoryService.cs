@@ -7,6 +7,10 @@ namespace Common.Contracts.Services
 {
     public interface ICategoryService:IService
     {
+        public void CreateCategory(CategoryDto category);
+        public CategoryDto GetCategory(Guid Id);
+        public void UpdateCategory(CategoryDto category);
+        public void DeleteCategory(CategoryDto category);
         public List<CategoryDto> GetCategories();
     }
 }
