@@ -2,6 +2,10 @@
 
 @model ProductViewModel
 
+@{
+    ViewData["Title"] = "Edit";
+}
+
 <form method="post" asp-area="Admin" asp-controller="Product" asp-action="Edit">
     <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
     <input type="hidden" asp-for="Id" />

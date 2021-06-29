@@ -1,0 +1,23 @@
+﻿@using Online_Store.Areas.Admin.Models
+
+@model IEnumerable<CategoryViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<a asp-area="Admin" asp-controller="Category" asp-action="Create">Добавить новую категорию</a>
+
+<ul class="list">
+    @foreach (var category in Model)
+    {
+        <li>
+            @category.Name
+         </li>
+         @category.Description
+    }
+
+</ul>
+
+
+

@@ -22,7 +22,9 @@ namespace Logic.Services
 
         public List<CategoryDto> GetCategories()
         {
-            var categories = _unitOfWork.Categories.GetAll().ToList();
+            var categories = _unitOfWork.Categories.GetAll()
+                .OrderBy(c => c.Name)
+                .ToList();
             var result = _mapper.Map <List<CategoryDto>>(categories);
             return result;
         }

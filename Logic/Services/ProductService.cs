@@ -78,7 +78,9 @@ namespace Logic.Services
 
         public List<ProductDto> GetProducts()
         {
-            var productsDTO = _unitOfWork.Products.GetAll().ToList();
+            var productsDTO = _unitOfWork.Products.GetAll()
+                .OrderBy(p => p.Name)
+                .ToList();
             var products = _mapper.Map<List<ProductDto>>(productsDTO);
             return products;
         }

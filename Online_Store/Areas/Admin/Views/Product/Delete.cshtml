@@ -1,8 +1,11 @@
 ﻿@using Online_Store.Areas.Admin.Models
 
 @model ProductViewModel
+@{
+    ViewData["Title"] = "Delete";
+}
 
-<h1>Удалить этот товар</h1>
+<h1>Удалить этот товар?</h1>
 
 <div>
     <h4>Товар</h4>
@@ -34,7 +37,7 @@
         </dd>
     </dl>
 </div>
-<form method="post" asp-area="Admin" asp-controller="Product"  asp-action="Delete">
+<form method="post" asp-area="Admin" asp-controller="Product" asp-action="Delete">
     <input type="hidden" asp-for="Id" />
     <input type="submit" value="Удалить" class="btn btn-danger" /> |
     <a asp-area="Admin" asp-controller="Product" asp-action="Index">Вернуться</a>
