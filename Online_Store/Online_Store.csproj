@@ -20,8 +20,4 @@
     <ProjectReference Include="..\Logic\Logic.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Models\" />
-  </ItemGroup>
-
 </Project>

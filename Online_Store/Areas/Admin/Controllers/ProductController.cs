@@ -16,11 +16,11 @@ using Online_Store.Base;
 using Online_Store.Areas.Identity.Models;
 
 
-namespace Online_Store.Areas.Identity.Controllers
+namespace Online_Store.Areas.Admin.Controllers
 {
-    public class AdminController:BaseController
+    public class ProductController:BaseController
     {
-        public AdminController(IMapper mapper, IServiceProvider serviceProvider)
+        public ProductController(IMapper mapper, IServiceProvider serviceProvider)
             : base(mapper, serviceProvider)
         {
            
