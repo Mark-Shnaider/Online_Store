@@ -7,5 +7,6 @@ namespace Common.Contracts.Services
 {
     public interface ICategoryService:IService
     {
+        public List<CategoryDto> GetCategories();
     }
 }

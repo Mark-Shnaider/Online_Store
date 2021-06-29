@@ -12,6 +12,6 @@ namespace Online_Store.Models
         public Guid OrderId { get; set; }
         public Guid ProductId { get; set; }
         public OrderViewModel Order { get; set; }
-        public ProductViewModel Product { get; set; }
+        //public ProductViewModel Product { get; set; }
     }
 }

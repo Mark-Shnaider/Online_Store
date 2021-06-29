@@ -25,14 +25,14 @@ namespace Online_Store.Areas.Products.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult Details(Guid id)
-        {
-            ProductDto product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(id);
-            ProductViewModel productVM = _mapper.Map<ProductViewModel>(product);
+        //[HttpGet]
+        //public IActionResult Details(Guid id)
+        //{
+        //    ProductDto product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(id);
+        //    //ProductViewModel productVM = _mapper.Map<ProductViewModel>(product);
 
-            return View(productVM);
-        }
+        //    return View(productVM);
+        //}
 
         
     }

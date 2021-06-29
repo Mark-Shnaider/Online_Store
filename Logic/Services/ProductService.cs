@@ -75,5 +75,7 @@ namespace Logic.Services
             _unitOfWork.Products.AddOrUpdate(product);
             _unitOfWork.Commit();
         }
+
+      
     }
 }

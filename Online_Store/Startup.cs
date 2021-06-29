@@ -47,6 +47,8 @@ namespace Online_Store
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ICustomerService, CustomerService>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
@@ -74,9 +76,9 @@ namespace Online_Store
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapAreaControllerRoute(
-                    name: "MyIdentity",
-                    areaName: "Identities",
-                    pattern: "Identity/Account/Register");
+                    name: "MyAdmin",
+                    areaName: "Admin",
+                    pattern: "Admin/{controller=Product}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "MyArea",

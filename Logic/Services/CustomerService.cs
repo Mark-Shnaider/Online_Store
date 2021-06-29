@@ -12,7 +12,12 @@ using Logic.Services.Base;
 
 namespace Logic.Services
 {
-    public class CustomerService
+    public class CustomerService:BaseService, ICustomerService
     {
+        public CustomerService(IMapper mapper, IServiceProvider serviceProvider, IUnitOfWork unitOfWork)
+            : base(mapper, serviceProvider, unitOfWork)
+        {
+
+        }
     }
 }

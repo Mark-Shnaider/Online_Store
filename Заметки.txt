@@ -15,7 +15,7 @@ CreateUserAsync
 Спросить про N-tier архитектура и MVC(как построено)
 /Products/Product/Details/12908a4b-70ae-4846-b738-23c7c395f8bd
 /Identity/Account/Register
-
+/Admin/Product/Create
 
 Менял стартовую страницу в launcgsetting.json добавил  строку  launchurl в profiles/ Мб проблемы будут при деплое
 https://stackoverflow.com/questions/40646815/how-to-set-start-page-in-dotnet-core-web-api
@@ -23,3 +23,6 @@ https://stackoverflow.com/questions/40646815/how-to-set-start-page-in-dotnet-cor
 
 Убрал зависимости проекта в ItemGroup у 
     <ProjectReference Include="..\Data\Data.csproj" />
+
+SelectList with asp-items
+https://stackoverflow.com/questions/34624034/select-tag-helper-in-asp-net-core-mvc

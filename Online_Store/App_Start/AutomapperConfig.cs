@@ -5,6 +5,7 @@ using Online_Store.Models;
 using Online_Store.Areas.Products.Models;
 using Common.Models.Entities.Identity;
 using Online_Store.Areas.Identity.Models;
+using Online_Store.Areas.Admin.Models;
 
 namespace Online_Store.App_Start
 {

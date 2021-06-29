@@ -11,13 +11,15 @@ using Common.Models.DTO;
 using Common.Contracts.Services;
 using Common.Contracts.Services.Identity;
 using Logic.Services;
-using Online_Store.Areas.Products.Models;
+using Online_Store.Areas.Admin.Models;
 using Online_Store.Base;
 using Online_Store.Areas.Identity.Models;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Online_Store.Models;
 
 namespace Online_Store.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class ProductController:BaseController
     {
         public ProductController(IMapper mapper, IServiceProvider serviceProvider)
@@ -38,11 +40,22 @@ namespace Online_Store.Areas.Admin.Controllers
             return View(productVM);
         }
         [HttpGet]
-        public IActionResult Create(ProductViewModel product)
+        public IActionResult Create()
         {
-            ProductDto productDto = _mapper.Map<ProductDto>(product);
-            _serviceProvider.GetRequiredService<IProductService>().CreateProduct(productDto);
-            return RedirectToAction(nameof(Index));
+            var categoriesDTO = _serviceProvider.GetRequiredService<ICategoryService>().GetCategories();
+            var categoriesVM = _mapper.Map<List<CategoryViewModel>>(categoriesDTO);
+            ProductViewModel product = new ProductViewModel {Categories = categoriesVM};
+            return View(product);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(ProductViewModel productVM)
+        {
+            ProductDto productDTO = _mapper.Map<ProductDto>(productVM);
+
+            _serviceProvider.GetRequiredService<IProductService>().CreateProduct(productDTO);
+            return RedirectToAction("Index", "Product", new { area ="Admin"});
         }
 
         [HttpGet]
