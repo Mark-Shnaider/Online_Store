@@ -10,6 +10,7 @@ using Common.Contracts.Services;
 using Logic.Services;
 using Online_Store.Areas.Products.Models;
 using Online_Store.Base;
+using Online_Store.Areas.Products.Models;
 
 namespace Online_Store.Areas.Products.Controllers
 {
@@ -22,18 +23,19 @@ namespace Online_Store.Areas.Products.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var productsDTO = _serviceProvider.GetRequiredService<IProductService>().GetProducts();
+
+            var productsVM = _mapper.Map<List<ProductCustomerViewModel>>(productsDTO);
+            return View(productsVM);
         }
 
-        //[HttpGet]
-        //public IActionResult Details(Guid id)
-        //{
-        //    ProductDto product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(id);
-        //    //ProductViewModel productVM = _mapper.Map<ProductViewModel>(product);
+        [HttpGet]
+        public IActionResult Details(Guid id)
+        {
+            ProductDto product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(id);
+            ProductCustomerViewModel productVM = _mapper.Map<ProductCustomerViewModel>(product);
 
-        //    return View(productVM);
-        //}
-
-        
+            return View(productVM);
+        }
     }
 }
