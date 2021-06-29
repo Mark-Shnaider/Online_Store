@@ -11,6 +11,7 @@ namespace Common.Contracts.Services
         public ProductDto GetProduct(Guid Id);
         public void UpdateProduct(ProductDto product);
         public void DeleteProduct(ProductDto product);
+        public List<ProductDto> GetProducts();
         public List<AmountDto> GetAmounts(Guid Id);
     }
 }

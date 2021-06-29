@@ -16,7 +16,7 @@ namespace Common.Contracts.Repos.Base
         void AddRange(IEnumerable<TEntity> entities);
         void Update(TEntity entity);
         TEntity AddOrUpdate(TEntity entity);
-        void Delete(TEntity entity);
+        public void Delete(TEntity entity);
         void Delete(TKey id);
         void DeleteRange(IEnumerable<TKey> ids);
         EntityEntry<TEntity> GetEntry(TEntity entity);

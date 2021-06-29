@@ -27,18 +27,23 @@ namespace Online_Store.Areas.Admin.Controllers
         {
            
         }
-        public IActionResult IndexProducts()
+        public IActionResult Index()
         {
-            return View();
+            var productsDTO = _serviceProvider.GetRequiredService<IProductService>().GetProducts();
+
+            var productsVM = _mapper.Map<List<ProductViewModel>>(productsDTO);
+            return View(productsVM);
         }
+
         [HttpGet]
-        public IActionResult DetailsProducts(Guid id)
+        public IActionResult Details(Guid id)
         {
             ProductDto product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(id);
             ProductViewModel productVM = _mapper.Map<ProductViewModel>(product);
 
             return View(productVM);
         }
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -61,18 +66,41 @@ namespace Online_Store.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Edit(Guid Id)
         {
+            var categoriesDTO = _serviceProvider.GetRequiredService<ICategoryService>().GetCategories();
+            var categoriesVM = _mapper.Map<List<CategoryViewModel>>(categoriesDTO);
+
             ProductDto productDTO = _serviceProvider.GetRequiredService<IProductService>().GetProduct(Id);
             ProductViewModel productVM = _mapper.Map<ProductViewModel>(productDTO);
 
+            productVM.Categories = categoriesVM;
             return View(productVM);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(ProductViewModel productVM)
+        {
+            ProductDto productDTO = _mapper.Map<ProductDto>(productVM);
+
+            _serviceProvider.GetRequiredService<IProductService>().UpdateProduct(productDTO);
+            return RedirectToAction("Index", "Product", new { area = "Admin" });
+        }
+        [HttpGet]
         public IActionResult Delete(Guid Id)
         {
             ProductDto productDTO = _serviceProvider.GetRequiredService<IProductService>().GetProduct(Id);
             ProductViewModel productVM = _mapper.Map<ProductViewModel>(productDTO);
 
             return View(productVM);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(Guid Id)
+        {
+            ProductDto product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(Id);
+            _serviceProvider.GetRequiredService<IProductService>().DeleteProduct(product);
+            return RedirectToAction("Index", "Product", new { area = "Admin" });
         }
 
     }

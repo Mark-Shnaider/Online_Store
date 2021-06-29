@@ -39,7 +39,7 @@ namespace Logic.Services
             }
 
             Product product = _mapper.Map<Product>(productDTO);
-            _unitOfWork.Products.Delete(product);
+            _unitOfWork.Products.Delete(product.Id);
             _unitOfWork.Commit();
         }
 
@@ -76,6 +76,12 @@ namespace Logic.Services
             _unitOfWork.Commit();
         }
 
+        public List<ProductDto> GetProducts()
+        {
+            var productsDTO = _unitOfWork.Products.GetAll().ToList();
+            var products = _mapper.Map<List<ProductDto>>(productsDTO);
+            return products;
+        }
       
     }
 }

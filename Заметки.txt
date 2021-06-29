@@ -11,8 +11,7 @@ automappe используется в сервисах и контроллера
 все зависимости в конструкторе BaseService в рантайме автоматически резолвятся
 
 CreateUserAsync
-Спросить про ServiceCollection (конструкторы)
-Спросить про N-tier архитектура и MVC(как построено)
+
 /Products/Product/Details/12908a4b-70ae-4846-b738-23c7c395f8bd
 /Identity/Account/Register
 /Admin/Product/Create
@@ -26,3 +25,22 @@ https://stackoverflow.com/questions/40646815/how-to-set-start-page-in-dotnet-cor
 
 SelectList with asp-items
 https://stackoverflow.com/questions/34624034/select-tag-helper-in-asp-net-core-mvc
+
+Дизайн карточек товара
+https://html5book.ru/dizayn-kartochek-tovara/
+
+
+<div class="product-inner">
+        <div class="product-wrap">
+            <img src="https://html5book.ru/wp-content/uploads/2015/10/black-dress.jpg">
+            <div class="actions">
+                <a asp-action="Edit" asp-route-id="@product.Id" class="add-to-cart"></a>
+                <a asp-action="Details" asp-route-id="@product.Id" class="quickview"></a>
+                <a asp-action="Delete" asp-route-id="@product.Id" class="wishlist"></a>
+            </div>
+        </div>
+        <div class="product-info">
+            <h3 class="product-title"><a href="">Маленькое черное платье</a></h3>
+            <span class="price">₽ 1999</span>
+        </div>
+    </div>
