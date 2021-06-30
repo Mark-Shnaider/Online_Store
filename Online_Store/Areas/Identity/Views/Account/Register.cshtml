@@ -1,5 +1,6 @@
 ﻿@model Online_Store.Areas.Identity.Models.UserViewModel
-@{ 
+@{
+
 }
 <form method="post" asp-area="Identity" asp-controller="Account" asp-action="Register">
     <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
@@ -17,6 +18,6 @@
         <label asp-for="Email"> </label><br />
         <input type="text" asp-for="Email" />
         <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
+    </div><br />
     <input type="submit" value="Зарегестрировать" />
 </form>
