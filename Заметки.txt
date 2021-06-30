@@ -15,6 +15,7 @@ CreateUserAsync
 /Products/Product/Details/12908a4b-70ae-4846-b738-23c7c395f8bd
 /Identity/Account/Register
 /Admin/Product/Create
+/Admin/Role/Index
 
 Менял стартовую страницу в launcgsetting.json добавил  строку  launchurl в profiles/ Мб проблемы будут при деплое
 https://stackoverflow.com/questions/40646815/how-to-set-start-page-in-dotnet-core-web-api
@@ -29,6 +30,7 @@ https://stackoverflow.com/questions/34624034/select-tag-helper-in-asp-net-core-m
 Дизайн карточек товара
 https://html5book.ru/dizayn-kartochek-tovara/
 
+https://getbootstrap.com/docs/4.3/components/navbar/
 
 <div class="product-inner">
         <div class="product-wrap">
