@@ -31,7 +31,9 @@ namespace Online_Store
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentity<User, UserRole>().AddEntityFrameworkStores<StoreContext>();
+            services.AddIdentity<User, IdentityRole<Guid>>()
+                .AddEntityFrameworkStores<StoreContext>();
+
             services.AddControllersWithViews();
             services.AddHttpContextAccessor();
 
@@ -49,6 +51,7 @@ namespace Online_Store
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ICustomerService, CustomerService>();
+            //services.AddScoped<IAmountService, AmountService>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }

@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
@@ -17,9 +18,11 @@ using Online_Store.Areas.Identity.Models;
 using Online_Store.Models;
 using Online_Store.Base;
 
+
 namespace Online_Store.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class ProductController:BaseController
     {
         public ProductController(IMapper mapper, IServiceProvider serviceProvider)

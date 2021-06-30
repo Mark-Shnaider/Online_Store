@@ -11,5 +11,9 @@ namespace Common.Models.Entities.Identity
 {
     public class UserRole:IdentityRole<Guid>
     {
+        public UserRole(string name)
+            :base(name)
+        { 
+        }
     }
 }

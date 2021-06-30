@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Data
 {
-    public class StoreContext : IdentityDbContext<User, UserRole, Guid>
+    public class StoreContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     {
 
         public StoreContext(DbContextOptions<StoreContext> options)
