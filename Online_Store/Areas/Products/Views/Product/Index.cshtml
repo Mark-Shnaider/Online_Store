@@ -8,18 +8,16 @@
 
 @foreach (var product in Model)
 {
-    <div class="product-inner">
-        <div class="product-wrap">
-            <img src="https://html5book.ru/wp-content/uploads/2015/10/black-dress.jpg">
-            <div class="actions">
-                <a asp-action="Edit" asp-route-id="@product." class="add-to-cart"></a>
-                <a asp-action="Details" asp-route-id="@product.Id" class="quickview"></a>
-                <a asp-action="Delete" asp-route-id="@product.Id" class="wishlist"></a>
-            </div>
-        </div>
-        <div class="product-info">
-            <h3 class="product-title"><a href="">Маленькое черное платье</a></h3>
-            <span class="price">₽ 1999</span>
+<div class="product-wrap">
+    <div class="product-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
+        <div class="product-buttons">
+            <a class="button">В корзину</a>
         </div>
     </div>
+    <div class="product-title">
+        <a asp-controller="Product" asp-action="Details">@product.Name</a>
+        <span class="product-price">₽ @product.Price</span>
+    </div>
+</div>
 }

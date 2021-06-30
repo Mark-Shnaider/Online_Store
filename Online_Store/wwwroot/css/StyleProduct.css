@@ -2,90 +2,108 @@
     box-sizing: border-box;
 }
 
-.product-inner {
+.product-wrap {
     width: 300px;
     margin: 0 auto;
     background: white;
+    padding: 0 0 20px;
     text-align: center;
-    border-bottom: 2px solid #ebebec;
-    transition: .2s linear;
+    font-size: 14px;
+    font-family: Lora;
+    text-transform: uppercase;
 }
 
-    .product-inner:hover {
-        border-color: #bca480;
-    }
-
-.product-wrap {
+.product-item {
     position: relative;
     overflow: hidden;
-    margin-bottom: 15px;
 }
 
-    .product-wrap img {
-        display: block;
-        width: 100%;
-    }
+.product-wrap img {
+    display: block;
+    width: 100%;
+}
 
-.actions {
+.product-buttons {
     position: absolute;
     left: 0;
-    bottom: -20%;
+    top: 0;
     width: 100%;
-    background: rgba(59, 62, 67, 0.75);
-    transition: .3s linear;
+    height: 100%;
+    background: rgba(0, 0, 0, .8);
+    opacity: 0;
+    transition: .3s ease-in-out;
 }
 
-.product-inner:hover .actions {
-    bottom: 0;
-}
-
-.actions a {
+.button {
     text-decoration: none;
-    float: left;
-    width: 33.33333333333333%;
-    color: white;
-    padding: 15px 0;
-    transition: .2s linear;
+    color: #c0a97a;
+    font-size: 12px;
+    width: 140px;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 2px solid #c0a97a;
+    transform: translate(-50%, -50%) scale(0);
+    transition: .3s ease-in-out;
 }
 
-    .actions a:hover {
-        background: rgba(59, 62, 67, 0.85);
+    .button:before {
+        content: "\f07a";
+        font-family: FontAwesome;
+        margin-right: 10px;
     }
 
-    .actions a:before {
-        font-family: "FontAwesome";
-    }
-
-.add-to-cart:before {
-    content: "\f07a";
+.product-item:hover .product-buttons {
+    opacity: 1;
 }
 
-.quickview:before {
-    content: "\f002";
+.product-item:hover .button {
+    transform: translate(-50%, -50%) scale(1);
 }
 
-.wishlist:before {
-    content: "\f08a";
-}
-
-.product-info {
-    padding-bottom: 10px;
-    font-family: 'Noto Sans', sans-serif;
+.button:hover {
+    background: black;
 }
 
 .product-title {
-    margin: 0 0 10px 0;
-    font-family: 'Noto Sans', sans-serif;
+    color: #5e5e5e;
 }
 
     .product-title a {
         text-decoration: none;
-        color: #1e1e1e;
-        font-weight: 400;
-        font-size: 16px;
+        color: #2e2e2e;
+        font-weight: 600;
+        margin: 15px 0 5px;
+        padding-bottom: 7px;
+        display: block;
+        position: relative;
+        transition: .3s ease-in-out;
     }
 
-.price {
-    font-weight: bold;
-    color: #bca480;
+        .product-title a:after {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: #2e2e2e;
+            left: 50%;
+            margin-left: -20px;
+            bottom: 0;
+            transition: .3s ease-in-out;
+        }
+
+        .product-title a:hover {
+            color: #c0a97a;
+        }
+
+    .product-title:hover a:after {
+        background: #c0a97a;
+    }
+
+.product-price {
+    font-size: 20px;
+    color: #c0a97a;
+    font-weight: 700;
 }
