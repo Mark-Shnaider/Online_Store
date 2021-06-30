@@ -21,6 +21,7 @@ using Online_Store.Base;
 namespace Online_Store.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class CategoryController:BaseController
     {
         public CategoryController(IMapper mapper, IServiceProvider serviceProvider)

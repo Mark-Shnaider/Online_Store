@@ -90,6 +90,8 @@ namespace Online_Store.Areas.Identity.Controllers
                 }
                 else
                 {
+                    if (user.UserName == "Admin")
+                        return RedirectToAction("StartAdminPage", "Home", new { area = "Admin" });
                     return RedirectToAction("Index", "Product", new { area="Products"});
                 }
             }
