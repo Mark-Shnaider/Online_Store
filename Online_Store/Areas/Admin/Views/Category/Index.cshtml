@@ -6,7 +6,10 @@
     ViewData["Title"] = "Index";
 }
 
-<a asp-area="Admin" asp-controller="Category" asp-action="Create">Добавить новую категорию</a>
+<div>
+    <a asp-area="Admin" asp-controller="Category" asp-action="Create">Добавить новую категорию</a><br />
+    <a asp-area="Admin" asp-controller="Home" asp-action="StartAdminPage">Вернуться</a>
+</div>
 
 <ul class="list">
     @foreach (var category in Model)
@@ -14,14 +17,12 @@
         <li>
             @category.Name
         </li>
-        @category.Description <br />
+        @category.Description
+        <br />
         <a asp-action="Edit" asp-route-id="@category.Id"> Редактировать </a>
         <a asp-action="Delete" asp-route-id="@category.Id"> Удалить </a>
     }
 </ul>
-<div>
-    <a asp-area="Admin" asp-controller="Category" asp-action="Index">Вернуться</a>
-</div>
 
 
 

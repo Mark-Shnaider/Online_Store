@@ -7,7 +7,10 @@
 }
 
 
-<a asp-area="Admin" asp-controller="Product" asp-action="Create">Добавить новый товар</a>
+<div>
+    <a asp-area="Admin" asp-controller="Product" asp-action="Create">Добавить новый товар</a><br />
+    <a asp-area="Admin" asp-controller="Home" asp-action="StartAdminPage">Вернуться</a>
+</div>
 
 @foreach (var product in Model)
 {
@@ -26,7 +29,6 @@
         </div>
     </div>
 }
-
 
 
 
