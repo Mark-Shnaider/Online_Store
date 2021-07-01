@@ -50,3 +50,5 @@ LoginViewModel добавить BaseEnittyViewModel
 
 Admin
 VeryGood1_
+
+https://datatables.net/manual/installation
