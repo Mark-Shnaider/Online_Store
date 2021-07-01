@@ -8,7 +8,6 @@ namespace Online_Store.Areas.Identity.Models
     {
         [Display(Name = "Имя пользователя")]
         public string UserName { get; set; }
-       
         [Display(Name = "Почта")]
         public string Email { get; set; }
         [Display(Name = "Пароль")]

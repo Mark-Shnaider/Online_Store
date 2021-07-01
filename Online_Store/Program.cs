@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Data;
 using Logic;
 using Common.Contracts;
+using Microsoft.AspNet.Identity;
+using Common.Models.Entities.Identity;
+
 
 namespace Online_Store
 {
@@ -25,6 +28,7 @@ namespace Online_Store
                 var loggerFactory = services.GetRequiredService<ILoggerFactory>();
                 try
                 {
+
                     var unitOfWork = services.GetRequiredService<IUnitOfWork>();
                     SeedContext.Seed(unitOfWork, loggerFactory);
                 }
