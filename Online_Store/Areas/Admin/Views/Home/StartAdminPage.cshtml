@@ -2,9 +2,27 @@
     ViewData["Title"] = "StartAdminPage";
 }
 
-<h4> Выбор действия для работы</h4>
-<a asp-area="Admin" asp-controller="Product" asp-action="Index">Просмотр товаров</a><br />
-<a asp-area="Admin" asp-controller="Category" asp-action="Index">Просмотр категорий</a><br />
-<a asp-area="Admin" asp-controller="Role" asp-action="Index">Просмотр ролей</a><br />
-
-
+<div class="mx-auto" style="width: 200px;">
+    <h4> Действия </h4>
+    <div class="card text-center" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Просмотр товаров</h5>
+            <p class="card-text">Стандартные CRUD с товарами.</p>
+            <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="btn btn-primary">Перейти</a>
+        </div>
+    </div>
+    <div class="card text-center" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Просмотр категорий</h5>
+            <p class="card-text">Стандартные CRUD с категориями.</p>
+            <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="btn btn-primary">Перейти</a>
+        </div>
+    </div>
+    <div class="card text-center" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Просмотр ролей</h5>
+            <p class="card-text">Наделениями правами пользователей.</p>
+            <a asp-area="Admin" asp-controller="Role" asp-action="Index" class="btn btn-primary">Перейти</a>
+        </div>
+    </div>
+</div>

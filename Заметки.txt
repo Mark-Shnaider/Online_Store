@@ -55,3 +55,6 @@ https://getbootstrap.com/docs/4.3/components/navbar/
 Сделать, чтобы можно было просмотреть пароль(через глазик например) и добавить поле подветрждение пароля(UserVM)
 
 LoginViewModel добавить BaseEnittyViewModel
+
+Admin
+VeryGood1_

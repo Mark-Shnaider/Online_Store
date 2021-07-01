@@ -1,18 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Data;
-using Common.Models.Entities;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity;
+using Common.Models.Entities.Identity;
+using Common.Models.Entities;
 using Common.Contracts;
 
 namespace Logic
 {
-    public class SeedContext
+    public class SeedContextAsync
     {
-        public static void Seed(IUnitOfWork unitOfWork, ILoggerFactory loggerFactory)
+        public static async Task Seed(IUnitOfWork unitOfWork, 
+            ILoggerFactory loggerFactory, 
+            UserManager<User> userManager,
+            RoleManager<IdentityRole<Guid>> roleManager)
         {
             IEnumerable<Category> categories;
 
@@ -31,7 +35,32 @@ namespace Logic
                 unitOfWork.Commit();
             }
 
-            
+            string userName = "Admin";
+            string adminEmail = "admin@gmail.com";
+            string password = "VeryGood1_";
+            if (await roleManager.FindByNameAsync("Admin") == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole<Guid>("Admin"));
+            }
+            if (await roleManager.FindByNameAsync("Moderator") == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole<Guid>("Moderator"));
+            }
+            if (await roleManager.FindByNameAsync("User") == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole<Guid>("User"));
+            }
+            if (await userManager.FindByNameAsync(adminEmail) == null)
+            {
+                User admin = new User { UserName = userName, Email = adminEmail };
+                IdentityResult result = await userManager.CreateAsync(admin, password);
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(admin, "Admin");
+                    await userManager.AddToRoleAsync(admin, "Moderator");
+                    await userManager.AddToRoleAsync(admin, "User");
+                }
+            }
 
         }
         static IEnumerable<Category> GetPreconfiguredCategories()
