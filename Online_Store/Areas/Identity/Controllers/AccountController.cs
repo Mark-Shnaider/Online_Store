@@ -44,28 +44,27 @@ namespace Online_Store.Areas.Identity.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UserViewModel userVM)
         {
-            User user = new User { Id = Guid.NewGuid(), UserName= userVM.UserName, Email = userVM.Email};
-            //User user = _mapper.Map<User>(userVM);
-            //if (user == null)
-            //    return BadRequest();
-            //user.Id = Guid.NewGuid();
+            if (ModelState.IsValid)
+            {
+                User user = new User { Id = Guid.NewGuid(), UserName = userVM.UserName, Email = userVM.Email };
 
-            //Добавить modelstateisvalid
-            var result = await _userManager.CreateAsync(user, userVM.Password);
-            if (result.Succeeded)
-            {
-                await _signInManager.SignInAsync(user, false);
-                await _userManager.AddToRoleAsync(user, "User");
-                return RedirectToAction("Index", "Product", new { area ="Products"});
-            }
-            else
-            {
-                foreach (var error in result.Errors)
+                var result = await _userManager.CreateAsync(user, userVM.Password);
+                if (result.Succeeded)
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    await _signInManager.SignInAsync(user, false);
+                    await _userManager.AddToRoleAsync(user, "User");
+                    return RedirectToAction("Index", "Product", new { area = "Products" });
                 }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
+                return View();
             }
-            return View();
+            return View(userVM);
         }
 
         [HttpGet]
@@ -79,9 +78,13 @@ namespace Online_Store.Areas.Identity.Controllers
         public async Task<IActionResult> Authorize(LoginViewModel loginVM)
         {
             User user = await _userManager.FindByNameAsync(loginVM.UserName);
-            //Add ModelState и rememberMe
+
             if (user == null)
                 return BadRequest();
+
+            if (!ModelState.IsValid)
+                return View(loginVM);
+
             var result = await _signInManager.PasswordSignInAsync(user.UserName, loginVM.Password, loginVM.RememberMe, false);
             if (result.Succeeded)
             {
@@ -93,7 +96,7 @@ namespace Online_Store.Areas.Identity.Controllers
                 {
                     if (user.UserName == "Admin")
                         return RedirectToAction("StartAdminPage", "Home", new { area = "Admin" });
-                    return RedirectToAction("Index", "Product", new { area="Products"});
+                    return RedirectToAction("Index", "Product", new { area = "Products" });
                 }
             }
             else
