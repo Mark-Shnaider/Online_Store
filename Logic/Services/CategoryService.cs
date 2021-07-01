@@ -69,5 +69,14 @@ namespace Logic.Services
             _unitOfWork.Categories.Delete(category.Id);
             _unitOfWork.Commit();
         }
+        public bool IsValidName(string Name)
+        {
+            var result = _unitOfWork.Categories
+                .GetAll()
+                .FirstOrDefault(c => c.Name == Name);
+            if (result == null)
+                return true;
+            return false;
+        }
     }
 }

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Online_Store.Models.Base;
-using Online_Store.Models;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
+using Online_Store.Models.Base;
+
 
 namespace Online_Store.Areas.Admin.Models
 {
@@ -12,6 +10,7 @@ namespace Online_Store.Areas.Admin.Models
     {
         [Required]
         [StringLength(25)]
+        [Remote(areaName: "Admin", controller: "Category", action: "VerifyName")]
         public string Name { get; set; }
 
         [Required]

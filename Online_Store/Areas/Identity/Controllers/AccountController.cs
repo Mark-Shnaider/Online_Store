@@ -55,6 +55,7 @@ namespace Online_Store.Areas.Identity.Controllers
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
+                await _userManager.AddToRoleAsync(user, "User");
                 return RedirectToAction("Index", "Product", new { area ="Products"});
             }
             else

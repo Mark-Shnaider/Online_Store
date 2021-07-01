@@ -5,6 +5,8 @@
 - UnitOfWork представляет собой класс DbContext(или свой какой-то AppContext), а DbSet - репозитории(для каждой сущности)
 servicehost
 automappe используется в сервисах и контроллерах
+- SelectList with asp-items: https://stackoverflow.com/questions/34624034/select-tag-helper-in-asp-net-core-mvc
+
 
 Итого ServiceHost == ServiceProvider, BaseService их юзает, чтобы связываться с остальными сервисами
 в startup мы не трогаем BaseService. Мы привязываем интерфейсы к их реализации
@@ -24,28 +26,12 @@ https://stackoverflow.com/questions/40646815/how-to-set-start-page-in-dotnet-cor
 Убрал зависимости проекта в ItemGroup у 
     <ProjectReference Include="..\Data\Data.csproj" />
 
-SelectList with asp-items
-https://stackoverflow.com/questions/34624034/select-tag-helper-in-asp-net-core-mvc
+
 
 Дизайн карточек товара
 https://html5book.ru/dizayn-kartochek-tovara/
 
 https://getbootstrap.com/docs/4.3/components/navbar/
-
-<div class="product-inner">
-        <div class="product-wrap">
-            <img src="https://html5book.ru/wp-content/uploads/2015/10/black-dress.jpg">
-            <div class="actions">
-                <a asp-action="Edit" asp-route-id="@product.Id" class="add-to-cart"></a>
-                <a asp-action="Details" asp-route-id="@product.Id" class="quickview"></a>
-                <a asp-action="Delete" asp-route-id="@product.Id" class="wishlist"></a>
-            </div>
-        </div>
-        <div class="product-info">
-            <h3 class="product-title"><a href="">Маленькое черное платье</a></h3>
-            <span class="price">₽ 1999</span>
-        </div>
-    </div>
 
 
 исправить в контроллерах, чтобы сразу было return _mapper.Map...
@@ -57,6 +43,8 @@ https://getbootstrap.com/docs/4.3/components/navbar/
 Добавитьобратно табличку входа и регистрации и ENtiryPartialView
 
 LoginViewModel добавить BaseEnittyViewModel
+
+Добавить роль при создани пользователя
 
 Admin
 VeryGood1_

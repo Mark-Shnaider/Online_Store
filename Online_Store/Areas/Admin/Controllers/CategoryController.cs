@@ -89,5 +89,16 @@ namespace Online_Store.Areas.Admin.Controllers
             _serviceProvider.GetRequiredService<ICategoryService>().DeleteCategory(category);
             return RedirectToAction("Index", "Category", new { area = "Admin" });
         }
+
+        [AcceptVerbs("GET", "POST")]
+        public IActionResult VerifyName(string Name)
+        {
+            if (!_serviceProvider.GetRequiredService<ICategoryService>().IsValidName(Name))
+            {
+                return Json($"Name {Name} is already in use.");
+            }
+
+            return Json(true);
+        }
     }
 }

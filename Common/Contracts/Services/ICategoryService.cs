@@ -12,5 +12,6 @@ namespace Common.Contracts.Services
         public void UpdateCategory(CategoryDto category);
         public void DeleteCategory(CategoryDto category);
         public List<CategoryDto> GetCategories();
+        public bool IsValidName(string Name); 
     }
 }
