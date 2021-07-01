@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Online_Store.Models.Base;
 using Online_Store.Models;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Online_Store.Areas.Admin.Models
 {
@@ -13,6 +14,7 @@ namespace Online_Store.Areas.Admin.Models
         [Required]
         [Display(Name="Название продукта")]
         [StringLength(25)]
+        [Remote(areaName: "Admin", controller: "Product", action:"VerifyName")]
         public string Name { get; set; }
 
         [Required]

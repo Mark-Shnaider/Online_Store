@@ -13,5 +13,6 @@ namespace Common.Contracts.Services
         public void DeleteProduct(ProductDto product);
         public List<ProductDto> GetProducts();
         public List<AmountDto> GetAmounts(Guid Id);
+        public bool IsValidName(string Name);
     }
 }

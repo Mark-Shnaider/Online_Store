@@ -84,6 +84,14 @@ namespace Logic.Services
             var products = _mapper.Map<List<ProductDto>>(productsDTO);
             return products;
         }
-      
+
+        public bool IsValidName(string Name)
+        {
+            var IsExist = _unitOfWork.Products.GetAll()
+                .FirstOrDefault(p => p.Name == Name);
+            if (IsExist == null)
+                return true;
+            return false;
+        }
     }
 }
