@@ -39,3 +39,7 @@
 <div>
     <a asp-area="Admin" asp-controller="Product" asp-action="Index">Вернуться</a>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("~/Areas/Views/Shared/_ValidationScriptsPartial.cshtml");}
+}

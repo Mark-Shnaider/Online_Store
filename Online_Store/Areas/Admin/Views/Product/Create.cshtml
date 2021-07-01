@@ -35,3 +35,7 @@
     <br />
     <input type="submit" value="Создать" />
 </form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("~/Areas/Views/Shared/_ValidationScriptsPartial.cshtml");}
+}

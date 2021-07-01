@@ -1,5 +1,5 @@
 ﻿@model Online_Store.Areas.Identity.Models.LoginViewModel;
-@{ 
+@{
     ViewData["Title"] = "Authorize";
 }
 
@@ -25,4 +25,8 @@
     </form>
     <div class="dropdown-divider"></div>
     <a class="dropdown-item" asp-action="Register">Первый раз? Зарегестрироваться</a>
- </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("~/Areas/Views/Shared/_ValidationScriptsPartial.cshtml");}
+}

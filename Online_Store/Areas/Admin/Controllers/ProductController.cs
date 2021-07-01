@@ -53,6 +53,7 @@ namespace Online_Store.Areas.Admin.Controllers
             var categoriesDTO = _serviceProvider.GetRequiredService<ICategoryService>().GetCategories();
             var categoriesVM = _mapper.Map<List<CategoryViewModel>>(categoriesDTO);
             ProductViewModel product = new ProductViewModel {Categories = categoriesVM};
+
             return View(product);
         }
 
@@ -60,10 +61,19 @@ namespace Online_Store.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(ProductViewModel productVM)
         {
-            ProductDto productDTO = _mapper.Map<ProductDto>(productVM);
+            if (ModelState.IsValid)
+            {
+                ProductDto productDTO = _mapper.Map<ProductDto>(productVM);
 
-            _serviceProvider.GetRequiredService<IProductService>().CreateProduct(productDTO);
-            return RedirectToAction("Index", "Product", new { area ="Admin"});
+                _serviceProvider.GetRequiredService<IProductService>().CreateProduct(productDTO);
+                return RedirectToAction("Index", "Product", new { area = "Admin" });
+            }
+
+            var categoriesDTO = _serviceProvider.GetRequiredService<ICategoryService>().GetCategories();
+            var categoriesVM = _mapper.Map<List<CategoryViewModel>>(categoriesDTO);
+            productVM.Categories = categoriesVM;
+
+            return View(productVM);
         }
 
         [HttpGet]
@@ -83,10 +93,19 @@ namespace Online_Store.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(ProductViewModel productVM)
         {
-            ProductDto productDTO = _mapper.Map<ProductDto>(productVM);
+            if (ModelState.IsValid)
+            {
+                ProductDto productDTO = _mapper.Map<ProductDto>(productVM);
 
-            _serviceProvider.GetRequiredService<IProductService>().UpdateProduct(productDTO);
-            return RedirectToAction("Index", "Product", new { area = "Admin" });
+                _serviceProvider.GetRequiredService<IProductService>().UpdateProduct(productDTO);
+                return RedirectToAction("Index", "Product", new { area = "Admin" });
+            }
+
+            var categoriesDTO = _serviceProvider.GetRequiredService<ICategoryService>().GetCategories();
+            var categoriesVM = _mapper.Map<List<CategoryViewModel>>(categoriesDTO);
+            productVM.Categories = categoriesVM;
+
+            return View(productVM);
         }
         [HttpGet]
         public IActionResult Delete(Guid Id)

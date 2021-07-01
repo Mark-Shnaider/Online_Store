@@ -10,7 +10,12 @@ namespace Online_Store.Areas.Admin.Models
 {
     public class CategoryViewModel : BaseEntityViewModel<Guid>
     {
+        [Required]
+        [StringLength(25)]
         public string Name { get; set; }
+
+        [Required]
+        [StringLength(250)]
         public string Description { get; set; }
     }
 }
