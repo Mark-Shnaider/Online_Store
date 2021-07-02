@@ -89,7 +89,7 @@ namespace Online_Store
 
                 endpoints.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Product}/{action=Index}");
+                pattern: "{controller:exists}/{action=Index}/{id?}");
             });
         }
     }

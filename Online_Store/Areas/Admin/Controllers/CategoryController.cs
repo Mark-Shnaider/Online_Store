@@ -14,9 +14,10 @@ using Common.Contracts.Services;
 using Common.Contracts.Services.Identity;
 using Logic.Services;
 using Online_Store.Areas.Admin.Models;
+using Online_Store.Controllers.Base;
 using Online_Store.Areas.Identity.Models;
 using Online_Store.Models;
-using Online_Store.Base;
+
 
 namespace Online_Store.Areas.Admin.Controllers
 {

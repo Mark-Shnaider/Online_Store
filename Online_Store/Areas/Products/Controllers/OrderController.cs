@@ -9,7 +9,7 @@ using Common.Models.DTO;
 using Common.Contracts.Services;
 using Logic.Services;
 using Online_Store.Areas.Products.Models;
-using Online_Store.Base;
+using Online_Store.Controllers.Base;
 
 namespace Online_Store.Areas.Products.Controllers
 {

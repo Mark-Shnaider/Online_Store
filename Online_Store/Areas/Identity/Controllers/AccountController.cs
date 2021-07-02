@@ -12,7 +12,7 @@ using Common.Contracts.Services;
 using Common.Contracts.Services.Identity;
 using Logic.Services;
 using Online_Store.Areas.Products.Models;
-using Online_Store.Base;
+using Online_Store.Controllers.Base;
 using Online_Store.Areas.Identity.Models;
 
 namespace Online_Store.Areas.Identity.Controllers

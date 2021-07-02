@@ -6,23 +6,44 @@
     ViewData["Title"] = "Index";
 }
 
-<div>
-    <a asp-area="Admin" asp-controller="Category" asp-action="Create">Добавить новую категорию</a><br>
-    <a asp-area="Admin" asp-controller="Home" asp-action="StartAdminPage">Вернуться</a>
+
+<br />
+<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Название категории</th>
+            <th>Описание </th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.Name</td>
+                <td>@category.Description</td>
+                <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@category.Id">Редактировать</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@category.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div align="center">
+    <a class="btn btn-info" asp-area="Admin" asp-controller="Category" asp-action="Create">Добавить новую категорию</a><br /><br />
+    <a class="btn btn-info" asp-area="Admin" asp-controller="Home" asp-action="StartAdminPage">Вернуться</a>
 </div>
 
-<ul class="list">
-    @foreach (var category in Model)
-    {
-        <li>
-            @category.Name
-        </li>
-        @category.Description
-        <br />
-        <a asp-action="Edit" asp-route-id="@category.Id"> Редактировать </a>
-        <a asp-action="Delete" asp-route-id="@category.Id"> Удалить </a>
-    }
-</ul>
 
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>
 
 

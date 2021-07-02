@@ -16,7 +16,7 @@ using Logic.Services;
 using Online_Store.Areas.Admin.Models;
 using Online_Store.Areas.Identity.Models;
 using Online_Store.Models;
-using Online_Store.Base;
+using Online_Store.Controllers.Base;
 
 namespace Online_Store.Areas.Admin.Controllers
 {

@@ -41,6 +41,9 @@ https://getbootstrap.com/docs/4.3/components/navbar/
 
 Доделать дизайн кнопочек и возращение обратно везде
 
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
 Admin
 VeryGood1_
 
