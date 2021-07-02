@@ -6,26 +6,25 @@
     ViewData["Title"] = "Edit";
 }
 
-<form method="post" asp-area="Admin" asp-controller="Category" asp-action="Edit">
-    <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
-    <input type="hidden" asp-for="Id" />
-    <div>
-        <label asp-for="Name"></label><br />
-        <input type="text" asp-for="Name" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="Description"></label><br />
-        <input type="text" asp-for="Description" />
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-    <br />
-    <input type="submit" value="Отредактировать" />
-</form>
-<div>
-    <a asp-area="Admin" asp-controller="Category" asp-action="Index">Вернуться</a>
+<div class="mx-auto" style="width: 200px;">
+    <form method="post" asp-area="Admin" asp-controller="Category" asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+        <input type="hidden" asp-for="Id" />
+        <div>
+            <label asp-for="Name"></label><br />
+            <input type="text" asp-for="Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Description"></label><br />
+            <input type="text" asp-for="Description" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <br />
+        <input class="btn btn-info" type="submit" value="Отредактировать" />
+    </form>
+        <a class="btn btn-info" asp-area="Admin" asp-controller="Category" asp-action="Index">Вернуться</a>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("~/Views/Shared/_ValidationScriptsPartial.cshtml");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("~/Views/Shared/_ValidationScriptsPartial.cshtml");}
+    }

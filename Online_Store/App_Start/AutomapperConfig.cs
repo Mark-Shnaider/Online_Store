@@ -33,7 +33,8 @@ namespace Online_Store.App_Start
         public void CreateViewMappings()
         {
             CreateMap<AmountDto, AmountViewModel>().ReverseMap();
-            CreateMap<CategoryDto, CategoryViewModel>().ReverseMap();
+            CreateMap<CategoryDto, CategoryViewModel>().ForMember("IsEmpty", opt => opt.MapFrom(c => c.Products.Count == 0));
+            CreateMap<CategoryViewModel, CategoryDto > ();
             CreateMap<CustomerDto, CustomerViewModel>().ReverseMap();
             CreateMap<OrderDto, OrderViewModel>().ReverseMap();
             CreateMap<ProductDto, ProductViewModel>().ReverseMap();

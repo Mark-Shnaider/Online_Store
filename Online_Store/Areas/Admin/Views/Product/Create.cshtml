@@ -6,38 +6,43 @@
     ViewData["Title"] = "Create";
 }
 
-<form class="mb-3" method="post" asp-area="Admin" asp-controller="Product" asp-action="Create">
-    <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
-    <div>
-        <label asp-for="Name"></label><br />
-        <input class="form-control" type="text" asp-for="Name" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="Description"></label><br />
-        <input class="form-control" type="text" asp-for="Description" />
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="Price"> </label><br />
-        <input class="form-control" type="text" asp-for="Price" />
-        <span asp-validation-for="Price" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="Quantity"></label><br />
-        <input class="form-control" type="text" asp-for="Quantity" />
-        <span asp-validation-for="Quantity" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="CategoryId"></label> <br />
-        <select class="form-control-lg" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))"></select>
-    </div>
-    <br />
-    <div class="mx-auto" style="width: 200px;">
-        <button type="submit" class="btn btn-info">Создать</button>
-    </div>
-</form>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("~/Views/Shared/_ValidationScriptsPartial.cshtml");}
-}
+<div class="mx-auto" style="width: 200px;">
+    <form class="mb-3" method="post" asp-area="Admin" asp-controller="Product" asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+        <div>
+            <label asp-for="Name"></label><br />
+            <input class="form-control" type="text" asp-for="Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Description"></label><br />
+            <input class="form-control" type="text" asp-for="Description" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Price"> </label><br />
+            <input class="form-control" type="text" asp-for="Price" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Quantity"></label><br />
+            <input class="form-control" type="text" asp-for="Quantity" />
+            <span asp-validation-for="Quantity" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="CategoryId"></label> <br />
+            <select class="form-control-lg" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))"></select>
+        </div>
+        <br />
+        <div class="mx-auto" style="width: 200px;">
+            <input class="btn btn-info" type="submit" value="Создать" />
+        </div>
+    </form>
+    <div>
+        <a  class="btn btn-info" asp-area="Admin" asp-controller="Product" asp-action="Index">Вернуться</a>
+    </div>
+</div>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("~/Views/Shared/_ValidationScriptsPartial.cshtml");}
+    }

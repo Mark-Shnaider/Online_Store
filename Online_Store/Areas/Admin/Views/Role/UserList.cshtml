@@ -3,7 +3,10 @@
 @model IEnumerable<User>
 
 <h2>Список пользователей</h2>
-<table class="table table-sm">
+<br />
+<a class ="btn btn-info" asp-action="Index"> Вернуться</a>
+<br />
+<table id="table_id" class="display">
     <thead class="bg-primary">
         <tr>
             <th scope="col">Имя пользователя</th>

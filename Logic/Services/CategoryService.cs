@@ -34,6 +34,7 @@ namespace Logic.Services
         public List<CategoryDto> GetCategories()
         {
             var categories = _unitOfWork.Categories.GetAll()
+                .Include(c => c.Products)
                 .OrderBy(c => c.Name)
                 .ToList();
 

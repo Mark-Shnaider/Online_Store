@@ -6,22 +6,27 @@
     ViewData["Title"] = "Create";
 }
 
-<form method="post" asp-area="Admin" asp-controller="Category" asp-action="Create">
-    <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
-    <div>
-        <label asp-for="Name"></label><br />
-        <input type="text" asp-for="Name" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="Description"></label><br />
-        <input type="text" asp-for="Description" />
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-    <br />
-    <input type="submit" value="Создать" />
-</form>
-
+<div class="mx-auto" style="width: 200px;">
+    <form class="mb-3" method="post" asp-area="Admin" asp-controller="Category" asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+        <div>
+            <label asp-for="Name"></label><br />
+            <input type="text" asp-for="Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Description"></label><br />
+            <input type="text" asp-for="Description" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <br />
+        <input class="btn btn-primary" type="submit" value="Создать" />
+    </form>
+    <a class="btn btn-info" asp-area="Admin" asp-controller="Category" asp-action="Index">Вернуться</a>
+</div>
+<div>
+    
+</div>
 @section Scripts {
     @{await Html.RenderPartialAsync("~/Views/Shared/_ValidationScriptsPartial.cshtml");}
 }

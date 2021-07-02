@@ -6,10 +6,10 @@
     ViewData["Title"] = "Index";
 }
 
-
+<br />
 <div>
-    <a asp-area="Admin" asp-controller="Product" asp-action="Create">Добавить новый товар</a><br />
-    <a asp-area="Admin" asp-controller="Home" asp-action="StartAdminPage">Вернуться</a>
+    <a class="btn btn-info" asp-area="Admin" asp-controller="Product" asp-action="Create">Добавить новый товар</a><br /><br />
+    <a class="btn btn-info" asp-area="Admin" asp-controller="Home" asp-action="StartAdminPage">Вернуться</a>
 </div>
 
 @foreach (var product in Model)
@@ -18,9 +18,9 @@
         <div>
             <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"><br />
             <div>
-                <a asp-action="Edit" asp-route-id="@product.Id"> Редактировать</a>
-                <a asp-action="Details" asp-route-id="@product.Id">Подробнее</a>
-                <a asp-action="Delete" asp-route-id="@product.Id">Удалить</a>
+                <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@product.Id"> Редактировать</a>
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@product.Id">Подробнее</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@product.Id">Удалить</a>
             </div>
         </div>
         <div>
