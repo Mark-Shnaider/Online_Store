@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System;
+using Online_Store.Models.Base;
 
 namespace Online_Store.Areas.Identity.Models
 {
-    public class LoginViewModel
+    public class LoginViewModel : BaseEntityViewModel<Guid>
     {
         [Required]
         [Display(Name ="Имя пользователя")]

@@ -81,8 +81,8 @@ namespace Logic.Services
             var productsDTO = _unitOfWork.Products.GetAll()
                 .OrderBy(p => p.Name)
                 .ToList();
-            var products = _mapper.Map<List<ProductDto>>(productsDTO);
-            return products;
+
+            return _mapper.Map<List<ProductDto>>(productsDTO);
         }
 
         public bool IsValidName(string Name)

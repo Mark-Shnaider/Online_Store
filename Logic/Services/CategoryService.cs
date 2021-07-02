@@ -36,8 +36,8 @@ namespace Logic.Services
             var categories = _unitOfWork.Categories.GetAll()
                 .OrderBy(c => c.Name)
                 .ToList();
-            var result = _mapper.Map<List<CategoryDto>>(categories);
-            return result;
+
+            return _mapper.Map<List<CategoryDto>>(categories);
         }
         public CategoryDto GetCategory(Guid Id)
         {

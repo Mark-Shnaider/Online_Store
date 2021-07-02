@@ -2,13 +2,14 @@
     @if (User.Identity.IsAuthenticated)
     {
         <form method="post" asp-area="Identity" asp-controller="Account" asp-action="Logout">
-            <input type="submit" value="Выход" />
+            <input class="btn btn-info" type="submit" value="Выход" />
         </form>
     }
     else
     {
-        <a asp-area="Identity" asp-controller="Account" asp-action="Authorize">Вход</a>
+        <a class="btn btn-info" asp-area="Identity" asp-controller="Account" asp-action="Authorize">Вход</a>
         <br />
-        <a asp-area="Identity" asp-controller="Account" asp-action="Register">Регистрация</a>
+        <a  class="btn btn-info" asp-area="Identity" asp-controller="Account" asp-action="Register">Регистрация</a>
     }
 </div>
+
