@@ -12,10 +12,10 @@
 <body>
     <header>
         <nav class="navbar navbar-dark bg-primary">
-            <a class="navbar-brand" asp-area="Products" asp-controller="Product" asp-action="Index">Онлайн магазин</a>
+            <a class="navbar-brand" asp-controller="Product" asp-action="Index">Онлайн магазин</a>
 
             <div class="form-inline my-2 my-lg-0">
-                <partial name="~/Areas/Views/Shared/_EntryPartial.cshtml" />
+                <partial name="~/Views/Shared/_EntryPartial.cshtml" />
             </div>
         </nav>
     </header>
@@ -32,7 +32,16 @@
         </div>
     </footer>
 
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable();
+        });
+    </script>
+
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

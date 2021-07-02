@@ -6,7 +6,7 @@ using Online_Store.Models.Base;
 using Common.Helpers.Enum;
 using Online_Store.Models;
 
-namespace Online_Store.Areas.Products.Models
+namespace Online_Store.Models
 {
     public class OrderViewModel : BaseEntityViewModel<Guid>
     {

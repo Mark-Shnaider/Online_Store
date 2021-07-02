@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Online_Store.Models.Base;
-using Online_Store.Areas.Products.Models;
+using Online_Store.Models;
 
 namespace Online_Store.Models
 {

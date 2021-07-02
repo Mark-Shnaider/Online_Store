@@ -11,13 +11,12 @@ using Common.Models.DTO;
 using Common.Contracts.Services;
 using Common.Contracts.Services.Identity;
 using Logic.Services;
-using Online_Store.Areas.Products.Models;
+using Online_Store.Models;
 using Online_Store.Controllers.Base;
 using Online_Store.Areas.Identity.Models;
 
 namespace Online_Store.Areas.Identity.Controllers
 {
-    [Area("Identity")]
     public class AccountController : BaseController
     {
         private readonly UserManager<User> _userManager;
@@ -53,7 +52,7 @@ namespace Online_Store.Areas.Identity.Controllers
                 {
                     await _signInManager.SignInAsync(user, false);
                     await _userManager.AddToRoleAsync(user, "User");
-                    return RedirectToAction("Index", "Product", new { area = "Products" });
+                    return RedirectToAction("Index", "Product");
                 }
                 else
                 {
@@ -96,7 +95,7 @@ namespace Online_Store.Areas.Identity.Controllers
                 {
                     if (user.UserName == "Admin")
                         return RedirectToAction("StartAdminPage", "Home", new { area = "Admin" });
-                    return RedirectToAction("Index", "Product", new { area = "Products" });
+                    return RedirectToAction("Index", "Product");
                 }
             }
             else
@@ -111,7 +110,7 @@ namespace Online_Store.Areas.Identity.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Product", new { area = "Products"});
+            return RedirectToAction("Index", "Product");
         }
 
     }

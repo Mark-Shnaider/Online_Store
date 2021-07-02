@@ -8,12 +8,11 @@ using AutoMapper;
 using Common.Models.DTO;
 using Common.Contracts.Services;
 using Logic.Services;
-using Online_Store.Areas.Products.Models;
+using Online_Store.Models;
 using Online_Store.Controllers.Base;
 
-namespace Online_Store.Areas.Products.Controllers
+namespace Online_Store.Controllers
 {
-    [Area("Products")]
     public class OrderController:BaseController
     {
         public OrderController(IMapper mapper, IServiceProvider serviceProvider)
