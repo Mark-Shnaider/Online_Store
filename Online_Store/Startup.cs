@@ -31,8 +31,17 @@ namespace Online_Store
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddIdentity<User, IdentityRole<Guid>>()
-                .AddEntityFrameworkStores<StoreContext>();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+
+            services.AddIdentity<User, IdentityRole<Guid>>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+            }).AddEntityFrameworkStores<StoreContext>();
 
             services.AddControllersWithViews();
             services.AddHttpContextAccessor();
@@ -68,6 +77,8 @@ namespace Online_Store
                 app.UseHsts();
             }
 
+            app.UseSession();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -78,6 +89,10 @@ namespace Online_Store
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                name: "Render",
+                pattern: "ShoppingCart/RenderView/{name}");
+
                 endpoints.MapAreaControllerRoute(
                     name: "MyAdmin",
                     areaName: "Admin",

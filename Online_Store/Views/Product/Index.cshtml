@@ -6,18 +6,23 @@
     ViewData["Title"] = "Index";
 }
 
+<div>
+    <partial name="~/Views/Product/Partial/_CartPartial.cshtml" />
+</div>
+
 @foreach (var product in Model)
 {
-<div class="product-wrap">
-    <div class="product-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
-        <div class="product-buttons">
-            <a class="button">В корзину</a>
+    <div class="product-wrap">
+        <div class="product-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
+            <div class="product-buttons">
+                <a class="button">В корзину</a>
+            </div>
+        </div>
+        <div class="product-title">
+            <a asp-controller="Product" asp-action="Details">@product.Name</a>
+            <span class="product-price">₽ @product.Price</span>
         </div>
     </div>
-    <div class="product-title">
-        <a asp-controller="Product" asp-action="Details">@product.Name</a>
-        <span class="product-price">₽ @product.Price</span>
-    </div>
-</div>
 }
+

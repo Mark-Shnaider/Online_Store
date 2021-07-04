@@ -12,8 +12,6 @@ automappe используется в сервисах и контроллера
 в startup мы не трогаем BaseService. Мы привязываем интерфейсы к их реализации
 все зависимости в конструкторе BaseService в рантайме автоматически резолвятся
 
-CreateUserAsync
-
 /Products/Product/Details/12908a4b-70ae-4846-b738-23c7c395f8bd
 /Identity/Account/Register
 /Admin/Product/Create
@@ -27,13 +25,6 @@ https://stackoverflow.com/questions/40646815/how-to-set-start-page-in-dotnet-cor
     <ProjectReference Include="..\Data\Data.csproj" />
 
 
-
-Дизайн карточек товара
-https://html5book.ru/dizayn-kartochek-tovara/
-
-https://getbootstrap.com/docs/4.3/components/navbar/
-
-
 Пофиксить проблему, если есть категории, у которых есть товары
 
 Сделать, чтобы можно было просмотреть пароль(через глазик например) и добавить поле подветрждение пароля(UserVM)
@@ -41,10 +32,7 @@ https://getbootstrap.com/docs/4.3/components/navbar/
 
 Доделать дизайн кнопочек и возращение обратно везде
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
 Admin
 VeryGood1_
 
-https://datatables.net/manual/installation
+https://github.com/bugdaryan/FoodStore/tree/master/Shop.Data
