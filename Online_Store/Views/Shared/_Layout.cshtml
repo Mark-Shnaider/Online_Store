@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" >
+<html lang="en" ng-app="app">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <base href="/">
 </head>
 <body>
     <header>
@@ -36,6 +37,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+    <script src="~/lib/angular.js/angular.js"></script>
     <script>
         $(document).ready(function () {
             $('#table_id').DataTable();
