@@ -42,26 +42,7 @@
             $('#table_id').DataTable();
         });
     </script>
-    <script type="text/javascript">
-        function changeValue(target, output, total, price, num) {
-            let val = parseInt(target.value);
-            if (num < 0 && val <= 1) {
-                return;
-            }
-            val += num;
-            target.value = val;
-
-
-            let totalInt = val * price;
-            output.value = ('' + totalInt).substring(0, 6);
-        }
-
-        function readUrl(input, id) {
-            if (input && input.value) {
-                $('#' + id).attr('src', input.value);
-            }
-        }
-    </script>
+  
 
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

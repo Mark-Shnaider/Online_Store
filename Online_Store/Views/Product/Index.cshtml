@@ -26,12 +26,13 @@
 
                 <td>
                     <input class="form-control" id="@product.GetHashCode()" value="@product.Total">
-                    <form asp-controller="ShoppingCart" asp-action="Add" method="get" role="form">
+                    <form asp-controller="ShoppingCart" asp-action="Add" method="post" role="form">
                         <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), -1)">-</a>
-                        <input readonly id="@product.Id" asp-for="@product.Amount">
+                        <input  id="@product.Id"  value="@product.Amount"  >
                         <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), 1)">+</a>
 
-                        <input value="Add to cart" type="submit" class="btn btn-success" asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.Id" asp-route-amount="@product.Amount" asp-route-returnUrl="@Context.Request.Path.Value" />
+                        <input id="@product.Id.GetHashCode()" type="submit" class="btn btn-success" asp-controller="ShoppingCart" asp-action="Add" 
+                               asp-route-id="@product.Id" asp-route-amount="@product.Amount"  asp-route-returnUrl="@Context.Request.Path.Value"  value="Add to cart"/>
                     </form>
 
                 </td>
@@ -39,3 +40,28 @@
         }
     </tbody>
 </table>
+
+<script type="text/javascript">
+    function changeValue(target, output, amount, price, num) {
+        let val = parseInt(target.value);
+        if (num < 0 && val <= 1) {
+            return;
+        }
+        val += num;
+        target.value = val;
+
+
+        let totalInt = val * price;
+        output.value = ('' + totalInt).substring(0, 6);
+    }
+
+    function getValue() {
+        return 5;
+    }
+
+    function readUrl(input, id) {
+        if (input && input.value) {
+            $('#' + id).attr('src', input.value);
+        }
+    }
+</script>

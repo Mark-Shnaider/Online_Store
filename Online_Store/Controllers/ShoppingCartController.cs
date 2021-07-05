@@ -27,17 +27,19 @@ namespace Online_Store.Controllers
             return View();
         }
 
-        public IActionResult Add(Guid Id, int? amount = 1, string returnUrl = null)
+        [HttpPost]
+        public IActionResult Add(Guid Id, int amount = 1, string returnUrl = null)
         {
             var product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(Id);
-            returnUrl = returnUrl.Replace("%2F", "/");
-            //bool isValidAmount = false;
+            //returnUrl = returnUrl.Replace("%2F", "/");
+            var item = new ShoppingCartItemDto { Product = product};
+            bool isValidAmount = false;
             if (product != null)
             {
-                isValidAmount = _shoppingCart.AddToCart(food, amount.Value);
+                isValidAmount = _serviceProvider.GetRequiredService<IShoppingCartService>().AddToCart(item);
             }
 
-            return Index(isValidAmount, returnUrl);
+            //return Index(isValidAmount, returnUrl);
             return View();
         }
     }
