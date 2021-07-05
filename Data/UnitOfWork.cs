@@ -19,6 +19,8 @@ namespace Data
         private IProductRepository productRepository;
         private ICategoryRepository categoryRepository;
         private IUserRepository userRepository;
+        private IShoppingCartRepository shoppingCartRepository;
+        private IShoppingCartItemRepository shoppingCartItemRepository;
         public UnitOfWork(StoreContext _storeContext) => storeContext = _storeContext;
 
         public DbContext DbContext
@@ -50,6 +52,15 @@ namespace Data
         {
             get { return userRepository ??= new UserRepository(storeContext); }
         }
+        public IShoppingCartRepository ShoppingCarts
+        {
+            get { return shoppingCartRepository ??= new ShoppingCartRepository(storeContext); }
+        }
+        public IShoppingCartItemRepository ShoppingCartItems
+        { 
+            get { return shoppingCartItemRepository ??= new ShoppingCartItemRepository(storeContext); }
+        }
+        
         public void Commit()
         {
             storeContext.ChangeTracker.DetectChanges();

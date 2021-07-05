@@ -10,10 +10,12 @@ namespace Common.Contracts
         DbContext DbContext { get; }
         IAmountRepository Amounts { get; }
         ICustomerRepository Customers { get; }
-        IOrderRepository Orders{ get; }
+        IOrderRepository Orders { get; }
         ICategoryRepository Categories { get; }
         IProductRepository Products { get; }
         IUserRepository Users { get; }
+        IShoppingCartRepository ShoppingCarts { get; }
+        IShoppingCartItemRepository ShoppingCartItems { get; }
         void Commit();
         Task CommitAsync();
         void Rollback();

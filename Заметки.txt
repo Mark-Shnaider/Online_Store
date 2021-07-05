@@ -4,7 +4,7 @@
 В идеале, должны быть только свойства(properties)
 - UnitOfWork представляет собой класс DbContext(или свой какой-то AppContext), а DbSet - репозитории(для каждой сущности)
 servicehost
-automappe используется в сервисах и контроллерах
+automapper используется в сервисах и контроллерах
 - SelectList with asp-items: https://stackoverflow.com/questions/34624034/select-tag-helper-in-asp-net-core-mvc
 
 
