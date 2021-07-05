@@ -21,5 +21,10 @@ namespace Online_Store.Controllers
         {
 
         }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
     }
 }

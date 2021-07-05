@@ -19,5 +19,7 @@ namespace Online_Store.Models
         public int Quantity { get; set; }
         [Display(Name = "Категория")]
         public string CategoryName { get; set; }
+
+        public List<string> Categories { get; set; }
     }
 }

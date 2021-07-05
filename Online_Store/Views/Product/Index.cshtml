@@ -16,11 +16,14 @@
         <div class="product-item">
             <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
             <div class="product-buttons">
-                <a class="button">В корзину</a>
+                <a class="button" asp-controller="ShoppingCart" asp-action="AddToCart">В корзину</a>
+            </div>
+            <div class="product-buttons">
+                <a class="button" asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">Подробнее</a>
             </div>
         </div>
         <div class="product-title">
-            <a asp-controller="Product" asp-action="Details">@product.Name</a>
+            @product.Name
             <span class="product-price">₽ @product.Price</span>
         </div>
     </div>

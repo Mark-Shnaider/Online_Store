@@ -1,5 +1,42 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Online_Store.Models
+
+@model ProductCustomerViewModel
+
 @{
+    ViewData["Title"] = "Details";
 }
+
+<div>
+    <h4>Товар</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Название товара
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Name
+        </dd>
+        <dt class="col-sm-2">
+            Описание товара
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Description
+        </dd>
+        <dt class="col-sm-2">
+            Цена товара
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Price
+        </dd>
+        <dt class="col-sm-2">
+            Товара в наличии
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Quantity
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-area="" asp-controller="Product" asp-action="Index">Вернуться</a>
+</div>

@@ -7,8 +7,10 @@ using Online_Store.Models.Base;
 
 namespace Online_Store.Models
 {
-    public class ShoppingCartViewModel : BaseEntityViewModel<Guid>
+    public class ShoppingCartItemViewModel
     {
-        public List<ShoppingCartItemViewModel> ShoppingCartItems { get; set; }
+        public ProductCustomerViewModel  Product { get; set; }
+        public int Amount { get; set; }
+        public Guid ShoppingCartId { get; set; }
     }
 }

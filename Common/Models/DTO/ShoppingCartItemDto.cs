@@ -11,7 +11,6 @@ namespace Common.Models.DTO
     {
         public ProductDto Product { get; set; }
         public int Amount { get; set; }
-        public ShoppingCartDto ShoppingCart { get; set; }
         public Guid ShoppingCartId { get; set; }
     }
 }

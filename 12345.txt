@@ -1,38 +1,28 @@
-<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="Products" asp-controller="Product" asp-action="Index">Online_Store</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li>
-                                <partial name="_EntryPartial.cshtml" />
-                        </li>
-                    </ul>
-                </div>
+@using Online_Store.Models
+
+@model IEnumerable<ProductCustomerViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div>
+    <partial name="~/Views/Product/Partial/_CartPartial.cshtml" />
+</div>
+
+@foreach (var product in Model)
+{
+    <div class="product-wrap">
+        <div class="product-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
+            <div class="product-buttons">
+                <a class="button">В корзину</a>
             </div>
-        </nav>
-
-
-
-
-<form method="post" asp-area="Identity" asp-controller="Account" asp-action="Authorize">
-    <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
-    <div>
-        <label asp-for="UserName"> </label><br />
-        <input type="text" asp-for="UserName" />
-        <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+        <div class="product-title">
+            <a asp-controller="Product" asp-action="Details">@product.Name</a>
+            <span class="product-price">₽ @product.Price</span>
+        </div>
     </div>
-    <div>
-        <label asp-for="Password"> </label><br />
-        <input type="text" asp-for="Password" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="RememberMe"></label>
-        <input asp-for="RememberMe" />
-    </div>
-    <input type="submit" value="Авторизоваться" />
-</form>
+}
+
