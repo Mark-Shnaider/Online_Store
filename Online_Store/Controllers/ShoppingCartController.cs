@@ -26,5 +26,19 @@ namespace Online_Store.Controllers
         {
             return View();
         }
+
+        public IActionResult Add(int id, int? amount = 1, string returnUrl = null)
+        {
+            //var food = _foodService.GetById(id);
+            //returnUrl = returnUrl.Replace("%2F", "/");
+            //bool isValidAmount = false;
+            //if (food != null)
+            //{
+            //    isValidAmount = _shoppingCart.AddToCart(food, amount.Value);
+            //}
+
+            //return Index(isValidAmount, returnUrl);
+            return View();
+        }
     }
 }

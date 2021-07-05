@@ -6,26 +6,29 @@
     ViewData["Title"] = "Index";
 }
 
-<div>
-    <partial name="~/Views/Product/Partial/_CartPartial.cshtml" />
-</div>
+<table>
+    <tbody>
+        @foreach (var product in Model)
+        {
+        <tr>
+            <td>
+                <div class="product-wrap">
+                    <div class="product-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
+                    </div>
+                    <div class="product-title">
+                        <a class="fs-4" asp-controller="Product" asp-action="Details">@product.Name</a> <br />
+                        <h3>₽ @product.Price</h3>
+                    </div>
+                </div>
+            </td>
 
-@foreach (var product in Model)
-{
-    <div class="product-wrap">
-        <div class="product-item">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
-            <div class="product-buttons">
-                <a class="button" asp-controller="ShoppingCart" asp-action="AddToCart">В корзину</a>
-            </div>
-            <div class="product-buttons">
-                <a class="button" asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">Подробнее</a>
-            </div>
-        </div>
-        <div class="product-title">
-            @product.Name
-            <span class="product-price">₽ @product.Price</span>
-        </div>
-    </div>
-}
-
+            <td>
+                <a class="btn btn-primary" asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">Подробнее</a> <br />
+                <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.Id">Добавить в корзину</a> <br />
+                <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.Id">Убрать из корзины</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
