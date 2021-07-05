@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -37,11 +37,30 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
-    <script src="~/lib/angular.js/angular.js"></script>
     <script>
         $(document).ready(function () {
             $('#table_id').DataTable();
         });
+    </script>
+    <script type="text/javascript">
+        function changeValue(target, output, total, price, num) {
+            let val = parseInt(target.value);
+            if (num < 0 && val <= 1) {
+                return;
+            }
+            val += num;
+            target.value = val;
+
+
+            let totalInt = val * price;
+            output.value = ('' + totalInt).substring(0, 6);
+        }
+
+        function readUrl(input, id) {
+            if (input && input.value) {
+                $('#' + id).attr('src', input.value);
+            }
+        }
     </script>
 
     <script src="~/js/site.js" asp-append-version="true"></script>

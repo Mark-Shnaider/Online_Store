@@ -1,4 +1,5 @@
 ﻿@using Online_Store.Models
+@using System.Globalization
 
 @model IEnumerable<ProductCustomerViewModel>
 
@@ -10,25 +11,31 @@
     <tbody>
         @foreach (var product in Model)
         {
-        <tr>
-            <td>
-                <div class="product-wrap">
-                    <div class="product-item">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
+            <tr>
+                <td>
+                    <div class="product-wrap">
+                        <div class="product-item">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
+                        </div>
+                        <div class="product-title">
+                            <a class="fs-4" asp-controller="Product" asp-action="Details">@product.Name</a> <br />
+                            <h3>₽ @product.Price</h3>
+                        </div>
                     </div>
-                    <div class="product-title">
-                        <a class="fs-4" asp-controller="Product" asp-action="Details">@product.Name</a> <br />
-                        <h3>₽ @product.Price</h3>
-                    </div>
-                </div>
-            </td>
+                </td>
 
-            <td>
-                <a class="btn btn-primary" asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">Подробнее</a> <br />
-                <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.Id">Добавить в корзину</a> <br />
-                <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.Id">Убрать из корзины</a>
-            </td>
-        </tr>
+                <td>
+                    <input class="form-control" id="@product.GetHashCode()" value="@product.Total">
+                    <form asp-controller="ShoppingCart" asp-action="Add" method="get" role="form">
+                        <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), -1)">-</a>
+                        <input readonly id="@product.Id" asp-for="@product.Amount">
+                        <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), 1)">+</a>
+
+                        <input value="Add to cart" type="submit" class="btn btn-success" asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.Id" asp-route-amount="@product.Amount" asp-route-returnUrl="@Context.Request.Path.Value" />
+                    </form>
+
+                </td>
+            </tr>
         }
     </tbody>
 </table>

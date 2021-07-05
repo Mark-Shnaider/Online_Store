@@ -36,3 +36,22 @@ Admin
 VeryGood1_
 
 https://github.com/bugdaryan/FoodStore/tree/master/Shop.Data
+
+<form>
+                    <a class="btn btn-primary" asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">Подробнее</a> <br />
+                    <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.Id">Добавить в корзину</a> <br />
+                    <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.Id">Убрать из корзины</a>
+                </form>
+
+
+<form asp-controller="ShoppingCart" asp-action="Add" method="get" class="form-horizontal" role="form">
+                    <a onclick="changeValue(document.getElementById('@product.Id.ToString()', document.getElementById('@(product.GetHashCode())'), @product.Quantity, 1)">Minus</a>
+                    <input id="@product.Id" asp-for="@product.Amount" style="width:20%" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                    <a onclick="changeValue(document.getElementById('amount-input-'+@product.Id.ToString()),document.getElementById('foodTotal-@(product.GetHashCode())'), @product.Quantity, -1)">Minus</a>
+                    <div class="btn-cart">
+                        <input value="Add to cart" type="submit" class="btn btn-success" asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@product.Id" asp-route-amount="@product.Quantity" asp-route-returnUrl="@Context.Request.Path" />
+                    </div>
+                </form>
+
+
+<a onclick="changeValue(document.getElementById('@product.Id.ToString()', document.getElementById('@(product.GetHashCode())'), @product.Quantity, 1)">Minus</a>
