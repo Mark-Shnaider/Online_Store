@@ -27,17 +27,17 @@ namespace Online_Store.Controllers
             return View();
         }
 
-        public IActionResult Add(int id, int? amount = 1, string returnUrl = null)
+        public IActionResult Add(Guid Id, int? amount = 1, string returnUrl = null)
         {
-            //var food = _foodService.GetById(id);
-            //returnUrl = returnUrl.Replace("%2F", "/");
+            var product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(Id);
+            returnUrl = returnUrl.Replace("%2F", "/");
             //bool isValidAmount = false;
-            //if (food != null)
-            //{
-            //    isValidAmount = _shoppingCart.AddToCart(food, amount.Value);
-            //}
+            if (product != null)
+            {
+                isValidAmount = _shoppingCart.AddToCart(food, amount.Value);
+            }
 
-            //return Index(isValidAmount, returnUrl);
+            return Index(isValidAmount, returnUrl);
             return View();
         }
     }
