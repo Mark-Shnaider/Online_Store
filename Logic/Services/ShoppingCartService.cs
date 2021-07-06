@@ -41,10 +41,12 @@ namespace Logic.Services
             {
                 if (cart.ShoppingCartItems == null)
                     cart.ShoppingCartItems = new List<ShoppingCartItem>();
-                cart.ShoppingCartItems.Add(item);
 
-                _unitOfWork.ShoppingCarts.Update(cart);
-                _unitOfWork.Products.Update(product);
+                cart.ShoppingCartItems.Add(item);
+                product.Quantity -= item.Amount;
+
+                _unitOfWork.ShoppingCarts.AddOrUpdate(cart);
+                _unitOfWork.Products.AddOrUpdate(product);
                 _unitOfWork.Commit();
             }
             return false;
