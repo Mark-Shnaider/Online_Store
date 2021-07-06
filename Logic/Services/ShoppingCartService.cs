@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using Common.Models.DTO;
@@ -20,10 +21,32 @@ namespace Logic.Services
 
         }
 
-        public bool AddToCart(ShoppingCartItemDto item)
+        public bool AddToCart(ShoppingCartItemDto itemDTO)
         {
+            if (itemDTO == null)
+                return false;
+
+            var item = _mapper.Map<ShoppingCartItem>(itemDTO);
+
             var cart = _unitOfWork.ShoppingCarts.GetById(item.ShoppingCartId);
 
+            var productDTO = _serviceProvider.GetRequiredService<IProductService>().GetProduct(item.Product.Id);
+
+            if (productDTO == null)
+                return false;
+
+            Product product = _mapper.Map<Product>(productDTO);
+
+            if (item.Amount <= product.Quantity)
+            {
+                if (cart.ShoppingCartItems == null)
+                    cart.ShoppingCartItems = new List<ShoppingCartItem>();
+                cart.ShoppingCartItems.Add(item);
+
+                _unitOfWork.ShoppingCarts.Update(cart);
+                _unitOfWork.Products.Update(product);
+                _unitOfWork.Commit();
+            }
             return false;
         }
 

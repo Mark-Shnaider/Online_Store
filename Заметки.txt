@@ -35,6 +35,8 @@ https://stackoverflow.com/questions/40646815/how-to-set-start-page-in-dotnet-cor
 
 Исправить,  что при входе нулевой юзер
 
+Добавить regex для значения товаров
+
 Разбить на категории
 Admin
 VeryGood1_
@@ -59,3 +61,10 @@ https://github.com/bugdaryan/FoodStore/tree/master/Shop.Data
 
 
 <a onclick="changeValue(document.getElementById('@product.Id.ToString()', document.getElementById('@(product.GetHashCode())'), @product.Quantity, 1)">Minus</a>
+
+
+<input onclick="AddToCart(this)" id="@product.Id.GetHashCode()" type="submit" class="btn btn-success" asp-controller="ShoppingCart" asp-action="Add" 
+                               asp-route-id="@product.Id" asp-route-amount=2  asp-route-returnUrl="@Context.Request.Path.Value" asp-route-CartId="@Model.Id" value="Add to cart"/>
+
+
+Для контроллера Guid Id, Guid CartId, int amount = 1, string returnUrl = null

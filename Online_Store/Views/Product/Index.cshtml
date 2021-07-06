@@ -13,7 +13,7 @@
         {
             <tr>
                 <td>
-                    <div class="product-wrap">
+                    <div ng- class="product-wrap">
                         <div class="product-item">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
                         </div>
@@ -25,16 +25,15 @@
                 </td>
 
                 <td>
-                    <input class="form-control" id="@product.GetHashCode()" value="@product.Total">
-                    <form asp-controller="ShoppingCart" asp-action="Add" method="post" role="form">
+                    <input id="@product.GetHashCode()" value="@product.Total" readonly>
+                    <div class="product-container">
                         <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), -1)">-</a>
-                        <input  id="@product.Id"  value="@product.Amount"  >
+                        <div class="product-amount">
+                            <input id="@product.Id" asp-for="@product.Amount">
+                        </div>
                         <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), 1)">+</a>
-
-                        <input id="@product.Id.GetHashCode()" type="submit" class="btn btn-success" asp-controller="ShoppingCart" asp-action="Add" 
-                               asp-route-id="@product.Id" asp-route-amount=3  asp-route-returnUrl="@Context.Request.Path.Value" asp-route-CartId="@Model.Id" value="Add to cart"/>
-                    </form>
-
+                        <input type="submit" data-productId="@product.Id" data-amount="@product.Amount" onclick="AddToCart(this)" value="Add to cart"/>
+                    </div>
                 </td>
             </tr>
         }
@@ -55,15 +54,27 @@
         val += num;
         target.value = val;
 
-
         let totalInt = val * price;
         output.value = ('' + totalInt).substring(0, 6);
     }
 
-    function getValue() {
-        return 5;
-    }
+    AddToCart = function (element) {
+        var amount = document.querySelector(".product-amount").firstElementChild.valueAsNumber;
 
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Add", "ShoppingCart")',
+            data: {
+                amount: amount
+            },
+            success: function (data) {
+                processResponse(data);
+            },
+            error: function () {
+                AjaxError();
+            }
+        });
+    };
     function readUrl(input, id) {
         if (input && input.value) {
             $('#' + id).attr('src', input.value);
