@@ -32,7 +32,7 @@
                             <input id="@product.Id" asp-for="@product.Amount">
                         </div>
                         <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), 1)">+</a>
-                        <input type="submit" data-productId="@product.Id" data-amount="@product.Amount" onclick="AddToCart(this)" value="Add to cart"/>
+                        <input type="submit" data-product-id="@product.Id" data-cart-id="@Model.Id" onclick="AddToCart(this)" value="Add to cart"/>
                     </div>
                 </td>
             </tr>
@@ -60,11 +60,14 @@
 
     AddToCart = function (element) {
         var amount = document.querySelector(".product-amount").firstElementChild.valueAsNumber;
-
+        var ProductId = $(element).data("product-id");
+        var CartId = $(element).data("cart-id");
         $.ajax({
             type: "POST",
             url: '@Url.Action("Add", "ShoppingCart")',
             data: {
+                CartId: CartId,
+                ProductId: ProductId,
                 amount: amount
             },
             success: function (data) {
