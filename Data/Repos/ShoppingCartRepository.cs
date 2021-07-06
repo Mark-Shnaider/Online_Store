@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Common.Contracts.Repos;
 using Common.Models.Entities;
@@ -10,6 +11,13 @@ namespace Data.Repos
     {
         public ShoppingCartRepository(DbContext dbContext) : base(dbContext)
         {
+            
+        }
+        public ShoppingCart GetByUserId(Guid Id)
+        {
+            var cart = DbSet.FirstOrDefault(c => c.UserId == Id);
+
+            return cart ?? new ShoppingCart { UserId = Id};
         }
     }
 }

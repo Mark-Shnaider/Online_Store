@@ -10,6 +10,11 @@ using Common.Contracts.Services;
 using Logic.Services;
 using Online_Store.Models;
 using Online_Store.Controllers.Base;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using System.Web;
 
 
 namespace Online_Store.Controllers

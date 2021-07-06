@@ -10,5 +10,6 @@ namespace Common.Models.DTO
     public class ShoppingCartDto:BaseDto<Guid>
     {
         public List<ShoppingCartItemDto> ShoppingCartItems { get; set; }
+        public Guid UserId { get; set; }
     }
 }

@@ -10,5 +10,6 @@ namespace Common.Models.Entities
     public class ShoppingCart:BaseEntity<Guid>
     {
         public virtual ICollection<ShoppingCartItem> ShoppingCartItems { get; set; }
+        public Guid UserId { get; set; }
     }
 }

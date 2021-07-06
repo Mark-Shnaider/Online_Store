@@ -8,5 +8,6 @@ namespace Common.Contracts.Services
     public interface IShoppingCartService:IService
     {
         public bool AddToCart(ShoppingCartItemDto item);
+        public ShoppingCartDto GetOrCreateCart(Guid Id);
     }
 }

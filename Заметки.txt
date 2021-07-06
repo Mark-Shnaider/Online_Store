@@ -6,7 +6,8 @@
 servicehost
 automapper используется в сервисах и контроллерах
 - SelectList with asp-items: https://stackoverflow.com/questions/34624034/select-tag-helper-in-asp-net-core-mvc
-
+- EntityFramewok - если фейлится проверить, что нет ошибок(собрать проект)
+-В дебаг online_store  в npm data
 
 Итого ServiceHost == ServiceProvider, BaseService их юзает, чтобы связываться с остальными сервисами
 в startup мы не трогаем BaseService. Мы привязываем интерфейсы к их реализации
@@ -32,6 +33,7 @@ https://stackoverflow.com/questions/40646815/how-to-set-start-page-in-dotnet-cor
 
 Доделать дизайн кнопочек и возращение обратно везде
 
+Разбить на категории
 Admin
 VeryGood1_
 

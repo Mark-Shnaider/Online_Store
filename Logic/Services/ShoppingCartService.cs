@@ -22,8 +22,16 @@ namespace Logic.Services
 
         public bool AddToCart(ShoppingCartItemDto item)
         {
-            _unitOfWork.ShoppingCarts.GetById(item.ShoppingCartId);
+            var cart = _unitOfWork.ShoppingCarts.GetByUserId(item.ShoppingCartId);
+
             return false;
+        }
+
+        public ShoppingCartDto GetOrCreateCart(Guid Id)
+        {
+            var cart = _unitOfWork.ShoppingCarts.GetByUserId(Id);
+
+            return _mapper.Map<ShoppingCartDto>(cart);
         }
     }
 }

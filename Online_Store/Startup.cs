@@ -79,15 +79,19 @@ namespace Online_Store
                 app.UseHsts();
             }
 
-            app.UseSession();
+           
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
 
+
+
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

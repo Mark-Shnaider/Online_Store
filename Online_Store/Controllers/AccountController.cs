@@ -95,6 +95,8 @@ namespace Online_Store.Areas.Identity.Controllers
                 {
                     if (user.UserName == "Admin")
                         return RedirectToAction("StartAdminPage", "Home", new { area = "Admin" });
+
+                    _serviceProvider.GetRequiredService<IShoppingCartService>().GetOrCreateCart(user.Id);
                     return RedirectToAction("Index", "Product");
                 }
             }

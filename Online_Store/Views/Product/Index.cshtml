@@ -32,7 +32,7 @@
                         <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), 1)">+</a>
 
                         <input id="@product.Id.GetHashCode()" type="submit" class="btn btn-success" asp-controller="ShoppingCart" asp-action="Add" 
-                               asp-route-id="@product.Id" asp-route-amount="@product.Amount"  asp-route-returnUrl="@Context.Request.Path.Value"  value="Add to cart"/>
+                               asp-route-id="@product.Id" asp-route-amount=3  asp-route-returnUrl="@Context.Request.Path.Value"  value="Add to cart"/>
                     </form>
 
                 </td>

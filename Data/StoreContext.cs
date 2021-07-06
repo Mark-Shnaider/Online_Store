@@ -10,6 +10,10 @@ namespace Data
     public class StoreContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     {
 
+        public StoreContext()
+        {
+
+        }
         public StoreContext(DbContextOptions<StoreContext> options)
             : base(options)
         {
