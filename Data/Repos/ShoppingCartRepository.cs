@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Common.Contracts.Repos;
 using Common.Models.Entities;
@@ -17,7 +18,7 @@ namespace Data.Repos
         {
             var cart = DbSet.FirstOrDefault(c => c.UserId == Id);
 
-            return cart ?? new ShoppingCart { UserId = Id};
+            return cart ?? new ShoppingCart { UserId = Id, Id = Guid.NewGuid(), ShoppingCartItems = new List<ShoppingCartItem>()};
         }
     }
 }

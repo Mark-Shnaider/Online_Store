@@ -10,6 +10,10 @@ using Common.Contracts.Services;
 using Logic.Services;
 using Online_Store.Models;
 using Online_Store.Controllers.Base;
+using Common.Models.Entities.Identity;
+using Microsoft.AspNetCore.Identity;
+using Common.Contracts.Services.Identity;
+using Online_Store.Areas.Identity.Models;
 
 namespace Online_Store.Controllers
 {
@@ -19,12 +23,19 @@ namespace Online_Store.Controllers
             : base(mapper, serviceProvider)
         {
         }
-        public IActionResult Index()
+        public IActionResult Index(Guid Id, string categoryName = null)
         {
-            var productsDTO = _serviceProvider.GetRequiredService<IProductService>().GetProducts();
+            var productsDTO = _serviceProvider
+                .GetRequiredService<IProductService>()
+                .GetProductsByCategory(categoryName);
 
             var productsVM = _mapper.Map<List<ProductCustomerViewModel>>(productsDTO);
-            return View(productsVM);
+
+            var cartDTO = _serviceProvider.GetRequiredService<IShoppingCartService>().GetOrCreateCart(Id);
+
+            var cartVM = _mapper.Map<ShoppingCartViewModel>(cartDTO);
+            cartVM.Products = productsVM;
+            return View(cartVM);
         }
 
         [HttpGet]

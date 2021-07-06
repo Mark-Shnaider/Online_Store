@@ -11,12 +11,12 @@ using Logic.Services.Base;
 
 namespace Logic.Services
 {
-    public class ProductService:BaseService, IProductService
+    public class ProductService : BaseService, IProductService
     {
         public ProductService(IMapper mapper, IServiceProvider serviceProvider, IUnitOfWork unitOfWork)
-            :base(mapper, serviceProvider, unitOfWork)
+            : base(mapper, serviceProvider, unitOfWork)
         {
-            
+
         }
         public void CreateProduct(ProductDto productDto)
         {
@@ -60,9 +60,9 @@ namespace Logic.Services
                 .Include(p => p.Category)
                 .FirstOrDefault(p => p.Id == Id);
 
-            if (product == null) 
+            if (product == null)
                 return null;
-            
+
             return _mapper.Map<ProductDto>(product);
         }
 
@@ -85,6 +85,22 @@ namespace Logic.Services
             return _mapper.Map<List<ProductDto>>(productsDTO);
         }
 
+        public List<ProductDto> GetProductsByCategory(string name)
+        {
+            if (name == null)
+                name = _unitOfWork.Categories.GetAll()
+                    .OrderBy(c => c.Name)
+                    .Select(c => c.Name)
+                    .Take(1)
+                    .ToList()[0];
+
+            var productsDTO = _unitOfWork.Products.GetAll()
+                .Where(p => p.Category.Name == name)
+                .OrderBy(p => p.Name)
+                .ToList();
+
+            return _mapper.Map<List<ProductDto>>(productsDTO);
+        }
         public bool IsValidName(string Name)
         {
             var IsExist = _unitOfWork.Products.GetAll()

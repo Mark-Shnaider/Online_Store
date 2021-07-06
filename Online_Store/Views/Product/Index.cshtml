@@ -1,7 +1,7 @@
 ﻿@using Online_Store.Models
 @using System.Globalization
 
-@model IEnumerable<ProductCustomerViewModel>
+@model ShoppingCartViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -9,7 +9,7 @@
 
 <table>
     <tbody>
-        @foreach (var product in Model)
+        @foreach (var product in Model.Products)
         {
             <tr>
                 <td>
@@ -40,6 +40,11 @@
         }
     </tbody>
 </table>
+
+
+<form asp-controller="Product" asp-action="Index">
+    <input type="submit" asp-route=""/>
+    </form>
 
 <script type="text/javascript">
     function changeValue(target, output, amount, price, num) {

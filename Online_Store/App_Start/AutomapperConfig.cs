@@ -39,8 +39,8 @@ namespace Online_Store.App_Start
             CreateMap<CategoryViewModel, CategoryDto > ();
             CreateMap<CustomerDto, CustomerViewModel>().ReverseMap();
             CreateMap<OrderDto, OrderViewModel>().ReverseMap();
-            //CreateMap<ShoppingCartDto, ShoppingCartViewModel>.ReverseMap();
-            //CreateMap<ShoppingCartItemDto, ShoppingCartItemViewModel>.ReverseMap();
+            CreateMap<ShoppingCartDto, ShoppingCartViewModel>().ReverseMap();
+            CreateMap<ShoppingCartItemDto, ShoppingCartItemViewModel>().ReverseMap();
 
             CreateMap<ProductDto, ProductViewModel>().ReverseMap();
             CreateMap<ProductDto, ProductCustomerViewModel>().ReverseMap();
