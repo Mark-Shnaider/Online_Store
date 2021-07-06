@@ -33,6 +33,8 @@ https://stackoverflow.com/questions/40646815/how-to-set-start-page-in-dotnet-cor
 
 Доделать дизайн кнопочек и возращение обратно везде
 
+Исправить,  что при входе нулевой юзер
+
 Разбить на категории
 Admin
 VeryGood1_

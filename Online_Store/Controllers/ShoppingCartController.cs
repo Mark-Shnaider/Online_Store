@@ -33,11 +33,11 @@ namespace Online_Store.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Guid Id, int amount = 1, string returnUrl = null)
+        public IActionResult Add(Guid Id, Guid CartId, int amount = 1, string returnUrl = null)
         {
             var product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(Id);
             //returnUrl = returnUrl.Replace("%2F", "/");
-            var item = new ShoppingCartItemDto { Product = product};
+            var item = new ShoppingCartItemDto { Product = product, Id = Guid.NewGuid(), ShoppingCartId = CartId};
             bool isValidAmount = false;
             if (product != null)
             {

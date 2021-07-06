@@ -14,11 +14,5 @@ namespace Data.Repos
         {
             
         }
-        public ShoppingCart GetByUserId(Guid Id)
-        {
-            var cart = DbSet.FirstOrDefault(c => c.UserId == Id);
-
-            return cart ?? new ShoppingCart { UserId = Id, Id = Guid.NewGuid(), ShoppingCartItems = new List<ShoppingCartItem>()};
-        }
     }
 }

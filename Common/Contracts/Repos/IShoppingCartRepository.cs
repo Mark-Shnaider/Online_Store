@@ -6,6 +6,5 @@ namespace Common.Contracts.Repos
 {
     public interface IShoppingCartRepository : IBaseRepository<Guid, ShoppingCart>
     {
-        public ShoppingCart GetByUserId(Guid Id);
     }
 }

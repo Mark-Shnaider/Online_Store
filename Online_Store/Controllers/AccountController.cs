@@ -52,7 +52,8 @@ namespace Online_Store.Areas.Identity.Controllers
                 {
                     await _signInManager.SignInAsync(user, false);
                     await _userManager.AddToRoleAsync(user, "User");
-                    return RedirectToAction("Index", "Product");
+                    _serviceProvider.GetRequiredService<IShoppingCartService>().CreateCart(user.Id);
+                    return RedirectToAction("Index", "Product", new { Id = user.Id });
                 }
                 else
                 {
@@ -96,7 +97,6 @@ namespace Online_Store.Areas.Identity.Controllers
                     if (user.UserName == "Admin")
                         return RedirectToAction("StartAdminPage", "Home", new { area = "Admin" });
 
-                    _serviceProvider.GetRequiredService<IShoppingCartService>().GetOrCreateCart(user.Id);
                     return RedirectToAction("Index", "Product", new { Id = user.Id});
                 }
             }
