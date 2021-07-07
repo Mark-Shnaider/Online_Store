@@ -75,7 +75,5 @@ namespace Online_Store.Controllers
                 }
             });
         }
-
-
     }
 }

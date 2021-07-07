@@ -7,6 +7,12 @@
     ViewData["Title"] = "Index";
 }
 
+<h4> Выбрать категорию</h4>
+<div>
+    <label></label> <br />
+    <select id="check" data-id="@Model.CategoryId" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))" class="form-control-lg"></select>
+</div>
+<partial name="Partials/_CategorySelectPartial" />
 <table>
     <tbody>
         @foreach (var product in Model.Products)
@@ -43,10 +49,11 @@
 
 
 <form asp-controller="Product" asp-action="Index">
-    <input type="submit" asp-route=""/>
-    </form>
+    <input type="submit" asp-route="" />
+</form>
 
 <script type="text/javascript">
+
     function changeValue(target, output, amount, price, num) {
         let val = parseInt(target.value);
         if (num < 0 && val <= 1) {
@@ -81,7 +88,7 @@
         });
     };
     RemoveFromCart = function (element) {
-        
+
         var ProductId = $(element).data("product-id");
         var CartId = $(element).data("cart-id");
         $.ajax({
@@ -101,11 +108,4 @@
         });
     };
 
-
-
-    function readUrl(input, id) {
-        if (input && input.value) {
-            $('#' + id).attr('src', input.value);
-        }
-    }
 </script>

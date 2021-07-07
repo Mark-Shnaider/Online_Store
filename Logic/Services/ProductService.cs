@@ -86,17 +86,17 @@ namespace Logic.Services
             return _mapper.Map<List<ProductDto>>(productsDTO);
         }
 
-        public List<ProductDto> GetProductsByCategory(string name)
+        public List<ProductDto> GetProductsByCategory(Guid Id)
         {
-            if (name == null)
-                name = _unitOfWork.Categories.GetAll()
-                    .OrderBy(c => c.Name)
-                    .Select(c => c.Name)
+            if (Id == default)
+                Id = _unitOfWork.Categories.GetAll()
+                    .OrderBy(c => c.Id)
+                    .Select(c => c.Id)
                     .Take(1)
                     .ToList()[0];
 
             var productsDTO = _unitOfWork.Products.GetAll()
-                .Where(p => p.Category.Name == name)
+                .Where(p => p.Category.Id == Id)
                 .OrderBy(p => p.Name)
                 .ToList();
 

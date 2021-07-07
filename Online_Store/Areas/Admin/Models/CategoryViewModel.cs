@@ -16,7 +16,5 @@ namespace Online_Store.Areas.Admin.Models
         [Required]
         [StringLength(250)]
         public string Description { get; set; }
-
-        public bool IsEmpty { get; set; }
     }
 }

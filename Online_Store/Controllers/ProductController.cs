@@ -23,11 +23,11 @@ namespace Online_Store.Controllers
             : base(mapper, serviceProvider)
         {
         }
-        public IActionResult Index(Guid Id, string categoryName = null)
+        public IActionResult Index(Guid Id, Guid CategoryId )
         {
             var productsDTO = _serviceProvider
                 .GetRequiredService<IProductService>()
-                .GetProductsByCategory(categoryName);
+                .GetProductsByCategory(CategoryId);
 
             var productsVM = _mapper.Map<List<ProductCustomerViewModel>>(productsDTO);
 
@@ -35,8 +35,33 @@ namespace Online_Store.Controllers
 
             var cartVM = _mapper.Map<ShoppingCartViewModel>(cartDTO);
             cartVM.Products = productsVM;
+
+            var categoriesDTO = _serviceProvider.GetRequiredService<ICategoryService>().GetCategories();
+
+            cartVM.Categories = _mapper.Map<List<CategoryIndexViewModel>>(categoriesDTO);
             return View(cartVM);
         }
+
+
+        public IActionResult GetProducts(Guid CategoryId)
+        {
+            var productsDTO = _serviceProvider
+                .GetRequiredService<IProductService>()
+                .GetProductsByCategory(CategoryId);
+
+            var productsVM = _mapper.Map<List<ProductCustomerViewModel>>(productsDTO);
+
+            var cartDTO = _serviceProvider.GetRequiredService<IShoppingCartService>().GetCartByUser(Id);
+
+            var cartVM = _mapper.Map<ShoppingCartViewModel>(cartDTO);
+            cartVM.Products = productsVM;
+
+            var categoriesDTO = _serviceProvider.GetRequiredService<ICategoryService>().GetCategories();
+
+            cartVM.Categories = _mapper.Map<List<CategoryIndexViewModel>>(categoriesDTO);
+            return PartialView();
+        }
+
 
         [HttpGet]
         public IActionResult Details(Guid id)

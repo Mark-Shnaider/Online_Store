@@ -18,6 +18,5 @@ namespace Online_Store.Models
         public string Total { get => (Price * Amount).ToString(CultureInfo.InvariantCulture); }
         public Guid CategoryId { get; set; }
         public string CategoryName { get; set; }
-        public List<string> Categories { get; set; }
     }
 }
