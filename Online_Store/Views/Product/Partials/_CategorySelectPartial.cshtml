@@ -1,3 +1,27 @@
-﻿
+﻿@using Online_Store.Models;
+@model List<ProductCustomerViewModel>
 
-<h6> Check</h6>
+<table>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>
+                    <div class="product-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
+                    </div>
+                    <div class="product-title">
+                        <a class="fs-4" asp-controller="Product" asp-action="Details">@product.Name</a> <br />
+                        <h3>₽ @product.Price</h3>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="product-container">
+                        <input id="@product.GetHashCode()" value="@product.Total" readonly>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

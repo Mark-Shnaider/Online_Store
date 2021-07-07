@@ -47,4 +47,9 @@ VeryGood1_
 https://github.com/bugdaryan/FoodStore/tree/master/Shop.Data
 
 
-element.target.options.selectedIndex
+Убрал футер
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - Online_Store - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>

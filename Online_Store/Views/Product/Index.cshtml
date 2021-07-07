@@ -10,49 +10,42 @@
 <h4> Выбрать категорию</h4>
 <div>
     <label></label> <br />
-    <select id="check" data-id="@Model.CategoryId" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))" class="form-control-lg"></select>
+    <select id="check" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))" class="form-control-lg"></select>
 </div>
-<partial name="Partials/_CategorySelectPartial" />
-<table>
-    <tbody>
-        @foreach (var product in Model.Products)
-        {
-            <tr>
-                <td>
-                    <div ng- class="product-wrap">
-                        <div class="product-item">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
-                        </div>
-                        <div class="product-title">
-                            <a class="fs-4" asp-controller="Product" asp-action="Details">@product.Name</a> <br />
-                            <h3>₽ @product.Price</h3>
-                        </div>
-                    </div>
-                </td>
 
-                <td>
-                    <div class="product-container">
-                        <input id="@product.GetHashCode()" value="@product.Total" readonly>
-                        <div class="product-amount">
-                            <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), -1)">-</a>
-                            <input type="number" id="@product.Id" asp-for="@product.Amount" min="1" step="1">
-                            <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), 1)">+</a>
-                        </div>
-                        <input type="submit" data-product-id="@product.Id" data-cart-id="@Model.Id" onclick="RemoveFromCart(this)" value="Remove from cart" />
-                        <input type="submit" data-product-id="@product.Id" data-cart-id="@Model.Id" onclick="AddToCart(this)" value="Add to cart" />
-                    </div>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 
+<div id="PartialContainer">
+   
+</div>
 
 <form asp-controller="Product" asp-action="Index">
     <input type="submit" asp-route="" />
 </form>
 
 <script type="text/javascript">
+
+    ChangeCategory = function (id) {
+
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("GetProducts", "Product")',
+                data: {
+                    CategoryId: id,
+                },
+            success: function (data) {
+                $("#PartialContainer").html(data);
+            },
+            error: function () {
+                AjaxError();
+            }
+        });
+    };
+
+
+    ChangeCategory("@Model.CategoryId");
+
+
+
 
     function changeValue(target, output, amount, price, num) {
         let val = parseInt(target.value);
@@ -67,6 +60,7 @@
     }
 
     AddToCart = function (element) {
+
         var amount = document.querySelector(".product-amount").children[1].valueAsNumber;
         var ProductId = $(element).data("product-id");
         var CartId = $(element).data("cart-id");

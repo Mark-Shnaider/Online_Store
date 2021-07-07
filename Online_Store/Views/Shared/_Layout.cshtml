@@ -26,6 +26,7 @@
     <header>
         <nav class="navbar navbar-dark bg-primary">
             <a class="navbar-brand" asp-controller="Product" asp-action="Index">Онлайн магазин</a>
+            <partial name="_EntryPartial" />
         </nav>
     </header>
 
@@ -35,11 +36,6 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - Online_Store - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
 
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -50,19 +46,20 @@
             $('#table_id').DataTable();
         });
 
+        
+
         $('#check').change(function (element) {
             var id = element.target.value
 
             $.ajax({
             type: "GET",
-            url: '@Url.Action("Index", "Product")',
+            url: '@Url.Action("GetProducts", "Product")',
                 data: {
                     CategoryId: id,
 
-            },
+                },
             success: function (data) {
-                if (data.data.isValid == false)
-                   alert("На складе нет столько товаров")
+                $("#PartialContainer").html(data);
             },
             error: function () {
                 AjaxError();
@@ -70,6 +67,7 @@
         });
 
         });
+
     </script>
   
 
