@@ -35,14 +35,14 @@ namespace Online_Store.Controllers
         [HttpPost]
         public IActionResult Add(Guid CartId, Guid ProductId, int amount)
         {
-            //var product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(ProductId);
+            var product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(ProductId);
 
-            //var item = new ShoppingCartItemDto { Product = product, Id = Guid.NewGuid(), ShoppingCartId = CartId, Amount = amount };
-            //bool isValidAmount = false;
-            //if (product != null)
-            //{
-            //    isValidAmount = _serviceProvider.GetRequiredService<IShoppingCartService>().AddToCart(item);
-            //}
+            var item = new ShoppingCartItemDto { Product = product, Id = Guid.NewGuid(), ShoppingCartId = CartId, Amount = amount };
+            bool isValidAmount = false;
+            if (product != null)
+            {
+                isValidAmount = _serviceProvider.GetRequiredService<IShoppingCartService>().AddToCart(item);
+            }
 
             //return Index(isValidAmount, returnUrl);
             return View();
