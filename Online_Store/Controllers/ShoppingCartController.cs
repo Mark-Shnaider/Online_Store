@@ -37,7 +37,7 @@ namespace Online_Store.Controllers
         {
             var product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(ProductId);
 
-            var item = new ShoppingCartItemDto { Product = product, Id = Guid.NewGuid(), ShoppingCartId = CartId};
+            var item = new ShoppingCartItemDto { Product = product, Id = Guid.NewGuid(), ShoppingCartId = CartId, Amount = amount};
             bool isValidAmount = false;
             if (product != null)
             {

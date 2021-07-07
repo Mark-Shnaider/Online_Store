@@ -11,7 +11,10 @@ namespace Common.Models.DTO
         public decimal Price { get; set; }
         public int Quantity { get; set; }
         public Guid CategoryId { get; set; }
+        public Guid ShoppingCartItemId { get; set; }
         public CategoryDto Category { get; set; }
         public List<AmountDto> Amounts { get; set; }
+        public virtual ShoppingCartItemDto ShoppingCartItem { get; set; }
+
     }
 }

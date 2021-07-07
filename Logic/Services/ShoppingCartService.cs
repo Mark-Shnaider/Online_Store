@@ -42,8 +42,13 @@ namespace Logic.Services
                 if (cart.ShoppingCartItems == null)
                     cart.ShoppingCartItems = new List<ShoppingCartItem>();
 
-                cart.ShoppingCartItems.Add(item);
                 product.Quantity -= item.Amount;
+                _unitOfWork.Products.AddOrUpdate(product);
+                _unitOfWork.Commit();
+
+                _unitOfWork.ShoppingCartItems.Add(item);
+                _unitOfWork.Commit();
+                
 
                 _unitOfWork.ShoppingCarts.AddOrUpdate(cart);
                 _unitOfWork.Products.AddOrUpdate(product);

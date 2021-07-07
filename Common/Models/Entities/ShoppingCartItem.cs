@@ -9,9 +9,9 @@ namespace Common.Models.Entities
 {
     public class ShoppingCartItem:BaseEntity<Guid>
     {
-        public Product Product { get; set; }
         public int Amount { get; set; }
-        public ShoppingCart ShoppingCart { get; set; }
         public Guid ShoppingCartId { get; set; }
+        public ShoppingCart ShoppingCart { get; set; }
+        public Product Product { get; set; }
     }
 }

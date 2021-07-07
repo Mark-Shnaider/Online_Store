@@ -7,14 +7,16 @@ using Common.Models.Entities.Base;
 
 namespace Common.Models.Entities
 {
-    public class Product:BaseEntity<Guid>
+    public class Product : BaseEntity<Guid>
     {
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
+        public Guid ShoppingCartItemId { get; set; }
         public Guid CategoryId { get; set; }
         //Navigation properties
+        public virtual ShoppingCartItem ShoppingCartItem{get;set;}
         public virtual Category Category { get; set; }
         public virtual ICollection<Amount> Amounts { get; set; }
     }
