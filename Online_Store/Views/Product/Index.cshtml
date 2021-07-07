@@ -71,7 +71,8 @@
                 amount: amount
             },
             success: function (data) {
-                processResponse(data);
+                if (data.data.isValid == false)
+                   alert("На складе нет столько товаров")
             },
             error: function () {
                 AjaxError();

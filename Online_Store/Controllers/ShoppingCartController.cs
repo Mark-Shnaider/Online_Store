@@ -33,7 +33,7 @@ namespace Online_Store.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Guid CartId, Guid ProductId, int amount)
+        public JsonResult Add(Guid CartId, Guid ProductId, int amount)
         {
             var product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(ProductId);
 
@@ -44,8 +44,34 @@ namespace Online_Store.Controllers
                 isValidAmount = _serviceProvider.GetRequiredService<IShoppingCartService>().AddToCart(item);
             }
 
-            //return Index(isValidAmount, returnUrl);
-            return View();
+
+            return Json(new
+            {
+                Data = new
+                {
+                    isValid = isValidAmount
+                }
+            });
+
+            if (isValidAmount)
+            {
+                return Json(new
+                {
+                    Data = new
+                    {
+                        isValid = isValidAmount
+                    }
+                });
+            }
+
+            return Json(new
+            {
+                Data = new
+                {
+                    isValid = isValidAmount
+                }
+            });
+
         }
     }
 }

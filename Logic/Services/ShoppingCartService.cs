@@ -35,8 +35,15 @@ namespace Logic.Services
                 _unitOfWork.Products.AddOrUpdate(item.Product);
                 _unitOfWork.Commit();
 
-                _unitOfWork.ShoppingCartItems.Add(item);
-                _unitOfWork.Commit();
+                try
+                {
+                    _unitOfWork.ShoppingCartItems.Add(item);
+                    _unitOfWork.Commit();
+                }
+                catch
+                {
+                    return false;
+                }
                 return true;
             }
             return false;
