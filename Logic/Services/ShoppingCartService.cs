@@ -27,25 +27,31 @@ namespace Logic.Services
                 return false;
 
             _unitOfWork.DetachAll();
+
             var item = _mapper.Map<ShoppingCartItem>(itemDTO);
 
-            if (item.Amount <= item.Product.Quantity)
-            {
-                item.Product.Quantity -= item.Amount;
-                _unitOfWork.Products.AddOrUpdate(item.Product);
-                _unitOfWork.Commit();
+            item.Product.Quantity -= item.Amount;
+            _unitOfWork.Products.AddOrUpdate(item.Product);
 
-                try
-                {
-                    _unitOfWork.ShoppingCartItems.Add(item);
-                    _unitOfWork.Commit();
-                }
-                catch
-                {
-                    return false;
-                }
-                return true;
+            var find_item = _unitOfWork.ShoppingCartItems.GetAll()
+                .FirstOrDefault(i => i.ShoppingCartId == item.ShoppingCartId && i.ProductId == item.Product.Id);
+
+            if (find_item != null)
+            {
+                find_item.Amount += item.Amount;
+                _unitOfWork.ShoppingCartItems.AddOrUpdate(find_item);
             }
+            else
+            { 
+                _unitOfWork.ShoppingCartItems.Add(item);
+            }
+            _unitOfWork.Commit();
+
+            return true;
+        }
+
+        public bool RemoveFromCart(ShoppingCartItemDto itemDTO)
+        {
             return false;
         }
 

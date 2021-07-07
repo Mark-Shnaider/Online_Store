@@ -82,7 +82,6 @@
     };
     RemoveFromCart = function (element) {
         
-        var amount = document.querySelector(".product-amount").children[1].valueAsNumber;
         var ProductId = $(element).data("product-id");
         var CartId = $(element).data("cart-id");
         $.ajax({
@@ -91,7 +90,6 @@
             data: {
                 CartId: CartId,
                 ProductId: ProductId,
-                amount: amount
             },
             success: function (data) {
                 if (data.data.isValid == false)

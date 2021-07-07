@@ -52,16 +52,19 @@ namespace Online_Store.Controllers
                     isValid = isValidAmount
                 }
             });
+        }
 
-            if (isValidAmount)
+        [HttpPost]
+        public JsonResult Remove(Guid CartId, Guid ProductId)
+        {
+            bool isValidAmount = false;
+
+            var product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(ProductId);
+
+            if (product != null)
             {
-                return Json(new
-                {
-                    Data = new
-                    {
-                        isValid = isValidAmount
-                    }
-                });
+                var item = new ShoppingCartItemDto { Product = product, Id = Guid.NewGuid(), ShoppingCartId = CartId};
+                isValidAmount = _serviceProvider.GetRequiredService<IShoppingCartService>().RemoveFromCart(item);
             }
 
             return Json(new
@@ -71,7 +74,8 @@ namespace Online_Store.Controllers
                     isValid = isValidAmount
                 }
             });
-
         }
+
+
     }
 }
