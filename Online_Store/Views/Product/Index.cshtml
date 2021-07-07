@@ -32,6 +32,7 @@
                             <input type="number" id="@product.Id" asp-for="@product.Amount" min="1" step="1">
                             <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), 1)">+</a>
                         </div>
+                        <input type="submit" data-product-id="@product.Id" data-cart-id="@Model.Id" onclick="RemoveFromCart(this)" value="Remove from cart" />
                         <input type="submit" data-product-id="@product.Id" data-cart-id="@Model.Id" onclick="AddToCart(this)" value="Add to cart" />
                     </div>
                 </td>
@@ -59,7 +60,7 @@
     }
 
     AddToCart = function (element) {
-        var amount = document.querySelector(".product-amount").firstElementChild.valueAsNumber;
+        var amount = document.querySelector(".product-amount").children[1].valueAsNumber;
         var ProductId = $(element).data("product-id");
         var CartId = $(element).data("cart-id");
         $.ajax({
@@ -79,6 +80,31 @@
             }
         });
     };
+    RemoveFromCart = function (element) {
+        
+        var amount = document.querySelector(".product-amount").children[1].valueAsNumber;
+        var ProductId = $(element).data("product-id");
+        var CartId = $(element).data("cart-id");
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Add", "ShoppingCart")',
+            data: {
+                CartId: CartId,
+                ProductId: ProductId,
+                amount: amount
+            },
+            success: function (data) {
+                if (data.data.isValid == false)
+                   alert("На складе нет столько товаров")
+            },
+            error: function () {
+                AjaxError();
+            }
+        });
+    };
+
+
+
     function readUrl(input, id) {
         if (input && input.value) {
             $('#' + id).attr('src', input.value);
