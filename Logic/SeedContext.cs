@@ -22,11 +22,16 @@ namespace Logic
 
             if (!unitOfWork.Categories.GetAll().Any() && !unitOfWork.Products.GetAll().Any())
             {
+                var cart = new ShoppingCart { Id = Guid.NewGuid() };
+                unitOfWork.ShoppingCarts.Add(cart);
+                unitOfWork.Commit();
+
                 unitOfWork.Categories.AddRange(categories = GetPreconfiguredCategories());
                 unitOfWork.Commit();
-                
+
                 unitOfWork.Products.AddRange(GetPreconfiguredProducts(categories));
                 unitOfWork.Commit();
+
             }
 
             if (!unitOfWork.Customers.GetAll().Any())

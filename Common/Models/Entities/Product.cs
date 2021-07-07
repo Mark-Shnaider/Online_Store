@@ -13,11 +13,10 @@ namespace Common.Models.Entities
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
-        public Guid ShoppingCartItemId { get; set; }
         public Guid CategoryId { get; set; }
         //Navigation properties
-        public virtual ShoppingCartItem ShoppingCartItem{get;set;}
         public virtual Category Category { get; set; }
+        public virtual ShoppingCartItem ShoppingCartItem { get; set; }
         public virtual ICollection<Amount> Amounts { get; set; }
     }
 }

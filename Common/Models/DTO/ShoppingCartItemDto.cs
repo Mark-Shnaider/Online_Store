@@ -9,9 +9,11 @@ namespace Common.Models.DTO
 {
     public class ShoppingCartItemDto:BaseDto<Guid>
     {
-        public ProductDto Product { get; set; }
-        public Guid ProductId { get; set; }
         public int Amount { get; set; }
         public Guid ShoppingCartId { get; set; }
+        public Guid ProductId { get; set; }
+        public  ShoppingCartDto ShoppingCart { get; set; }
+        public  ProductDto Product { get; set; }
+
     }
 }

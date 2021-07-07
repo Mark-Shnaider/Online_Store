@@ -23,37 +23,37 @@ namespace Logic.Services
 
         public bool AddToCart(ShoppingCartItemDto itemDTO)
         {
-            if (itemDTO == null)
-                return false;
+            //if (itemDTO == null)
+            //    return false;
 
-            var item = _mapper.Map<ShoppingCartItem>(itemDTO);
+            //var item = _mapper.Map<ShoppingCartItem>(itemDTO);
 
-            var cart = _unitOfWork.ShoppingCarts.GetById(item.ShoppingCartId);
+            //var cart = _unitOfWork.ShoppingCarts.GetById(item.ShoppingCartId);
 
-            var productDTO = _serviceProvider.GetRequiredService<IProductService>().GetProduct(item.Product.Id);
+            //var productDTO = _serviceProvider.GetRequiredService<IProductService>().GetProduct(item.Product.Id);
 
-            if (productDTO == null)
-                return false;
+            //if (productDTO == null)
+            //    return false;
 
-            Product product = _mapper.Map<Product>(productDTO);
+            //Product product = _mapper.Map<Product>(productDTO);
 
-            if (item.Amount <= product.Quantity)
-            {
-                if (cart.ShoppingCartItems == null)
-                    cart.ShoppingCartItems = new List<ShoppingCartItem>();
+            //if (item.Amount <= product.Quantity)
+            //{
+            //    if (cart.ShoppingCartItems == null)
+            //        cart.ShoppingCartItems = new List<ShoppingCartItem>();
 
-                product.Quantity -= item.Amount;
-                _unitOfWork.Products.AddOrUpdate(product);
-                _unitOfWork.Commit();
+            //    product.Quantity -= item.Amount;
+            //    _unitOfWork.Products.AddOrUpdate(product);
+            //    _unitOfWork.Commit();
 
-                _unitOfWork.ShoppingCartItems.Add(item);
-                _unitOfWork.Commit();
+            //    _unitOfWork.ShoppingCartItems.Add(item);
+            //    _unitOfWork.Commit();
                 
 
-                _unitOfWork.ShoppingCarts.AddOrUpdate(cart);
-                _unitOfWork.Products.AddOrUpdate(product);
-                _unitOfWork.Commit();
-            }
+            //    _unitOfWork.ShoppingCarts.AddOrUpdate(cart);
+            //    _unitOfWork.Products.AddOrUpdate(product);
+            //    _unitOfWork.Commit();
+            //}
             return false;
         }
 

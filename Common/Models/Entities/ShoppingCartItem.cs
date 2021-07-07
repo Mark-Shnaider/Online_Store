@@ -11,7 +11,8 @@ namespace Common.Models.Entities
     {
         public int Amount { get; set; }
         public Guid ShoppingCartId { get; set; }
-        public ShoppingCart ShoppingCart { get; set; }
-        public Product Product { get; set; }
+        public Guid ProductId { get; set; }
+        public virtual ShoppingCart ShoppingCart { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

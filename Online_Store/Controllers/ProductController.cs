@@ -31,7 +31,6 @@ namespace Online_Store.Controllers
 
             var productsVM = _mapper.Map<List<ProductCustomerViewModel>>(productsDTO);
 
-            _serviceProvider.GetRequiredService<IShoppingCartService>().CreateCart(default);
             var cartDTO = _serviceProvider.GetRequiredService<IShoppingCartService>().GetCartByUser(Id);
 
             var cartVM = _mapper.Map<ShoppingCartViewModel>(cartDTO);
