@@ -35,15 +35,15 @@ namespace Online_Store.Controllers
         [HttpPost]
         public JsonResult Add(Guid CartId, Guid ProductId, int amount)
         {
+            bool isValidAmount = false;
+
             var product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(ProductId);
 
-            var item = new ShoppingCartItemDto { Product = product, Id = Guid.NewGuid(), ShoppingCartId = CartId, Amount = amount };
-            bool isValidAmount = false;
-            if (product != null)
+            if (product != null && amount <= product.Quantity)
             {
+                var item = new ShoppingCartItemDto { Product = product, Id = Guid.NewGuid(), ShoppingCartId = CartId, Amount = amount };
                 isValidAmount = _serviceProvider.GetRequiredService<IShoppingCartService>().AddToCart(item);
             }
-
 
             return Json(new
             {

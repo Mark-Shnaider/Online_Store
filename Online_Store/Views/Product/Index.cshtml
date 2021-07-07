@@ -25,14 +25,14 @@
                 </td>
 
                 <td>
-                    <input id="@product.GetHashCode()" value="@product.Total" readonly>
                     <div class="product-container">
-                        <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), -1)">-</a>
+                        <input id="@product.GetHashCode()" value="@product.Total" readonly>
                         <div class="product-amount">
-                            <input id="@product.Id" asp-for="@product.Amount">
+                            <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), -1)">-</a>
+                            <input type="number" id="@product.Id" asp-for="@product.Amount" min="1" step="1">
+                            <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), 1)">+</a>
                         </div>
-                        <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), 1)">+</a>
-                        <input type="submit" data-product-id="@product.Id" data-cart-id="@Model.Id" onclick="AddToCart(this)" value="Add to cart"/>
+                        <input type="submit" data-product-id="@product.Id" data-cart-id="@Model.Id" onclick="AddToCart(this)" value="Add to cart" />
                     </div>
                 </td>
             </tr>
