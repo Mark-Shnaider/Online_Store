@@ -31,6 +31,8 @@ https://stackoverflow.com/questions/40646815/how-to-set-start-page-in-dotnet-cor
 
 Пофиксить проблему, чтобы сразу проверялось значение товаров(в input)
 
+Исправить, что в Add Cart два ajax запроса
+
 Разбить на категории
 
 ParialView
