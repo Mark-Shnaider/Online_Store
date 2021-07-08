@@ -54,6 +54,16 @@ namespace Online_Store.Controllers
             return PartialView("Partials/_CategorySelectPartial", cart);
         }
 
+        public PartialViewResult GetCartItems(ShoppingCartViewModel cart)
+        {
+            var productsDTO = _serviceProvider
+                .GetRequiredService<IProductService>()
+                .GetProductsByCategory(cart.CategoryId);
+
+
+            return PartialView("Partials/_CategorySelectPartial", cart);
+        }
+
 
         [HttpGet]
         public IActionResult Details(Guid id)
