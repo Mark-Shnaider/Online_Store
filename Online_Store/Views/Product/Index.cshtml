@@ -10,14 +10,16 @@
 <h4> Выбрать категорию</h4>
 <div>
     <label></label> <br />
-    <select id="check" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))" class="form-control-lg"></select>
+    <select id="check" data-cart-id="@Model.Id" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))" class="form-control-lg"></select>
 </div>
 
 
 <div class="container">
     <div class="row align-items-start">
         <div class="col">
-            One of three columns
+            <div id="PartialContainer">
+
+            </div>
         </div>
         <div class="col">
 
@@ -25,14 +27,11 @@
         <div class="col">
         </div>
         <div class="col">
-            One of three columns
+            <div id="CartContainer">
+                
+            </div>
         </div>
     </div>
-</div>
-
-
-<div id="PartialContainer">
-   
 </div>
 
 <form asp-controller="Product" asp-action="Index">

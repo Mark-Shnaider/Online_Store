@@ -7,5 +7,6 @@ namespace Common.Contracts.Services
 {
     public interface IShoppingCartItemService:IService
     {
+        public List<ShoppingCartItemDto> GetItems(Guid CartId);
     }
 }

@@ -61,7 +61,7 @@ namespace Online_Store
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IShoppingCartService, ShoppingCartService>();
-            //services.AddScoped<IShoppingCartItemService, ShoppingCartItemService>();
+            services.AddScoped<IShoppingCartItemService, ShoppingCartItemService>();
             //services.AddScoped<IAmountService, AmountService>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();

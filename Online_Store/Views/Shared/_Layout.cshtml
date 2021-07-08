@@ -48,21 +48,32 @@
 
         $('#check').change(function (element) {
             var id = element.target.value
-
+            var cartid = element.target.attributes["data-cart-id"].nodeValue;
             $.ajax({
             type: "GET",
             url: '@Url.Action("GetProducts", "Product")',
                 data: {
                     CategoryId: id,
-
+                    Id: cartid
                 },
             success: function (data) {
                 $("#PartialContainer").html(data);
             },
-            error: function () {
-                AjaxError();
-            }
-        });
+
+            });
+
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetCartItems", "Product")',
+                data: {
+                    Id: cartid
+                },
+                success: function (data) {
+                    $('#CartContainer').html(data)
+                },
+
+            });
+
 
         });
 
