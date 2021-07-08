@@ -72,6 +72,20 @@
                 AjaxError();
             }
         });
+
+        $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetCartItems", "Product")',
+                data: {
+                    Id: CartId
+                },
+                success: function (data) {
+                    $('#CartContainer').html(data)
+                },
+
+            });
+
+
     };
     RemoveFromCart = function (element) {
 

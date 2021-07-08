@@ -61,20 +61,6 @@
             },
 
             });
-
-            $.ajax({
-                type: "GET",
-                url: '@Url.Action("GetCartItems", "Product")',
-                data: {
-                    Id: cartid
-                },
-                success: function (data) {
-                    $('#CartContainer').html(data)
-                },
-
-            });
-
-
         });
 
     </script>
