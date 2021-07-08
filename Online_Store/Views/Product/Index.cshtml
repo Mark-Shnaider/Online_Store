@@ -39,6 +39,11 @@
 </form>
 
 <script type="text/javascript">
+
+    $(document).ready(function () {
+        console.log("ready!");
+    });
+
     function changeValue(target, output, amount, price, num) {
         let val = parseInt(target.value);
         if (num < 0 && val <= 1) {
@@ -84,8 +89,6 @@
                 },
 
             });
-
-
     };
     RemoveFromCart = function (element) {
 
@@ -107,5 +110,4 @@
             }
         });
     };
-
 </script>
