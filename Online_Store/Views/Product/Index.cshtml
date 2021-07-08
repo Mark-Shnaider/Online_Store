@@ -14,6 +14,23 @@
 </div>
 
 
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col">
+            One of three columns
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+        </div>
+        <div class="col">
+            One of three columns
+        </div>
+    </div>
+</div>
+
+
 <div id="PartialContainer">
    
 </div>
@@ -23,30 +40,6 @@
 </form>
 
 <script type="text/javascript">
-
-    ChangeCategory = function (id) {
-
-        $.ajax({
-            type: "GET",
-            url: '@Url.Action("GetProducts", "Product")',
-                data: {
-                    CategoryId: id,
-                },
-            success: function (data) {
-                $("#PartialContainer").html(data);
-            },
-            error: function () {
-                AjaxError();
-            }
-        });
-    };
-
-
-    ChangeCategory("@Model.CategoryId");
-
-
-
-
     function changeValue(target, output, amount, price, num) {
         let val = parseInt(target.value);
         if (num < 0 && val <= 1) {

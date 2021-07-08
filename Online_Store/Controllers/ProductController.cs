@@ -34,7 +34,6 @@ namespace Online_Store.Controllers
             var cartDTO = _serviceProvider.GetRequiredService<IShoppingCartService>().GetCartByUser(Id);
 
             var cartVM = _mapper.Map<ShoppingCartViewModel>(cartDTO);
-            cartVM.Products = productsVM;
 
             var categoriesDTO = _serviceProvider.GetRequiredService<ICategoryService>().GetCategories();
 
@@ -44,15 +43,15 @@ namespace Online_Store.Controllers
         }
 
 
-        public PartialViewResult GetProducts(Guid CategoryId)
+        public PartialViewResult GetProducts(CartTableViewModel cart)
         {
             var productsDTO = _serviceProvider
                 .GetRequiredService<IProductService>()
-                .GetProductsByCategory(CategoryId);
+                .GetProductsByCategory(cart.CategoryId);
 
-            var productsVM = _mapper.Map<List<ProductCustomerViewModel>>(productsDTO);
+            cart.Products = _mapper.Map<List<ProductCustomerViewModel>>(productsDTO);
 
-            return PartialView("Partials/_CategorySelectPartial", productsVM);
+            return PartialView("Partials/_CategorySelectPartial", cart);
         }
 
 

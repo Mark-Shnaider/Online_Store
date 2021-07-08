@@ -10,7 +10,6 @@ namespace Online_Store.Models
     public class ShoppingCartViewModel : BaseEntityViewModel<Guid>
     {
         public List<ShoppingCartItemViewModel> ShoppingCartItems { get; set; }
-        public List<ProductCustomerViewModel> Products { get; set; }
         public Guid UserId { get; set; }
         public Guid CategoryId { get; set; }
         public List<CategoryIndexViewModel> Categories { get; set; }

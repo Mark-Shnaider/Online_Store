@@ -7,16 +7,11 @@ servicehost
 automapper используется в сервисах и контроллерах
 - SelectList with asp-items: https://stackoverflow.com/questions/34624034/select-tag-helper-in-asp-net-core-mvc
 - EntityFramewok - если фейлится проверить, что нет ошибок(собрать проект)
--В дебаг online_store  в npm data
+- В дебагере online_store  в npm data
 
 Итого ServiceHost == ServiceProvider, BaseService их юзает, чтобы связываться с остальными сервисами
 в startup мы не трогаем BaseService. Мы привязываем интерфейсы к их реализации
 все зависимости в конструкторе BaseService в рантайме автоматически резолвятся
-
-/Products/Product/Details/12908a4b-70ae-4846-b738-23c7c395f8bd
-/Identity/Account/Register
-/Admin/Product/Create
-/Admin/Role/Index
 
 Менял стартовую страницу в launcgsetting.json добавил  строку  launchurl в profiles/ Мб проблемы будут при деплое
 https://stackoverflow.com/questions/40646815/how-to-set-start-page-in-dotnet-core-web-api
@@ -53,3 +48,40 @@ https://github.com/bugdaryan/FoodStore/tree/master/Shop.Data
             &copy; 2021 - Online_Store - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
+
+
+<partial name="Partials/_CategorySelectPartial" />
+<table>
+    <tbody>
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td>
+                    <div ng- class="product-wrap">
+                        <div class="product-item">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
+                        </div>
+                        <div class="product-title">
+                            <a class="fs-4" asp-controller="Product" asp-action="Details">@product.Name</a> <br />
+                            <h3>₽ @product.Price</h3>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div class="product-container">
+                        <input id="@product.GetHashCode()" value="@product.Total" readonly>
+                        <div class="product-amount">
+                            <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), -1)">-</a>
+                            <input type="number" id="@product.Id" asp-for="@product.Amount" min="1" step="1">
+                            <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), 1)">+</a>
+                        </div>
+                        <input type="submit" data-product-id="@product.Id" data-cart-id="@Model.Id" onclick="RemoveFromCart(this)" value="Remove from cart" />
+                        <input type="submit" data-product-id="@product.Id" data-cart-id="@Model.Id" onclick="AddToCart(this)" value="Add to cart" />
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
