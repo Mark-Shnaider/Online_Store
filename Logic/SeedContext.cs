@@ -18,22 +18,6 @@ namespace Logic
             UserManager<User> userManager,
             RoleManager<IdentityRole<Guid>> roleManager)
         {
-            IEnumerable<Category> categories;
-
-            if (!unitOfWork.Categories.GetAll().Any() && !unitOfWork.Products.GetAll().Any())
-            {
-                var cart = new ShoppingCart { Id = Guid.NewGuid() };
-                unitOfWork.ShoppingCarts.Add(cart);
-                unitOfWork.Commit();
-
-                unitOfWork.Categories.AddRange(categories = GetPreconfiguredCategories());
-                unitOfWork.Commit();
-
-                unitOfWork.Products.AddRange(GetPreconfiguredProducts(categories));
-                unitOfWork.Commit();
-
-            }
-
             string userName = "Admin";
             string adminEmail = "admin@gmail.com";
             string password = "VeryGood1_";
@@ -60,6 +44,33 @@ namespace Logic
                     await userManager.AddToRoleAsync(admin, "User");
                 }
             }
+
+
+            IEnumerable<Category> categories;
+
+            if (!unitOfWork.Categories.GetAll().Any() && !unitOfWork.Products.GetAll().Any())
+            {
+                User user = new User { UserName = "User", Email = "user@gmail.com" , Id = Guid.NewGuid()};
+                IdentityResult result = await userManager.CreateAsync(user, "User123");
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, "User");
+                }
+
+
+                var cart = new ShoppingCart { Id = Guid.NewGuid(), UserId = user.Id};
+                unitOfWork.ShoppingCarts.Add(cart);
+                unitOfWork.Commit();
+
+                unitOfWork.Categories.AddRange(categories = GetPreconfiguredCategories());
+                unitOfWork.Commit();
+
+                unitOfWork.Products.AddRange(GetPreconfiguredProducts(categories));
+                unitOfWork.Commit();
+
+            }
+
+            
 
         }
         static IEnumerable<Category> GetPreconfiguredCategories()

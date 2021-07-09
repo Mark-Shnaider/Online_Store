@@ -75,6 +75,7 @@ namespace Logic.Services
                 .GetAll()
                 .Include(c => c.ShoppingCartItems)
                 .ThenInclude(i => i.Product)
+                .Include(c => c.User)
                 .FirstOrDefault(c => c.Id == CartId);
 
             if (cart == null)

@@ -11,5 +11,6 @@ namespace Common.Models.DTO.Identity
         public string Email { get; set; }
         public string Password { get; set; }
         public List<OrderDto> Orders { get; set; }
+        public ShoppingCartDto ShoppingCart { get; set; }
     }
 }

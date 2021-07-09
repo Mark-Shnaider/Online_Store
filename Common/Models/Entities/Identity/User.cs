@@ -13,5 +13,6 @@ namespace Common.Models.Entities.Identity
     public class User :IdentityUser<Guid>, IBaseEntity<Guid>
     { 
         public virtual ICollection<Order> Orders { get; set; }
+        public virtual ShoppingCart ShoppingCart { get; set; }
     }
 }

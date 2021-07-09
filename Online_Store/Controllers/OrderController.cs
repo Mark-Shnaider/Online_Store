@@ -26,8 +26,14 @@ namespace Online_Store.Controllers
 
         public IActionResult Order(Guid CartId)
         {
-            _serviceProvider.GetRequiredService<IShoppingCartService>().GetCart(CartId);
-            return View();
+            var cart =_serviceProvider.GetRequiredService<IShoppingCartService>().GetCart(CartId);
+            return View(cart);
+        }
+
+        [HttpPost]
+        public void Order(OrderViewModel orderVM)
+        { 
+            
         }
 
     }

@@ -190,6 +190,9 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
                     b.ToTable("ShoppingCarts");
                 });
 
@@ -388,6 +391,17 @@ namespace Data.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("Common.Models.Entities.ShoppingCart", b =>
+                {
+                    b.HasOne("Common.Models.Entities.Identity.User", "User")
+                        .WithOne("ShoppingCart")
+                        .HasForeignKey("Common.Models.Entities.ShoppingCart", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Common.Models.Entities.ShoppingCartItem", b =>
                 {
                     b.HasOne("Common.Models.Entities.Product", "Product")
@@ -466,6 +480,8 @@ namespace Data.Migrations
             modelBuilder.Entity("Common.Models.Entities.Identity.User", b =>
                 {
                     b.Navigation("Orders");
+
+                    b.Navigation("ShoppingCart");
                 });
 
             modelBuilder.Entity("Common.Models.Entities.Order", b =>
