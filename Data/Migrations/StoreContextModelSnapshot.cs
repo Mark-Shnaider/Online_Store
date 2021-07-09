@@ -148,7 +148,7 @@ namespace Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderDetail");
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("Common.Models.Entities.Product", b =>
@@ -361,7 +361,7 @@ namespace Data.Migrations
             modelBuilder.Entity("Common.Models.Entities.OrderDetail", b =>
                 {
                     b.HasOne("Common.Models.Entities.Order", "Order")
-                        .WithMany("GetOrderDetails")
+                        .WithMany("OrderDetails")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -470,7 +470,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Common.Models.Entities.Order", b =>
                 {
-                    b.Navigation("GetOrderDetails");
+                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("Common.Models.Entities.Product", b =>

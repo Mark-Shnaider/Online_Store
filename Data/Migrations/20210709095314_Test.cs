@@ -2,7 +2,7 @@
 
 namespace Data.Migrations
 {
-    public partial class FixEntities : Migration
+    public partial class Test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

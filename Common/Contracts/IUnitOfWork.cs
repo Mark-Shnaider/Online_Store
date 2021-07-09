@@ -14,6 +14,7 @@ namespace Common.Contracts
         IUserRepository Users { get; }
         IShoppingCartRepository ShoppingCarts { get; }
         IShoppingCartItemRepository ShoppingCartItems { get; }
+        IOrderDetailRepository OrderDetails { get; }
         void Commit();
         Task CommitAsync();
         void Rollback();

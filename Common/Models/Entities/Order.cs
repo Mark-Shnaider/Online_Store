@@ -17,6 +17,6 @@ namespace Common.Models.Entities
         public Guid UserId { get; set; }
         //Navigation properties
         public virtual User User { get; set; }
-        public virtual List<OrderDetail> GetOrderDetails { get; set; }
+        public virtual List<OrderDetail> OrderDetails { get; set; }
     }
 }

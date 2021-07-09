@@ -25,6 +25,5 @@ namespace Data
         DbSet<ShoppingCart> ShoppingCarts { get; set; }
         DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         DbSet<OrderDetail> OrderDetails { get; set; }
-
     }
 }

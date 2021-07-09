@@ -13,7 +13,7 @@ namespace Online_Store.Models
         public decimal Price { get; set; }
         public string Commentary { get; set; }
         public Status Status { get; set; }
-        public Guid CustomerId { get; set; }
-        public List<ShoppingCartItemViewModel> Amounts { get; set; }
+        public Guid UserId { get; set; }
+        public Guid ProductId { get; set; }
     }
 }

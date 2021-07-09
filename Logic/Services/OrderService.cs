@@ -41,6 +41,8 @@ namespace Logic.Services
         public OrderDto GetOrder(Guid Id)
         {
             Order order = _unitOfWork.Orders.GetAll()
+                .Include(o => o.User)
+                .Include(o => o.OrderDetails)
                 .FirstOrDefault(p => p.Id == Id);
 
             if (order == null)
