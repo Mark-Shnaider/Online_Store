@@ -12,5 +12,6 @@ namespace Online_Store.Models
         public ProductCustomerViewModel  Product { get; set; }
         public int Amount { get; set; }
         public Guid ShoppingCartId { get; set; }
+        public decimal SubTotal { get => Product.Price * Amount; }
     }
 }

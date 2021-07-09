@@ -22,11 +22,11 @@ namespace Logic.Services
 
         }
 
-
         public List<ShoppingCartItemDto> GetItems(Guid CartId)
         {
             var items = _unitOfWork.ShoppingCartItems
                 .GetAll()
+                .Include(i => i.Product)
                 .Where(x => x.ShoppingCartId == CartId)
                 .ToList();
 
@@ -37,10 +37,14 @@ namespace Logic.Services
         {
             var item = _unitOfWork.ShoppingCartItems
                 .GetAll()
+                .AsNoTracking()
+                .Include(i => i.Product)
                 .FirstOrDefault(i => i.Id == ItemId);
 
             if (item == null)
                 return;
+            item.Product.Quantity += item.Amount;
+            _unitOfWork.Products.AddOrUpdate(item.Product);
 
             _unitOfWork.ShoppingCartItems.Delete(item);
             _unitOfWork.Commit();

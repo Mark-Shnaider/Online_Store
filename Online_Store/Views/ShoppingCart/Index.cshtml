@@ -9,31 +9,36 @@
             <th scope="col">Название продукта</th>
             <th scope="col" class="text-center">Количество</th>
             <th scope="col" class="text-right">Цена</th>
-            <th> </th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model?.ShoppingCartItems)
+        @foreach (var item in Model.ShoppingCartItems)
         {
             <tr>
                 <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                <td>Название продукта</td>
-                <td>@item.Amount ₽</td>
-                <td class="text-right"></td>
-                <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                <td>@item.Product.Name</td>
+                <td>@item.Amount </td>
+                <td class="text-right">@item.SubTotal ₽</td>
             </tr>
+        }
+        @{
+            decimal Total = 0;
+            foreach (var item in Model.ShoppingCartItems)
+                Total += item.SubTotal;
         }
         <tr>
             <td></td>
             <td></td>
-            <td></td>
             <td><strong>Итого</strong></td>
-            <td class="text-right"><strong>346,90 €</strong></td>
+            <td class="text-right"><strong>@Total ₽</strong></td>
         </tr>
     </tbody>
 </table>
 <div class="col mb-2">
     <div class="row">
+        <div class="col-sm-12 col-md-6 text-right">
+            <button asp-controller="Product" asp-action="Index" class="btn btn-info btn-success text-uppercase" >Назад</button>
+        </div>
         <div class="col-sm-12 col-md-6 text-right">
             <button class="btn btn-lg btn-block btn-success text-uppercase">Заказать</button>
         </div>
