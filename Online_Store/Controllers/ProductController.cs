@@ -36,7 +36,6 @@ namespace Online_Store.Controllers
             return View(cartVM);
         }
 
-
         public PartialViewResult GetProducts(CartTableViewModel cart)
         {
             var productsDTO = _serviceProvider

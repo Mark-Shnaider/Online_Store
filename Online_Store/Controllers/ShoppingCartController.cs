@@ -27,9 +27,10 @@ namespace Online_Store.Controllers
 
         }
 
-        public IActionResult Index()
+        public IActionResult Index(Guid cartid)
         {
-            return View();
+            var cart = _serviceProvider.GetRequiredService<IShoppingCartService>().GetCart(cartid);
+            return View(cart);
         }
 
         [HttpPost]

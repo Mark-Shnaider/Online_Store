@@ -20,6 +20,7 @@
 
                 <td>
                     <div class="product-container">
+                        <label> Промежуточный итог</label>
                         <input id="@product.GetHashCode()" value="@product.Total" readonly>
                         <div class="product-amount">
                             <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), -1)">-</a>
