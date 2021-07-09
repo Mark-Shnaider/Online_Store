@@ -20,6 +20,12 @@ namespace Online_Store.Controllers
         {
         }
 
+        public IActionResult Order()
+        {
+
+
+            return View();
+        }
 
     }
 }

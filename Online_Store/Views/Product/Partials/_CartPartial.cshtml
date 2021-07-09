@@ -1,45 +1,44 @@
 ﻿@using Online_Store.Models
 
 @model ShoppingCartViewModel
-    <table class="table table-striped">
-        <thead>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col"> </th>
+            <th scope="col">Название продукта</th>
+            <th scope="col" class="text-center">Количество</th>
+            <th scope="col" class="text-right">Цена</th>
+            <th scope="col"> </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ShoppingCartItems)
+        {
             <tr>
-                <th scope="col"> </th>
-                <th scope="col">Название продукта</th>
-                <th scope="col" class="text-center">Количество</th>
-                <th scope="col" class="text-right">Цена</th>
-                <th scope="col"> </th>
+                <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                <td>@item.Product.Name</td>
+                <td>@item.Amount </td>
+                <td class="text-right">@item.SubTotal ₽</td>
+                <td class="text-right"><input class="btn btn-danger" type="submit" data-cart-id="@Model.Id" data-item-id="@item.Id" onclick="RemoveFromCart(this)" value="Remove from cart" /> </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.ShoppingCartItems)
-            {
-                <tr>
-                    <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                    <td>@item.Product.Name</td>
-                    <td>@item.Amount </td>
-                    <td class="text-right">@item.SubTotal ₽</td>
-                    <td class="text-right"><input class="btn btn-danger" type="submit" data-cart-id="@Model.Id" data-item-id="@item.Id" onclick="RemoveFromCart(this)" value="Remove from cart" /> </td>
-                </tr>
-            }
-            @{
-                decimal Total = 0;
-                foreach (var item in Model.ShoppingCartItems)
-                    Total += item.SubTotal;
-             }
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><strong>Итого</strong></td>
-                <td class="text-right"><strong>@Total ₽</strong></td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="col mb-2">
-        <div class="row">
-            <div class="col-sm-12 col-md-6 text-right">
-                <a asp-controller="ShoppingCart" asp-action="Index" asp-route-cartid="@Model.Id" class="btn btn-lg btn-block btn-success text-uppercase">Оформить заказ</a>
-            </div>
-        </div>
-    </div>
+        }
+        @{
+            decimal Total = 0;
+            foreach (var item in Model.ShoppingCartItems)
+                Total += item.SubTotal;
+        }
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><strong>Итого</strong></td>
+            <td class="text-right"><strong>@Total ₽</strong></td>
+        </tr>
+    </tbody>
+</table>
+@if (Total > 0)
+{
+   @: <div class="col-sm-12 col-md-6 text-right">
+       <a asp-controller="ShoppingCart" asp-action="Index" asp-route-cartid="@Model.Id" class="btn btn-lg btn-block btn-success text-uppercase">Оформить заказ</a>
+   @: </div>
+}

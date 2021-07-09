@@ -23,7 +23,7 @@ namespace Online_Store.Controllers
             : base(mapper, serviceProvider)
         {
         }
-        public IActionResult Index(Guid Id, Guid CategoryId )
+        public IActionResult Index(Guid Id)
         {
             var cartDTO = _serviceProvider.GetRequiredService<IShoppingCartService>().GetCartByUser(Id);
 
