@@ -19,11 +19,14 @@ namespace Online_Store.Controllers
             : base(mapper, serviceProvider)
         {
         }
-
-        public IActionResult Order()
+        public IActionResult Index()
         {
+            return View();
+        }
 
-
+        public IActionResult Order(Guid CartId)
+        {
+            _serviceProvider.GetRequiredService<IShoppingCartService>().GetCart(CartId);
             return View();
         }
 
