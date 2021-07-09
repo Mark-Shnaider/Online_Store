@@ -71,7 +71,10 @@ namespace Logic.Services
 
         public ShoppingCartDto GetCart(Guid CartId)
         {
-            var cart = _unitOfWork.ShoppingCarts.GetById(CartId);
+            var cart = _unitOfWork.ShoppingCarts
+                .GetAll()
+                .Include(c => c.ShoppingCartItems)
+                .FirstOrDefault(c => c.Id == CartId);
 
             if (cart == null)
                 return null;

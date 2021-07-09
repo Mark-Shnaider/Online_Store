@@ -35,7 +35,7 @@
     <div class="col mb-2">
         <div class="row">
             <div class="col-sm-12 col-md-6 text-right">
-                <a asp-controller="ShoppingCart" asp-action="Index" class="btn btn-lg btn-block btn-success text-uppercase">Оформить заказ</a>
+                <a asp-controller="ShoppingCart" asp-action="Index" asp-route-cartid="@Model.Id" class="btn btn-lg btn-block btn-success text-uppercase">Оформить заказ</a>
             </div>
         </div>
     </div>
