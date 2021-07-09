@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Models.Entities.Base;
-using Common.Contracts.Base;
+using Common.Models.Entities.Identity;
+using Common.Helpers.Enum;
 
 namespace Common.Models.Entities
 {
-    public class Amount:BaseEntity<Guid>
+    public class OrderDetail:BaseEntity<Guid>
     {
-        public int Quantity { get; set; }
+        public int Amount { get; set; }
         public Guid OrderId { get; set; }
         public Guid ProductId { get; set; }
-        //Navigation properties
+        //Nav properties
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }
-
     }
 }

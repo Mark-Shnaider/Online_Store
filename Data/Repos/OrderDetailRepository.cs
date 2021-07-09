@@ -6,9 +6,9 @@ using System;
 
 namespace Data.Repos
 {
-    public class AmountRepository : BaseRepository<Guid, Amount>, IAmountRepository
+    public class OrderDetailRepository : BaseRepository<Guid, OrderDetail>, IOrderDetailRepository
     {
-        public AmountRepository(DbContext dbContext) : base(dbContext)
+        public OrderDetailRepository(DbContext dbContext) : base(dbContext)
         {
         }
     }

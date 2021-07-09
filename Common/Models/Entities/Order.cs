@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Models.Entities.Base;
+using Common.Models.Entities.Identity;
 using Common.Helpers.Enum;
 
 namespace Common.Models.Entities
@@ -13,9 +14,9 @@ namespace Common.Models.Entities
         public decimal Price { get; set; }
         public string Commentary { get; set; }
         public Status Status { get; set; }
-        public Guid CustomerId { get; set; }
+        public Guid UserId { get; set; }
         //Navigation properties
-        public virtual Customer Customer { get; set; }
-        public virtual ICollection<Amount> Amounts { get; set; }
+        public virtual User User { get; set; }
+        public virtual List<OrderDetail> GetOrderDetails { get; set; }
     }
 }

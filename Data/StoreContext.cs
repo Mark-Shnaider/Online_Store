@@ -21,11 +21,10 @@ namespace Data
         }
         DbSet<Category> Categories { get; set; }
         DbSet<Product> Products { get; set; }
-        DbSet<Amount> Amounts { get; set; }
         DbSet<Order> Orders { get; set; }
-        DbSet<Customer> Customers { get; set; }
         DbSet<ShoppingCart> ShoppingCarts { get; set; }
         DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+        DbSet<OrderDetail> OrderDetails { get; set; }
 
     }
 }

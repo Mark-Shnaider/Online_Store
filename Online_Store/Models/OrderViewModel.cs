@@ -14,7 +14,6 @@ namespace Online_Store.Models
         public string Commentary { get; set; }
         public Status Status { get; set; }
         public Guid CustomerId { get; set; }
-        public CustomerViewModel Customer { get; set; }
-        public List<AmountViewModel> Amounts { get; set; }
+        public List<ShoppingCartItemViewModel> Amounts { get; set; }
     }
 }

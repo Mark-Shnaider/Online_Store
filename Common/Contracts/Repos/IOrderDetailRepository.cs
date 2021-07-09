@@ -4,7 +4,7 @@ using Common.Models.Entities;
 
 namespace Common.Contracts.Repos
 {
-    public interface ICustomerRepository:IBaseRepository<Guid, Customer>
+    public interface IOrderDetailRepository : IBaseRepository<Guid, OrderDetail>
     {
     }
 }

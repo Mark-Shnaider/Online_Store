@@ -14,13 +14,12 @@ namespace Data
         private readonly StoreContext storeContext;
 
         private IOrderRepository orderRepository;
-        private ICustomerRepository customerRepository;
-        private IAmountRepository amountRepository;
         private IProductRepository productRepository;
         private ICategoryRepository categoryRepository;
         private IUserRepository userRepository;
         private IShoppingCartRepository shoppingCartRepository;
         private IShoppingCartItemRepository shoppingCartItemRepository;
+        private IOrderDetailRepository orderDetailRepository;
         public UnitOfWork(StoreContext _storeContext) => storeContext = _storeContext;
 
         public DbContext DbContext
@@ -31,14 +30,6 @@ namespace Data
         public IOrderRepository Orders
         {
             get { return orderRepository ??= new OrderRepository(storeContext); }
-        }
-        public ICustomerRepository Customers
-        {
-            get { return customerRepository ??= new CustomerRepository(storeContext); }
-        }
-        public IAmountRepository Amounts
-        {
-            get { return amountRepository ??= new AmountRepository(storeContext); }
         }
         public IProductRepository Products
         {
@@ -60,7 +51,10 @@ namespace Data
         { 
             get { return shoppingCartItemRepository ??= new ShoppingCartItemRepository(storeContext); }
         }
-        
+        public IOrderDetailRepository OrderDetails
+        {
+            get { return orderDetailRepository ??= new OrderDetailRepository(storeContext); }
+        }
         public void Commit()
         {
             storeContext.ChangeTracker.DetectChanges();

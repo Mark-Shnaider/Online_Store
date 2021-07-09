@@ -43,18 +43,6 @@ namespace Logic.Services
             _unitOfWork.Products.Delete(product.Id);
             _unitOfWork.Commit();
         }
-
-        public List<AmountDto> GetAmounts(Guid Id)
-        {
-            List<Amount> amounts = _unitOfWork.Products.GetAll()
-                .Include(p => p.Amounts).
-                FirstOrDefault(p => p.Id == Id).
-                Amounts.ToList();
-            if (amounts == null)
-                return null;
-            return _mapper.Map<List<AmountDto>>(amounts);
-        }
-
         public ProductDto GetProduct(Guid Id)
         {
             Product product = _unitOfWork.Products.GetAll()

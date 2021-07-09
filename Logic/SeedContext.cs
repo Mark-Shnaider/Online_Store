@@ -34,12 +34,6 @@ namespace Logic
 
             }
 
-            if (!unitOfWork.Customers.GetAll().Any())
-            {
-                unitOfWork.Customers.AddRange(GetPreconfiguredCustomers());
-                unitOfWork.Commit();
-            }
-
             string userName = "Admin";
             string adminEmail = "admin@gmail.com";
             string password = "VeryGood1_";
@@ -78,17 +72,6 @@ namespace Logic
                 new Category{ Id = Guid.NewGuid(), Name = "Category4", Description="Description4"},
                 new Category{ Id = Guid.NewGuid(), Name = "Category5", Description="Description5"}
 
-            };
-        }
-        static IEnumerable<Customer> GetPreconfiguredCustomers()
-        {
-            return new List<Customer>()
-            {
-                new Customer{Id = Guid.NewGuid(), Login = "Login1", Password ="12345", Email="1@ya.ru", Address="Something", PhoneNumber="911" },
-                new Customer{Id = Guid.NewGuid(), Login = "Login2", Password ="12345", Email="2@ya.ru", Address="Something", PhoneNumber="123" },
-                new Customer{Id = Guid.NewGuid(), Login = "Login3", Password ="12345", Email="3@ya.ru", Address="Something", PhoneNumber="456" },
-                new Customer{Id = Guid.NewGuid(), Login = "Login4", Password ="12345", Email="4@ya.ru", Address="Something", PhoneNumber="789" },
-                new Customer{Id = Guid.NewGuid(), Login = "Login5", Password ="12345", Email="5@ya.ru", Address="Something", PhoneNumber="911" },
             };
         }
         static IEnumerable<Product> GetPreconfiguredProducts(IEnumerable<Category> categories)

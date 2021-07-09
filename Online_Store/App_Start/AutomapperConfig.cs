@@ -23,9 +23,7 @@ namespace Online_Store.App_Start
 
         public void CreateBllMappings()
         {
-            CreateMap<Amount, AmountDto>().ReverseMap();
             CreateMap<Category, CategoryDto>().ReverseMap();
-            CreateMap<Customer, CustomerDto>().ReverseMap();
             CreateMap<Order, OrderDto>().ReverseMap();
             CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<ShoppingCart, ShoppingCartDto>().ReverseMap();
@@ -34,10 +32,8 @@ namespace Online_Store.App_Start
 
         public void CreateViewMappings()
         {
-            CreateMap<AmountDto, AmountViewModel>().ReverseMap();
             CreateMap<CategoryDto, CategoryViewModel>().ReverseMap();
             CreateMap<CategoryDto, CategoryIndexViewModel>().ReverseMap();
-            CreateMap<CustomerDto, CustomerViewModel>().ReverseMap();
             CreateMap<OrderDto, OrderViewModel>().ReverseMap();
             CreateMap<ShoppingCartDto, ShoppingCartViewModel>().ReverseMap();
             CreateMap<ShoppingCartItemDto, ShoppingCartItemViewModel>().ReverseMap();

@@ -13,6 +13,5 @@ namespace Common.Models.DTO
         public Guid CategoryId { get; set; }
         public CategoryDto Category { get; set; }
         public ShoppingCartItemDto ShoppingCartItem { get; set; }
-        public List<AmountDto> Amounts { get; set; }
     }
 }
