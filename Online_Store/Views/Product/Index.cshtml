@@ -27,7 +27,7 @@
         </div>
         <div class="col">
             <div id="CartContainer">
-                
+
             </div>
         </div>
     </div>
@@ -37,7 +37,10 @@
     <input type="submit" asp-route="" />
 </form>
 
-<script type="text/javascript">
+@section scripts {
+    <script type="text/javascript">
+        UpdateShopCartItems("@Model.Id")
+        UpdateProducts("@Model.UserId", "@Model.Id");
+    </script>
+}
 
-
-</script>

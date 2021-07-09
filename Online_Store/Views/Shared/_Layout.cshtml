@@ -49,19 +49,10 @@
         $('#check').change(function (element) {
             var id = element.target.value
             var cartid = element.target.attributes["data-cart-id"].nodeValue;
-            $.ajax({
-            type: "GET",
-            url: '@Url.Action("GetProducts", "Product")',
-                data: {
-                    CategoryId: id,
-                    Id: cartid
-                },
-            success: function (data) {
-                $("#PartialContainer").html(data);
-            },
-
-            });
+            UpdateProducts(id, cartid);
         });
+
+       
 
     </script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -1,5 +1,4 @@
 ﻿AddToCart = function (element) {
-
     var amount = document.querySelector(".product-amount").children[1].valueAsNumber;
     var ProductId = $(element).data("product-id");
     var CartId = $(element).data("cart-id");
@@ -19,22 +18,10 @@
             AjaxError();
         }
     });
-
-    $.ajax({
-        type: "GET",
-        url: urls.GetCartItems,
-        data: {
-            Id: CartId
-        },
-        success: function (data) {
-            $('#CartContainer').html(data)
-        },
-
-    });
+    UpdateShopCartItems(CartId);
 };
 
 RemoveFromCart = function (element) {
-
     var ProductId = $(element).data("product-id");
     var CartId = $(element).data("cart-id");
     $.ajax({
@@ -51,6 +38,35 @@ RemoveFromCart = function (element) {
         error: function () {
             AjaxError();
         }
+    });
+    UpdateShopCartItems(CartId);
+};
+
+UpdateShopCartItems = function (CartId) {
+    $.ajax({
+        type: "GET",
+        url: urls.GetCartItems,
+        data: {
+            Id: CartId
+        },
+        success: function (data) {
+            $('#CartContainer').html(data)
+        },
+    });
+};
+
+UpdateProducts = function (id, cartid) {
+    $.ajax({
+        type: "GET",
+        url: urls.GetProducts,
+        data: {
+            CategoryId: id,
+            Id: cartid
+        },
+        success: function (data) {
+            $("#PartialContainer").html(data);
+        },
+
     });
 };
 
