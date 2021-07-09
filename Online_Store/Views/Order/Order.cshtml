@@ -1,0 +1,44 @@
+﻿@using Online_Store.Models
+
+@model OrderViewModel
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col"> </th>
+            <th scope="col">Название продукта</th>
+            <th scope="col" class="text-center">Количество</th>
+            <th scope="col" class="text-right">Цена</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detail in Model.OrderDetails)
+        {
+            <tr>
+                <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                <td>@detail.Name</td>
+                <td>@detail.Amount </td>
+                <td class="text-right">@detail.Price ₽</td>
+            </tr>
+        }
+        @{
+            decimal Total = 0;
+            foreach (var detail in Model.OrderDetails)
+                Total += detail.Price;
+        }
+        <tr>
+            <td></td>
+            <td></td>
+            <td><strong>Итого</strong></td>
+            <td class="text-right"><strong>@Total ₽</strong></td>
+        </tr>
+    </tbody>
+</table>
+<div class="col mb-2">
+    <div class="row">
+
+        <div class="col-sm-12 col-md-6 text-right">
+            <a asp-controller="Order" asp-action="Order" asp-route-CartId="@Model.Id" class="btn btn-lg btn-block btn-success text-uppercase">Заказать</a>
+        </div>
+    </div>
+</div>

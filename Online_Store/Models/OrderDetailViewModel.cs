@@ -9,7 +9,9 @@ namespace Online_Store.Models
 {
     public class OrderDetailViewModel:BaseEntityViewModel<Guid>
     {
+        public string Name { get; set; }
         public int Amount { get; set; }
+        public decimal Price { get; set; }
         public Guid OrderId { get; set; }
         public Guid ProductId { get; set; }
     }

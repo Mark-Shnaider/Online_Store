@@ -22,19 +22,9 @@ namespace Logic.Services
         }
         public void CreateOrder(Guid CartId)
         {
-            var cart = _serviceProvider.GetRequiredService<IShoppingCartService>().GetCart(CartId);
+            
 
-            List<OrderDto> details = new List<OrderDto>();
-            OrderViewModel orderVM = new OrderViewModel { UserId = cart.UserId };
-            foreach (var item in cart.ShoppingCartItems)
-            {
-                details.Add(new OrderDetailViewModel { Amount = item.Amount, ProductId = item.Product.Id });
-            }
-            orderVM.OrderDetails = details;
-
-
-
-            _unitOfWork.Orders.Add();
+            //_unitOfWork.Orders.Add();
             _unitOfWork.Commit();
         }
 

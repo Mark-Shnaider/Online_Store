@@ -24,10 +24,27 @@ namespace Online_Store.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Order(Guid CartId)
         {
-            _serviceProvider.GetRequiredService<IOrderService>().CreateOrder(CartId);
-            return View();
+            var cart = _serviceProvider.GetRequiredService<IShoppingCartService>().GetCart(CartId);
+
+            List<OrderDetailViewModel> details = new List<OrderDetailViewModel>();
+            OrderViewModel orderVM = new OrderViewModel { UserId = cart.UserId, Id = Guid.NewGuid()  };
+            foreach (var item in cart.ShoppingCartItems)
+            {
+                details.Add(new OrderDetailViewModel 
+                {
+                    Id = Guid.NewGuid(),
+                    OrderId = orderVM.Id,
+                    Amount = item.Amount, 
+                    ProductId = item.Product.Id,
+                    Price = item.Amount * item.Product.Price
+                });
+            }
+            orderVM.OrderDetails = details;
+
+            return View(orderVM);
         }
 
         [HttpPost]
