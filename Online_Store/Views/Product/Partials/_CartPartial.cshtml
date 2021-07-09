@@ -1,7 +1,6 @@
 ﻿@using Online_Store.Models
 
 @model ShoppingCartViewModel
-
     <table class="table table-striped">
         <thead>
             <tr>
@@ -18,9 +17,9 @@
                 <tr>
                     <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
                     <td>Название продукта</td>
-                    <td>@item.Amount ₽</td>
-                    <td class="text-right"></td>
-                    <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                    <td>@item.Amount </td>
+                    <td class="text-right"> ₽</td>
+                    <td class="text-right"><input class="btn btn-danger" type="submit" data-cart-id="@Model.Id" data-item-id="@item.Id" onclick="RemoveFromCart(this)" value="Remove from cart" /> </td>
                 </tr>
             }
             <tr>

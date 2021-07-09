@@ -32,5 +32,19 @@ namespace Logic.Services
 
             return _mapper.Map<List<ShoppingCartItemDto>>(items);
         }
+
+        public void DeleteItem(Guid ItemId)
+        {
+            var item = _unitOfWork.ShoppingCartItems
+                .GetAll()
+                .FirstOrDefault(i => i.Id == ItemId);
+
+            if (item == null)
+                return;
+
+            _unitOfWork.ShoppingCartItems.Delete(item);
+            _unitOfWork.Commit();
+            return;
+        }
     }
 }

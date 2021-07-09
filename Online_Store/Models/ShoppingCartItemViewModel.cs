@@ -7,7 +7,7 @@ using Online_Store.Models.Base;
 
 namespace Online_Store.Models
 {
-    public class ShoppingCartItemViewModel
+    public class ShoppingCartItemViewModel:BaseEntityViewModel<Guid>
     {
         public ProductCustomerViewModel  Product { get; set; }
         public int Amount { get; set; }

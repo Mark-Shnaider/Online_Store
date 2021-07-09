@@ -13,33 +13,33 @@
         success: function (data) {
             if (data.data.isValid == false)
                 alert("На складе нет столько товаров")
+            else
+                UpdateShopCartItems(CartId);
         },
         error: function () {
             AjaxError();
         }
     });
-    UpdateShopCartItems(CartId);
+    
 };
 
 RemoveFromCart = function (element) {
-    var ProductId = $(element).data("product-id");
+    var ItemId = $(element).data("item-id");
     var CartId = $(element).data("cart-id");
     $.ajax({
         type: "POST",
         url: urls.RemoveItemFromCart,
         data: {
-            CartId: CartId,
-            ProductId: ProductId,
+            ItemId: ItemId,
         },
         success: function (data) {
-            if (data.data.isValid == false)
-                alert("На складе нет столько товаров")
+            UpdateShopCartItems(CartId);
         },
         error: function () {
             AjaxError();
         }
     });
-    UpdateShopCartItems(CartId);
+    
 };
 
 UpdateShopCartItems = function (CartId) {

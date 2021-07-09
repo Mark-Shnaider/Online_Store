@@ -62,23 +62,14 @@ namespace Online_Store.Controllers
         }
 
         [HttpPost]
-        public JsonResult Remove(Guid CartId, Guid ProductId)
+        public JsonResult Remove(Guid ItemId)
         {
-            bool isValidAmount = false;
-
-            var product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(ProductId);
-
-            if (product != null)
-            {
-                var item = new ShoppingCartItemDto { Product = product, Id = Guid.NewGuid(), ShoppingCartId = CartId};
-                isValidAmount = _serviceProvider.GetRequiredService<IShoppingCartService>().RemoveFromCart(item);
-            }
-
+            _serviceProvider.GetRequiredService<IShoppingCartItemService>().DeleteItem(ItemId);
             return Json(new
             {
                 Data = new
                 {
-                    isValid = isValidAmount
+                    //isValid = isValidAmount
                 }
             });
         }
