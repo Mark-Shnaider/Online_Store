@@ -26,8 +26,8 @@ namespace Online_Store.Controllers
 
         public IActionResult Order(Guid CartId)
         {
-            var cart =_serviceProvider.GetRequiredService<IShoppingCartService>().GetCart(CartId);
-            return View(cart);
+            _serviceProvider.GetRequiredService<IOrderService>().CreateOrder(CartId);
+            return View();
         }
 
         [HttpPost]

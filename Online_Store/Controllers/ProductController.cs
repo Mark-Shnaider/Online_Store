@@ -54,7 +54,6 @@ namespace Online_Store.Controllers
             return PartialView("Partials/_CartPartial", cart);
         }
 
-
         [HttpGet]
         public IActionResult Details(Guid id)
         {

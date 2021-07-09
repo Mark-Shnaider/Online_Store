@@ -20,16 +20,21 @@ namespace Logic.Services
         {
 
         }
-        public void CreateOrder(OrderDto orderDTO)
+        public void CreateOrder(Guid CartId)
         {
-            if (orderDTO == null)
-            {
-                return;
-            }
+            var cart = _serviceProvider.GetRequiredService<IShoppingCartService>().GetCart(CartId);
 
-            orderDTO.Id = Guid.NewGuid();
-            Order order = _mapper.Map<Order>(orderDTO);
-            _unitOfWork.Orders.Add(order);
+            List<OrderDto> details = new List<OrderDto>();
+            OrderViewModel orderVM = new OrderViewModel { UserId = cart.UserId };
+            foreach (var item in cart.ShoppingCartItems)
+            {
+                details.Add(new OrderDetailViewModel { Amount = item.Amount, ProductId = item.Product.Id });
+            }
+            orderVM.OrderDetails = details;
+
+
+
+            _unitOfWork.Orders.Add();
             _unitOfWork.Commit();
         }
 

@@ -38,7 +38,7 @@
     <div class="row">
 
         <div class="col-sm-12 col-md-6 text-right">
-            <button  type="submit" class="btn btn-lg btn-block btn-success text-uppercase">Заказать</button>
+            <a asp-controller="Order" asp-action="Order" asp-route-CartId="@Model.Id"class="btn btn-lg btn-block btn-success text-uppercase">Заказать</a>
         </div>
     </div>
 </div>

@@ -7,7 +7,7 @@ namespace Common.Contracts.Services
 {
     public interface IOrderService :IService
     {
-        public void CreateOrder(OrderDto order);
+        public void CreateOrder(Guid CartId);
         public OrderDto GetOrder(Guid Id);
         public void UpdateOrder(OrderDto order);
         public void DeleteOrder(OrderDto order);

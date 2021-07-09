@@ -3,6 +3,7 @@ using Common.Models.DTO;
 using Common.Models.Entities;
 using Online_Store.Models;
 using Common.Models.Entities.Identity;
+using Common.Models.DTO.Identity;
 using Online_Store.Areas.Identity.Models;
 using Online_Store.Areas.Admin.Models;
 
@@ -28,6 +29,7 @@ namespace Online_Store.App_Start
             CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<ShoppingCart, ShoppingCartDto>().ReverseMap();
             CreateMap<ShoppingCartItem, ShoppingCartItemDto>().ReverseMap();
+            CreateMap<User, UserDto>().ReverseMap();
         }
 
         public void CreateViewMappings()
