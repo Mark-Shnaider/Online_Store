@@ -50,5 +50,16 @@ namespace Logic.Services
             _unitOfWork.Commit();
             return;
         }
+
+        public void DeleteItems(Guid CartId)
+        {
+            List <Guid> ids= _unitOfWork.ShoppingCartItems
+                .GetAll()
+                .Where(i => i.ShoppingCartId == CartId)
+                .Select(i => i.Id)
+                .ToList();
+            _unitOfWork.ShoppingCartItems.DeleteRange(ids);
+            _unitOfWork.Commit();
+        }
     }
 }

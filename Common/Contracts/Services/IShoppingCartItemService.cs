@@ -9,5 +9,6 @@ namespace Common.Contracts.Services
     {
         public List<ShoppingCartItemDto> GetItems(Guid CartId);
         public void DeleteItem(Guid ItemId);
+        public void DeleteItems(Guid CartId);
     }
 }

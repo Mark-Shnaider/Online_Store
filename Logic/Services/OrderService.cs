@@ -28,6 +28,9 @@ namespace Logic.Services
                 .ThenInclude(i => i.Product)
                 .FirstOrDefault(u => u.Id == orderDTO.UserId);
 
+            if (user == null)
+                return;
+
             var order = _mapper.Map<Order>(orderDTO);
 
             List<OrderDetail> details = new List<OrderDetail>();
@@ -46,11 +49,22 @@ namespace Logic.Services
             order.OrderDetails = details;
             _unitOfWork.Orders.Add(order);
             _unitOfWork.Commit();
+
+            _serviceProvider.GetRequiredService<IShoppingCartItemService>().DeleteItems(user.ShoppingCart.Id);
+            return;
         }
 
         public void DeleteOrder(Guid Id)
         {
+            Order order = _unitOfWork.Orders
+                .GetAll()
+                .FirstOrDefault(o => o.Id == Id);
+            if (order == null)
+                return;
+            _unitOfWork.Orders.Delete(order);
+            _unitOfWork.Commit();
 
+            return;
         }
 
         public OrderDto GetOrder(Guid Id)
