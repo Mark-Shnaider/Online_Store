@@ -20,15 +20,35 @@ namespace Logic.Services
         {
 
         }
-        public void CreateOrder(Guid CartId)
+        public void CreateOrder(OrderDto orderDTO)
         {
-            
+            var user = _unitOfWork.Users.GetAll()
+                .Include(u => u.ShoppingCart)
+                .ThenInclude(c => c.ShoppingCartItems)
+                .ThenInclude(i => i.Product)
+                .FirstOrDefault(u => u.Id == orderDTO.UserId);
 
-            //_unitOfWork.Orders.Add();
+            var order = _mapper.Map<Order>(orderDTO);
+
+            List<OrderDetail> details = new List<OrderDetail>();
+
+            foreach (var item in user.ShoppingCart.ShoppingCartItems)
+            {
+                details.Add(new OrderDetail
+                { 
+                    Id = Guid.NewGuid(),
+                    Amount = item.Amount,
+                    OrderId = order.Id,
+                    Price = item.Amount * item.Product.Price,
+                    ProductId = item.Product.Id
+                });
+            }
+            order.OrderDetails = details;
+            _unitOfWork.Orders.Add(order);
             _unitOfWork.Commit();
         }
 
-        public void DeleteOrder(OrderDto order)
+        public void DeleteOrder(Guid Id)
         {
 
         }

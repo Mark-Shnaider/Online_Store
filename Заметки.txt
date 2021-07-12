@@ -31,53 +31,8 @@ https://stackoverflow.com/questions/40646815/how-to-set-start-page-in-dotnet-cor
 Admin
 VeryGood1_
 
-https://github.com/bugdaryan/FoodStore/tree/master/Shop.Data
 
 
-Убрал футер
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - Online_Store - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-
-
-
-<partial name="Partials/_CategorySelectPartial" />
-<table>
-    <tbody>
-        @foreach (var product in Model.Products)
-        {
-            <tr>
-                <td>
-                    <div ng- class="product-wrap">
-                        <div class="product-item">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
-                        </div>
-                        <div class="product-title">
-                            <a class="fs-4" asp-controller="Product" asp-action="Details">@product.Name</a> <br />
-                            <h3>₽ @product.Price</h3>
-                        </div>
-                    </div>
-                </td>
-
-                <td>
-                    <div class="product-container">
-                        <input id="@product.GetHashCode()" value="@product.Total" readonly>
-                        <div class="product-amount">
-                            <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), -1)">-</a>
-                            <input type="number" id="@product.Id" asp-for="@product.Amount" min="1" step="1">
-                            <a class="btn badge-info" onclick="changeValue(document.getElementById('@product.Id'), document.getElementById('@product.GetHashCode()'),@product.Total ,@product.Price.ToString(CultureInfo.InvariantCulture), 1)">+</a>
-                        </div>
-                        <input type="submit" data-product-id="@product.Id" data-cart-id="@Model.Id" onclick="RemoveFromCart(this)" value="Remove from cart" />
-                        <input type="submit" data-product-id="@product.Id" data-cart-id="@Model.Id" onclick="AddToCart(this)" value="Add to cart" />
-                    </div>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-        <div class="col-sm-12 col-md-6 text-right">
-            <a  asp-controller="Product" asp-action="Index" class="btn btn-lg btn-block btn-info text-uppercase" >Назад</a>
-        </div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("~/Views/Shared/_ValidationScriptsPartial.cshtml");}
+}

@@ -29,28 +29,22 @@ namespace Online_Store.Controllers
         {
             var cart = _serviceProvider.GetRequiredService<IShoppingCartService>().GetCart(CartId);
 
-            List<OrderDetailViewModel> details = new List<OrderDetailViewModel>();
-            OrderViewModel orderVM = new OrderViewModel { UserId = cart.UserId, Id = Guid.NewGuid()  };
-            foreach (var item in cart.ShoppingCartItems)
+            OrderViewModel orderVM = new OrderViewModel
             {
-                details.Add(new OrderDetailViewModel 
-                {
-                    Id = Guid.NewGuid(),
-                    OrderId = orderVM.Id,
-                    Amount = item.Amount, 
-                    ProductId = item.Product.Id,
-                    Price = item.Amount * item.Product.Price
-                });
-            }
-            orderVM.OrderDetails = details;
+                Id = Guid.NewGuid(),
+                UserId = cart.UserId,
+                Items = _mapper.Map<List<ShoppingCartItemViewModel>>(cart.ShoppingCartItems)
+            };
 
             return View(orderVM);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public void Order(OrderViewModel orderVM)
-        { 
-            
+        {
+            var orderDTO = _mapper.Map<OrderDto>(orderVM);
+            _serviceProvider.GetRequiredService<IOrderService>().CreateOrder(orderDTO);
         }
 
     }
