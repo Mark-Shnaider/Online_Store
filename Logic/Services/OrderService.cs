@@ -67,17 +67,31 @@ namespace Logic.Services
             return;
         }
 
-        public OrderDto GetOrder(Guid Id)
+        public OrderDto GetOrder(Guid OrderId)
         {
             Order order = _unitOfWork.Orders.GetAll()
                 .Include(o => o.User)
                 .Include(o => o.OrderDetails)
-                .FirstOrDefault(p => p.Id == Id);
+                .FirstOrDefault(p => p.Id == OrderId);
 
             if (order == null)
                 return null;
 
             return _mapper.Map<OrderDto>(order);
+        }
+
+        public List<OrderDto> GetOrders(Guid UserId)
+        {
+             List<Order> orders = _unitOfWork.Orders
+                .GetAll()
+                .Where(o => o.UserId == UserId)
+                .ToList();
+
+            if (orders == null)
+                return null;
+
+            List<OrderDto> ordersDTO = _mapper.Map<List<OrderDto>>(orders);
+            return ordersDTO;
         }
 
         public void UpdateOrder(OrderDto order)

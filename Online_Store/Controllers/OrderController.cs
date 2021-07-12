@@ -41,10 +41,11 @@ namespace Online_Store.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public void Order(OrderViewModel orderVM)
+        public IActionResult Order(OrderViewModel orderVM)
         {
             var orderDTO = _mapper.Map<OrderDto>(orderVM);
             _serviceProvider.GetRequiredService<IOrderService>().CreateOrder(orderDTO);
+            return RedirectToAction("Orders", "User", new {UserId = orderVM.UserId });
         }
 
     }

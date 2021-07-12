@@ -1,56 +1,17 @@
-@using Online_Store.Models
+SeedContext.cs по идее должен быть в Data проекте, раз там производятся действия с БД
 
-@model IEnumerable<ProductCustomerViewModel>
+Доделай заказ продуктов, почему у тебя запрос уходит в пустоту?
 
-@{
-    ViewData["Title"] = "Index";
-}
+По идее нужно показать подтверждение заказа и summary по заказанным продуктам. + добавь страницу "Мои заказы" где можно посмотреть детали каждого заказа
 
-<div>
-    <partial name="~/Views/Product/Partial/_CartPartial.cshtml" />
-</div>
+Доработай разметку в shopping cart чтобы окошко с выбранными продуктами не прыгало по странице.
 
-@foreach (var product in Model)
-{
-    <div class="product-wrap">
-        <div class="product-item">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg">
-            <div class="product-buttons">
-                <a class="button">В корзину</a>
-            </div>
-        </div>
-        <div class="product-title">
-            <a asp-controller="Product" asp-action="Details">@product.Name</a>
-            <span class="product-price">₽ @product.Price</span>
-        </div>
-    </div>
-}
+Exception при разлогине
+Рокк-ебол на login page (ты же знаешь этот прикол да?))
 
+Короче, итого:
+Корзина сыровата пока, но в остальном все вроде норм. Делай тесты, фиксай exceptions. Доделывай flow для корзины, чтобы было ощущение завершенности.
 
+Желательно поработать над стилизацией страничек. Может у тебя есть идеи? Как у тебя вообще с этим?
 
-@model Online_Store.Models.ProductCustomerViewModel
-
-<div class="btn-addToCart">
-    <div class="categoryPrice"> <input readonly class="form-control" style="outline:none" id="foodTotal-@(Model.GetHashCode())" value="@Model.Total"></div>
-    @if (User.IsInRole("Admin"))
-    {
-        <div class="categoryPrice">In Stock: @Model.InStock</div>
-    }
-    <form asp-controller="ShoppingCart" asp-action="Add" method="get" class="form-horizontal" role="form">
-        <a onclick="changeValue(document.getElementById('amount-input-'+@Model.Id.ToString()), document.getElementById('foodTotal-@(Model.GetHashCode())'),'@Model.Total', 1)"><i class="fas fa-plus-circle"></i></a>
-        <input id="amount-input-@Model.Id" asp-for="Amount" style="width:20%" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-        <a onclick="changeValue(document.getElementById('amount-input-'+@Model.Id.ToString()),document.getElementById('foodTotal-@(Model.GetHashCode())'), '@Model.Total', -1)"><i class="fas fa-minus-circle"></i></a>
-        <div class="btn-cart">
-            <input value="Add to cart" type="submit" class="btn btn-success" asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@Model.Id" asp-route-amount="@Model.Amount" asp-route-returnUrl="@Context.Request.Path">
-        </div>
-    </form>
-</div>
-
-<div class="foodData">
-    <div class="foodName">
-        <div class="categoryLogo" style="background-image: url(@Model.ImageUrl);"></div>
-        <a class="btn btn-info" asp-controller="Food" asp-action="Index" asp-route-id="@Model.Id">
-            @Model.Name
-        </a>
-    </div>
-</div>
+Следи за тем, какой адрес будет у страницы. К примеру у тебя в Order контроллере есть Order action, тоесть адрес будет www.root/order/order что лучше сократить до просто /order переименовав action из order в index, либо назвать более конкретно, чтобы было понятно, для чего страница

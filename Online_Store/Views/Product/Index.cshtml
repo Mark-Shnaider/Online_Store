@@ -16,7 +16,7 @@
 <div class="container">
     <div class="row align-items-start">
         <div class="col">
-            <div id="PartialContainer">
+            <div id="ProductContainer">
             </div>
         </div>
         <div class="col">
@@ -29,7 +29,11 @@
         </div>
     </div>
 </div>
+
+
 @section scripts {
+    <script type="text/javascript" src="~/js/shoppingcart.js"></script>
+    <script type="text/javascript"src="~/js/products.js" ></script>
     <script type="text/javascript">
         UpdateShopCartItems("@Model.Id")
         UpdateProducts("@Model.UserId", "@Model.Id");
