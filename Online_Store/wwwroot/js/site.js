@@ -1,4 +1,4 @@
-﻿function changeValue(target, output, amount, price, num) {
+﻿function changeValue(target, output, price, num) {
     let val = parseInt(target.value);
     if (num < 0 && val <= 1) {
         return;
