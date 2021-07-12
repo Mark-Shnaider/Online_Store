@@ -84,6 +84,8 @@ namespace Logic.Services
         {
              List<Order> orders = _unitOfWork.Orders
                 .GetAll()
+                .Include(o => o.OrderDetails)
+                .ThenInclude(o => o.Product)
                 .Where(o => o.UserId == UserId)
                 .ToList();
 

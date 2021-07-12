@@ -33,7 +33,7 @@ namespace Online_Store.Controllers
             {
                 Id = Guid.NewGuid(),
                 UserId = cart.UserId,
-                Items = _mapper.Map<List<ShoppingCartItemViewModel>>(cart.ShoppingCartItems)
+                OrderDetails = _mapper.Map<List<ShoppingCartItemViewModel>>(cart.ShoppingCartItems)
             };
 
             return View(orderVM);

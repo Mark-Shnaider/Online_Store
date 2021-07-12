@@ -26,6 +26,7 @@ namespace Online_Store.App_Start
         {
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<Order, OrderDto>().ReverseMap();
+            CreateMap<OrderDetail, OrderDetailDto>().ReverseMap();
             CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<ShoppingCart, ShoppingCartDto>().ReverseMap();
             CreateMap<ShoppingCartItem, ShoppingCartItemDto>().ReverseMap();
@@ -37,6 +38,7 @@ namespace Online_Store.App_Start
             CreateMap<CategoryDto, CategoryViewModel>().ReverseMap();
             CreateMap<CategoryDto, CategoryIndexViewModel>().ReverseMap();
             CreateMap<OrderDto, OrderViewModel>().ReverseMap();
+            CreateMap<OrderDetailDto, OrderDetailViewModel>().ReverseMap();
             CreateMap<ShoppingCartDto, ShoppingCartViewModel>().ReverseMap();
             CreateMap<ShoppingCartItemDto, ShoppingCartItemViewModel>().ReverseMap();
 
@@ -48,6 +50,7 @@ namespace Online_Store.App_Start
         {
             CreateMap<UserViewModel, User>().ReverseMap();
             CreateMap<LoginViewModel, User>().ReverseMap();
+            CreateMap<OrderDetailDto, ShoppingCartItemViewModel>().ReverseMap();
         }
     }
 }

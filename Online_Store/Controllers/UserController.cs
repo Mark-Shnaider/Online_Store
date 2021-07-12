@@ -22,9 +22,10 @@ namespace Online_Store.Controllers
 
         public IActionResult Orders(Guid UserId)
         {
-            List<OrderDto> orders = _serviceProvider.GetRequiredService<IOrderService>().GetOrders(UserId);
+            List<OrderDto> ordersDTO = _serviceProvider.GetRequiredService<IOrderService>().GetOrders(UserId);
 
-            return View(orders);
+            var ordersVM = _mapper.Map<List<OrderViewModel>>(ordersDTO);
+            return View(ordersVM);
         }
     }
 }

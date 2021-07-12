@@ -1,0 +1,27 @@
+﻿@using Online_Store.Models
+
+@model List<OrderViewModel>
+
+@foreach (var order in Model)
+{
+    <h4>Заказ № @order.Id </h4>
+    foreach (var detail in order.OrderDetails)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Название товара</th>
+                    <th scope="col">Количество товара</th>
+                    <th scope="col">Сумма</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@detail.Product.Name</td>
+                    <td>@detail.Amount</td>
+                    <td>@detail.SubTotal</td>
+                </tr>
+            </tbody>
+        </table>
+    }
+}
