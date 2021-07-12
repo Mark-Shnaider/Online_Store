@@ -27,9 +27,15 @@ namespace Online_Store.Controllers
         {
             var cartDTO = _serviceProvider.GetRequiredService<IShoppingCartService>().GetCartByUser(Id);
 
+            if (cartDTO == null)
+                cartDTO = new ShoppingCartDto { ShoppingCartItems = new List<ShoppingCartItemDto>()};
+
             var cartVM = _mapper.Map<ShoppingCartViewModel>(cartDTO);
 
             var categoriesDTO = _serviceProvider.GetRequiredService<ICategoryService>().GetCategories();
+
+            if (categoriesDTO == null)
+                return BadRequest();
 
             cartVM.Categories = _mapper.Map<List<CategoryIndexViewModel>>(categoriesDTO);
             cartVM.CategoryId = cartVM.Categories[0].Id;
