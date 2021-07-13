@@ -53,7 +53,7 @@ namespace Online_Store.Areas.Identity.Controllers
                     await _signInManager.SignInAsync(user, false);
                     await _userManager.AddToRoleAsync(user, "User");
                     _serviceProvider.GetRequiredService<IShoppingCartService>().CreateCart(user.Id);
-                    return RedirectToAction("Index", "Product", new { Id = user.Id });
+                    return RedirectToAction("Index", "Product");
                 }
                 else
                 {

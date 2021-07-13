@@ -14,20 +14,26 @@ using Common.Models.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Common.Contracts.Services.Identity;
 using Online_Store.Areas.Identity.Models;
+using System.Security.Claims;
 
 namespace Online_Store.Controllers
 {
     public class ProductController:BaseController
     {
-        public ProductController(IMapper mapper, IServiceProvider serviceProvider)
+        private readonly UserManager<User> _userManager;
+        public ProductController(IMapper mapper, IServiceProvider serviceProvider, UserManager<User> userManager)
             : base(mapper, serviceProvider)
         {
+            _userManager = userManager;
         }
-        public IActionResult Index(Guid Id)
+        public async Task<IActionResult> Index()
         {
-            var cartDTO = _serviceProvider.GetRequiredService<IShoppingCartService>().GetCartByUser(Id);
-
-            if (cartDTO == null)
+            ShoppingCartDto cartDTO;
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            
+            if(user != null)
+                cartDTO = _serviceProvider.GetRequiredService<IShoppingCartService>().GetCartByUser(user.Id);
+            else
                 cartDTO = new ShoppingCartDto { ShoppingCartItems = new List<ShoppingCartItemDto>()};
 
             var cartVM = _mapper.Map<ShoppingCartViewModel>(cartDTO);
@@ -59,6 +65,8 @@ namespace Online_Store.Controllers
             cart.ShoppingCartItems = _mapper.Map<List<ShoppingCartItemViewModel>>(items);
             return PartialView("Partials/_CartPartial", cart);
         }
+
+
 
         [HttpGet]
         public IActionResult Details(Guid id)
