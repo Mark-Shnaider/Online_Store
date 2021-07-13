@@ -25,7 +25,7 @@ namespace Online_Store.Controllers
         }
 
         [HttpGet]
-        public IActionResult Order(Guid CartId)
+        public IActionResult Book(Guid CartId)
         {
             var cart = _serviceProvider.GetRequiredService<IShoppingCartService>().GetCart(CartId);
 

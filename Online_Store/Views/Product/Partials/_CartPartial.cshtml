@@ -44,7 +44,7 @@
     @if (Total > 0)
     {
         @: <div class="col-sm-12 col-md-6 text-right">
-            <a asp-controller="Order" asp-action="Order" asp-route-CartId="@Model.Id" class="btn btn-lg btn-block btn-success text-uppercase">Оформить заказ</a>
+            <a asp-controller="Order" asp-action="Book" asp-route-CartId="@Model.Id" class="btn btn-lg btn-block btn-success text-uppercase">Оформить заказ</a>
         @: </div>
     }
 

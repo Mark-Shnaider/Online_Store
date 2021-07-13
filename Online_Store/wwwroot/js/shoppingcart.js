@@ -11,16 +11,13 @@
             amount: amount
         },
         success: function (data) {
-            if (data.data.isValid == false)
-                alert("На складе нет столько товаров")
-            else
+            if (data.data.isValid != false)
                 UpdateShopCartItems(CartId);
         },
         error: function () {
             AjaxError();
         }
     });
-
 };
 
 RemoveFromCart = function (element) {

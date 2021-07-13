@@ -42,6 +42,15 @@ namespace Online_Store.Controllers
         [HttpPost]
         public JsonResult Add(Guid CartId, Guid ProductId, int amount)
         {
+            if (CartId == default)
+                return Json(new
+                {
+                    Data = new
+                    {
+                        isValid = false
+                    }
+                });
+
             bool isValidAmount = false;
 
             var product = _serviceProvider.GetRequiredService<IProductService>().GetProduct(ProductId);
