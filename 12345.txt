@@ -8,3 +8,7 @@
 
 Желательно поработать над стилизацией страничек. Может у тебя есть идеи? Как у тебя вообще с этим?
 
+        <nav class="navbar navbar-dark bg-primary">
+            <a class="navbar-brand" asp-controller="Product" asp-action="Index">Онлайн магазин</a>
+            <partial name="_EntryPartial" />
+        </nav>
